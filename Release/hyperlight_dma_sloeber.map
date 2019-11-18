@@ -587,8 +587,6 @@ Discarded input sections
                 0x00000000        0x4 .\sloeber.ino.cpp.o
  .bss.TIMX_CCMR2
                 0x00000000        0x4 .\sloeber.ino.cpp.o
- .data.TransferCounter
-                0x00000000        0x4 .\sloeber.ino.cpp.o
  .text          0x00000000        0x0 .\libraries\IWatchdog\src\IWatchdog.cpp.o
  .data          0x00000000        0x0 .\libraries\IWatchdog\src\IWatchdog.cpp.o
  .bss           0x00000000        0x0 .\libraries\IWatchdog\src\IWatchdog.cpp.o
@@ -1601,8 +1599,6 @@ Discarded input sections
                 0x00000000       0x94 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
  .text.HAL_DMA_PollForTransfer
                 0x00000000      0x11c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
- .text.HAL_DMA_IRQHandler
-                0x00000000      0x1dc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
  .text.HAL_DMA_UnRegisterCallback
                 0x00000000       0x70 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
  .text.HAL_DMA_GetError
@@ -5148,7 +5144,7 @@ LOAD e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/b
                 0x08000000                g_pfnVectors
                 0x08000188                . = ALIGN (0x4)
 
-.text           0x080001c0     0x3c18
+.text           0x080001c0     0x3e44
                 0x080001c0                . = ALIGN (0x4)
  *(.text)
  .text          0x080001c0       0xdc e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-strlen.o)
@@ -5175,769 +5171,780 @@ LOAD e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/b
                 0x0800042c       0x40 .\sloeber.ino.cpp.o
  .text._ZL11MX_DMA_Initv
                 0x0800046c       0x34 .\sloeber.ino.cpp.o
+ .text._ZL11Restart_DMAv
+                0x080004a0       0x5c .\sloeber.ino.cpp.o
  .text._ZL16TransferCompleteP19__DMA_HandleTypeDef
-                0x080004a0       0x24 .\sloeber.ino.cpp.o
+                0x080004fc       0x24 .\sloeber.ino.cpp.o
  .text.SystemClock_Config
-                0x080004c4       0xb8 .\sloeber.ino.cpp.o
-                0x080004c4                SystemClock_Config
+                0x08000520       0xb8 .\sloeber.ino.cpp.o
+                0x08000520                SystemClock_Config
  .text.HAL_MspInit
-                0x0800057c       0x38 .\sloeber.ino.cpp.o
-                0x0800057c                HAL_MspInit
+                0x080005d8       0x38 .\sloeber.ino.cpp.o
+                0x080005d8                HAL_MspInit
  .text.HAL_TIM_Base_MspInit
-                0x080005b4       0xcc .\sloeber.ino.cpp.o
-                0x080005b4                HAL_TIM_Base_MspInit
+                0x08000610       0xcc .\sloeber.ino.cpp.o
+                0x08000610                HAL_TIM_Base_MspInit
  .text._Z19HAL_TIM_MspPostInitP17TIM_HandleTypeDef
-                0x08000680       0x60 .\sloeber.ino.cpp.o
-                0x08000680                HAL_TIM_MspPostInit(TIM_HandleTypeDef*)
+                0x080006dc       0x60 .\sloeber.ino.cpp.o
+                0x080006dc                HAL_TIM_MspPostInit(TIM_HandleTypeDef*)
  .text._ZL12MX_TIM8_Initv
-                0x080006e0      0x150 .\sloeber.ino.cpp.o
+                0x0800073c      0x140 .\sloeber.ino.cpp.o
  .text._Z6setLEDiihhh
-                0x08000830       0x58 .\sloeber.ino.cpp.o
-                0x08000830                setLED(int, int, unsigned char, unsigned char, unsigned char)
+                0x0800087c       0x58 .\sloeber.ino.cpp.o
+                0x0800087c                setLED(int, int, unsigned char, unsigned char, unsigned char)
  .text._Z6setAllhhh
-                0x08000888       0x34 .\sloeber.ino.cpp.o
-                0x08000888                setAll(unsigned char, unsigned char, unsigned char)
- .text.loop     0x080008bc       0x4c .\sloeber.ino.cpp.o
-                0x080008bc                loop
+                0x080008d4       0x34 .\sloeber.ino.cpp.o
+                0x080008d4                setAll(unsigned char, unsigned char, unsigned char)
+ .text.loop     0x08000908       0x30 .\sloeber.ino.cpp.o
+                0x08000908                loop
  .text._Z15HAL_TIM_PWM_SetP17TIM_HandleTypeDefm
-                0x08000908       0x2c .\sloeber.ino.cpp.o
-                0x08000908                HAL_TIM_PWM_Set(TIM_HandleTypeDef*, unsigned long)
+                0x08000938       0x2c .\sloeber.ino.cpp.o
+                0x08000938                HAL_TIM_PWM_Set(TIM_HandleTypeDef*, unsigned long)
  .text._ZL9Start_DMAv
-                0x08000934       0xa8 .\sloeber.ino.cpp.o
- .text.setup    0x080009dc       0x2c .\sloeber.ino.cpp.o
-                0x080009dc                setup
+                0x08000964       0xa8 .\sloeber.ino.cpp.o
+ .text.setup    0x08000a0c       0x3c .\sloeber.ino.cpp.o
+                0x08000a0c                setup
  .text.HAL_InitTick
-                0x08000a08       0x4c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
-                0x08000a08                HAL_InitTick
+                0x08000a48       0x4c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
+                0x08000a48                HAL_InitTick
  .text.HAL_Init
-                0x08000a54       0x34 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
-                0x08000a54                HAL_Init
+                0x08000a94       0x34 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
+                0x08000a94                HAL_Init
  .text.HAL_IncTick
-                0x08000a88       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
-                0x08000a88                HAL_IncTick
+                0x08000ac8       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
+                0x08000ac8                HAL_IncTick
  .text.HAL_GetTick
-                0x08000aa0        0xc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
-                0x08000aa0                HAL_GetTick
+                0x08000ae0        0xc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
+                0x08000ae0                HAL_GetTick
  .text.HAL_NVIC_SetPriorityGrouping
-                0x08000aac       0x24 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
-                0x08000aac                HAL_NVIC_SetPriorityGrouping
+                0x08000aec       0x24 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
+                0x08000aec                HAL_NVIC_SetPriorityGrouping
  .text.HAL_NVIC_SetPriority
-                0x08000ad0       0x68 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
-                0x08000ad0                HAL_NVIC_SetPriority
+                0x08000b10       0x68 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
+                0x08000b10                HAL_NVIC_SetPriority
  .text.HAL_NVIC_EnableIRQ
-                0x08000b38       0x1c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
-                0x08000b38                HAL_NVIC_EnableIRQ
+                0x08000b78       0x1c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
+                0x08000b78                HAL_NVIC_EnableIRQ
  .text.HAL_SYSTICK_Config
-                0x08000b54       0x2c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
-                0x08000b54                HAL_SYSTICK_Config
+                0x08000b94       0x2c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
+                0x08000b94                HAL_SYSTICK_Config
  .text.HAL_SYSTICK_Callback
-                0x08000b80        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
-                0x08000b80                HAL_SYSTICK_Callback
+                0x08000bc0        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
+                0x08000bc0                HAL_SYSTICK_Callback
  .text.HAL_SYSTICK_IRQHandler
-                0x08000b82        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
-                0x08000b82                HAL_SYSTICK_IRQHandler
+                0x08000bc2        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
+                0x08000bc2                HAL_SYSTICK_IRQHandler
  .text.DMA_SetConfig
-                0x08000b8a       0x2c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
- *fill*         0x08000bb6        0x2 
+                0x08000bca       0x2c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+ *fill*         0x08000bf6        0x2 
  .text.DMA_CalcBaseAndBitshift
-                0x08000bb8       0x44 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+                0x08000bf8       0x44 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
  .text.DMA_CheckFifoParam
-                0x08000bfc       0x8e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
- *fill*         0x08000c8a        0x2 
+                0x08000c3c       0x8e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+ *fill*         0x08000cca        0x2 
  .text.HAL_DMA_Init
-                0x08000c8c       0xcc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
-                0x08000c8c                HAL_DMA_Init
+                0x08000ccc       0xcc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+                0x08000ccc                HAL_DMA_Init
  .text.HAL_DMA_Start_IT
-                0x08000d58       0x74 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
-                0x08000d58                HAL_DMA_Start_IT
+                0x08000d98       0x74 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+                0x08000d98                HAL_DMA_Start_IT
  .text.HAL_DMA_Abort_IT
-                0x08000dcc       0x26 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
-                0x08000dcc                HAL_DMA_Abort_IT
+                0x08000e0c       0x26 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+                0x08000e0c                HAL_DMA_Abort_IT
+ *fill*         0x08000e32        0x2 
+ .text.HAL_DMA_IRQHandler
+                0x08000e34      0x1dc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+                0x08000e34                HAL_DMA_IRQHandler
+ .text.DMA2_Stream2_IRQHandler
+                0x08001010       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+                0x08001010                DMA2_Stream2_IRQHandler
  .text.HAL_DMA_RegisterCallback
-                0x08000df2       0x5e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
-                0x08000df2                HAL_DMA_RegisterCallback
+                0x08001020       0x5e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+                0x08001020                HAL_DMA_RegisterCallback
  .text.HAL_DMA_GetState
-                0x08000e50        0x6 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
-                0x08000e50                HAL_DMA_GetState
- *fill*         0x08000e56        0x2 
+                0x0800107e        0x6 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+                0x0800107e                HAL_DMA_GetState
  .text.HAL_GPIO_Init
-                0x08000e58      0x1c8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
-                0x08000e58                HAL_GPIO_Init
+                0x08001084      0x1c8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
+                0x08001084                HAL_GPIO_Init
  .text.HAL_GPIO_WritePin
-                0x08001020        0xc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
-                0x08001020                HAL_GPIO_WritePin
+                0x0800124c        0xc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
+                0x0800124c                HAL_GPIO_WritePin
  .text.HAL_GPIO_EXTI_IRQHandler
-                0x0800102c       0x1c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
-                0x0800102c                HAL_GPIO_EXTI_IRQHandler
+                0x08001258       0x1c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
+                0x08001258                HAL_GPIO_EXTI_IRQHandler
  .text.I2C_Master_SB
-                0x08001048       0xae C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001274       0xae C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.I2C_Master_ADD10
-                0x080010f6       0x2e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001322       0x2e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.I2C_Master_ADDR
-                0x08001124      0x206 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001350      0x206 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.I2C_SlaveTransmit_BTF
-                0x0800132a       0x1e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001556       0x1e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.I2C_SlaveReceive_BTF
-                0x08001348       0x1e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001574       0x1e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.I2C_ConvertOtherXferOptions
-                0x08001366       0x1e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001592       0x1e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.HAL_I2C_Slave_Seq_Transmit_IT
-                0x08001384       0x8e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
-                0x08001384                HAL_I2C_Slave_Seq_Transmit_IT
+                0x080015b0       0x8e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x080015b0                HAL_I2C_Slave_Seq_Transmit_IT
  .text.HAL_I2C_Slave_Seq_Receive_IT
-                0x08001412       0x8e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
-                0x08001412                HAL_I2C_Slave_Seq_Receive_IT
+                0x0800163e       0x8e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x0800163e                HAL_I2C_Slave_Seq_Receive_IT
  .text.HAL_I2C_EnableListen_IT
-                0x080014a0       0x3e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
-                0x080014a0                HAL_I2C_EnableListen_IT
+                0x080016cc       0x3e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x080016cc                HAL_I2C_EnableListen_IT
  .text.HAL_I2C_MasterTxCpltCallback
-                0x080014de        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
-                0x080014de                HAL_I2C_MasterTxCpltCallback
+                0x0800170a        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x0800170a                HAL_I2C_MasterTxCpltCallback
  .text.HAL_I2C_MasterRxCpltCallback
-                0x080014e0        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
-                0x080014e0                HAL_I2C_MasterRxCpltCallback
+                0x0800170c        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x0800170c                HAL_I2C_MasterRxCpltCallback
  .text.I2C_SlaveTransmit_TXE
-                0x080014e2       0x4a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x0800170e       0x4a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.I2C_SlaveReceive_RXNE
-                0x0800152c       0x4a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001758       0x4a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.I2C_Slave_ADDR
-                0x08001576       0x4e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x080017a2       0x4e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.I2C_Slave_AF
-                0x080015c4       0x94 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x080017f0       0x94 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.HAL_I2C_MemTxCpltCallback
-                0x08001658        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
-                0x08001658                HAL_I2C_MemTxCpltCallback
+                0x08001884        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001884                HAL_I2C_MemTxCpltCallback
  .text.I2C_MasterTransmit_TXE
-                0x0800165a      0x148 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001886      0x148 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.I2C_MasterTransmit_BTF
-                0x080017a2       0x9c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x080019ce       0x9c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.HAL_I2C_MemRxCpltCallback
-                0x0800183e        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
-                0x0800183e                HAL_I2C_MemRxCpltCallback
+                0x08001a6a        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001a6a                HAL_I2C_MemRxCpltCallback
  .text.I2C_MasterReceive_RXNE
-                0x08001840       0xa2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001a6c       0xa2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.I2C_MasterReceive_BTF
-                0x080018e2      0x11e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001b0e      0x11e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.HAL_I2C_AbortCpltCallback
-                0x08001a00        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
-                0x08001a00                HAL_I2C_AbortCpltCallback
+                0x08001c2c        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001c2c                HAL_I2C_AbortCpltCallback
  .text.I2C_DMAAbort
-                0x08001a02       0x8a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001c2e       0x8a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.I2C_ITError
-                0x08001a8c      0x168 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001cb8      0x168 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.I2C_Slave_STOPF
-                0x08001bf4      0x188 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001e20      0x188 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .text.HAL_I2C_EV_IRQHandler
-                0x08001d7c      0x18c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
-                0x08001d7c                HAL_I2C_EV_IRQHandler
+                0x08001fa8      0x18c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08001fa8                HAL_I2C_EV_IRQHandler
  .text.HAL_I2C_ER_IRQHandler
-                0x08001f08       0xc8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
-                0x08001f08                HAL_I2C_ER_IRQHandler
+                0x08002134       0xc8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x08002134                HAL_I2C_ER_IRQHandler
  .text.HAL_RCC_OscConfig
-                0x08001fd0      0x398 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
-                0x08001fd0                HAL_RCC_OscConfig
+                0x080021fc      0x398 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
+                0x080021fc                HAL_RCC_OscConfig
  .text.HAL_RCC_GetSysClockFreq
-                0x08002368       0xd4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
-                0x08002368                HAL_RCC_GetSysClockFreq
+                0x08002594       0xd4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
+                0x08002594                HAL_RCC_GetSysClockFreq
  .text.HAL_RCC_ClockConfig
-                0x0800243c      0x15c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
-                0x0800243c                HAL_RCC_ClockConfig
+                0x08002668      0x15c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
+                0x08002668                HAL_RCC_ClockConfig
  .text.HAL_RTC_AlarmIRQHandler
-                0x08002598       0x60 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
-                0x08002598                HAL_RTC_AlarmIRQHandler
+                0x080027c4       0x60 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
+                0x080027c4                HAL_RTC_AlarmIRQHandler
  .text.HAL_RTCEx_AlarmBEventCallback
-                0x080025f8        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
-                0x080025f8                HAL_RTCEx_AlarmBEventCallback
- *fill*         0x080025fa        0x2 
+                0x08002824        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
+                0x08002824                HAL_RTCEx_AlarmBEventCallback
+ *fill*         0x08002826        0x2 
  .text.TIM_OC1_SetConfig
-                0x080025fc       0x68 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x08002828       0x68 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
  .text.TIM_OC3_SetConfig
-                0x08002664       0x70 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x08002890       0x70 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
  .text.TIM_OC4_SetConfig
-                0x080026d4       0x50 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x08002900       0x50 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
  .text.TIM_TI1_ConfigInputStage
-                0x08002724       0x26 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x08002950       0x26 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
  .text.TIM_TI2_ConfigInputStage
-                0x0800274a       0x28 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x08002976       0x28 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
  .text.TIM_ITRx_SetConfig
-                0x08002772       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x0800299e       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
  .text.HAL_TIM_PWM_MspInit
-                0x08002782        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
-                0x08002782                HAL_TIM_PWM_MspInit
+                0x080029ae        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x080029ae                HAL_TIM_PWM_MspInit
  .text.HAL_TIM_PWM_PulseFinishedCallback
-                0x08002784        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
-                0x08002784                HAL_TIM_PWM_PulseFinishedCallback
+                0x080029b0        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x080029b0                HAL_TIM_PWM_PulseFinishedCallback
  .text.TIM_DMADelayPulseCplt
-                0x08002786       0x44 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
-                0x08002786                TIM_DMADelayPulseCplt
+                0x080029b2       0x44 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x080029b2                TIM_DMADelayPulseCplt
  .text.HAL_TIM_TriggerCallback
-                0x080027ca        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
-                0x080027ca                HAL_TIM_TriggerCallback
+                0x080029f6        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x080029f6                HAL_TIM_TriggerCallback
  .text.HAL_TIM_IRQHandler
-                0x080027cc      0x17a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
-                0x080027cc                HAL_TIM_IRQHandler
- *fill*         0x08002946        0x2 
+                0x080029f8      0x17a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x080029f8                HAL_TIM_IRQHandler
+ *fill*         0x08002b72        0x2 
  .text.TIM_Base_SetConfig
-                0x08002948       0xc8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
-                0x08002948                TIM_Base_SetConfig
+                0x08002b74       0xc8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x08002b74                TIM_Base_SetConfig
  .text.HAL_TIM_Base_Init
-                0x08002a10       0x34 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
-                0x08002a10                HAL_TIM_Base_Init
+                0x08002c3c       0x34 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x08002c3c                HAL_TIM_Base_Init
  .text.HAL_TIM_PWM_Init
-                0x08002a44       0x34 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
-                0x08002a44                HAL_TIM_PWM_Init
+                0x08002c70       0x34 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x08002c70                HAL_TIM_PWM_Init
  .text.TIM_OC2_SetConfig
-                0x08002a78       0x70 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
-                0x08002a78                TIM_OC2_SetConfig
+                0x08002ca4       0x70 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x08002ca4                TIM_OC2_SetConfig
  .text.HAL_TIM_PWM_ConfigChannel
-                0x08002ae8       0xdc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
-                0x08002ae8                HAL_TIM_PWM_ConfigChannel
+                0x08002d14       0xdc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x08002d14                HAL_TIM_PWM_ConfigChannel
  .text.TIM_ETR_SetConfig
-                0x08002bc4       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
-                0x08002bc4                TIM_ETR_SetConfig
+                0x08002df0       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x08002df0                TIM_ETR_SetConfig
  .text.HAL_TIM_ConfigClockSource
-                0x08002bdc       0xdc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
-                0x08002bdc                HAL_TIM_ConfigClockSource
+                0x08002e08       0xdc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x08002e08                HAL_TIM_ConfigClockSource
  .text.TIM_CCxChannelCmd
-                0x08002cb8       0x22 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
-                0x08002cb8                TIM_CCxChannelCmd
+                0x08002ee4       0x22 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x08002ee4                TIM_CCxChannelCmd
  .text.HAL_TIMEx_MasterConfigSynchronization
-                0x08002cda       0x46 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
-                0x08002cda                HAL_TIMEx_MasterConfigSynchronization
+                0x08002f06       0x46 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
+                0x08002f06                HAL_TIMEx_MasterConfigSynchronization
  .text.HAL_TIMEx_ConfigBreakDeadTime
-                0x08002d20       0x52 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
-                0x08002d20                HAL_TIMEx_ConfigBreakDeadTime
+                0x08002f4c       0x52 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
+                0x08002f4c                HAL_TIMEx_ConfigBreakDeadTime
  .text.HAL_TIMEx_CommutCallback
-                0x08002d72        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
-                0x08002d72                HAL_TIMEx_CommutCallback
+                0x08002f9e        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
+                0x08002f9e                HAL_TIMEx_CommutCallback
  .text.HAL_TIMEx_BreakCallback
-                0x08002d74        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
-                0x08002d74                HAL_TIMEx_BreakCallback
+                0x08002fa0        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
+                0x08002fa0                HAL_TIMEx_BreakCallback
  .text.getCurrentMillis
-                0x08002d76        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
-                0x08002d76                getCurrentMillis
+                0x08002fa2        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
+                0x08002fa2                getCurrentMillis
  .text.noOsSystickHandler
-                0x08002d7e        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
-                0x08002d7e                osSystickHandler
-                0x08002d7e                noOsSystickHandler
+                0x08002faa        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
+                0x08002faa                osSystickHandler
+                0x08002faa                noOsSystickHandler
  .text.SysTick_Handler
-                0x08002d80       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
-                0x08002d80                SysTick_Handler
+                0x08002fac       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
+                0x08002fac                SysTick_Handler
  .text.dwt_init
-                0x08002d90       0x3c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
-                0x08002d90                dwt_init
+                0x08002fbc       0x3c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
+                0x08002fbc                dwt_init
  .text.hw_config_init
-                0x08002dcc       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
-                0x08002dcc                hw_config_init
+                0x08002ff8       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
+                0x08002ff8                hw_config_init
  .text._ZL10get_pin_idt
-                0x08002ddc       0x12 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
- *fill*         0x08002dee        0x2 
+                0x08003008       0x12 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+ *fill*         0x0800301a        0x2 
  .text._Z41__static_initialization_and_destruction_0ii
-                0x08002df0       0xc0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+                0x0800301c       0xc0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
  .text.EXTI0_IRQHandler
-                0x08002eb0        0xa C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
-                0x08002eb0                EXTI0_IRQHandler
+                0x080030dc        0xa C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+                0x080030dc                EXTI0_IRQHandler
  .text.EXTI1_IRQHandler
-                0x08002eba        0xa C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
-                0x08002eba                EXTI1_IRQHandler
+                0x080030e6        0xa C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+                0x080030e6                EXTI1_IRQHandler
  .text.EXTI2_IRQHandler
-                0x08002ec4        0xa C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
-                0x08002ec4                EXTI2_IRQHandler
+                0x080030f0        0xa C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+                0x080030f0                EXTI2_IRQHandler
  .text.EXTI3_IRQHandler
-                0x08002ece        0xa C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
-                0x08002ece                EXTI3_IRQHandler
+                0x080030fa        0xa C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+                0x080030fa                EXTI3_IRQHandler
  .text.EXTI4_IRQHandler
-                0x08002ed8        0xa C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
-                0x08002ed8                EXTI4_IRQHandler
+                0x08003104        0xa C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+                0x08003104                EXTI4_IRQHandler
  .text.EXTI9_5_IRQHandler
-                0x08002ee2       0x16 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
-                0x08002ee2                EXTI9_5_IRQHandler
+                0x0800310e       0x16 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+                0x0800310e                EXTI9_5_IRQHandler
  .text.EXTI15_10_IRQHandler
-                0x08002ef8       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
-                0x08002ef8                EXTI15_10_IRQHandler
+                0x08003124       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+                0x08003124                EXTI15_10_IRQHandler
  .text._ZNKSt8functionIFvvEEclEv
-                0x08002f10       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
-                0x08002f10                std::function<void ()>::operator()() const
+                0x0800313c       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+                0x0800313c                std::function<void ()>::operator()() const
  .text.HAL_GPIO_EXTI_Callback
-                0x08002f20       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
-                0x08002f20                HAL_GPIO_EXTI_Callback
+                0x0800314c       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+                0x0800314c                HAL_GPIO_EXTI_Callback
  .text._GLOBAL__sub_I__Z22stm32_interrupt_enableP12GPIO_TypeDeftSt8functionIFvvEEm
-                0x08002f40        0xe C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+                0x0800316c        0xe C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
  .text._GLOBAL__sub_D__Z22stm32_interrupt_enableP12GPIO_TypeDeftSt8functionIFvvEEm
-                0x08002f4e        0xe C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+                0x0800317a        0xe C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
  .text.HAL_RTC_AlarmAEventCallback
-                0x08002f5c       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
-                0x08002f5c                HAL_RTC_AlarmAEventCallback
+                0x08003188       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
+                0x08003188                HAL_RTC_AlarmAEventCallback
  .text.RTC_Alarm_IRQHandler
-                0x08002f74       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
-                0x08002f74                RTC_Alarm_IRQHandler
+                0x080031a0       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
+                0x080031a0                RTC_Alarm_IRQHandler
  .text.Reset_Handler
-                0x08002f84       0x50 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(startup_stm32yyxx.S.o)
-                0x08002f84                Reset_Handler
+                0x080031b0       0x50 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(startup_stm32yyxx.S.o)
+                0x080031b0                Reset_Handler
  .text.Default_Handler
-                0x08002fd4        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(startup_stm32yyxx.S.o)
-                0x08002fd4                HASH_RNG_IRQHandler
-                0x08002fd4                DebugMon_Handler
-                0x08002fd4                DMA2_Stream5_IRQHandler
-                0x08002fd4                HardFault_Handler
-                0x08002fd4                DMA1_Stream5_IRQHandler
-                0x08002fd4                PVD_IRQHandler
-                0x08002fd4                SDIO_IRQHandler
-                0x08002fd4                TAMP_STAMP_IRQHandler
-                0x08002fd4                PendSV_Handler
-                0x08002fd4                NMI_Handler
-                0x08002fd4                CAN2_RX1_IRQHandler
-                0x08002fd4                DMA1_Stream2_IRQHandler
-                0x08002fd4                CAN1_RX0_IRQHandler
-                0x08002fd4                FPU_IRQHandler
-                0x08002fd4                OTG_HS_WKUP_IRQHandler
-                0x08002fd4                UsageFault_Handler
-                0x08002fd4                CAN2_SCE_IRQHandler
-                0x08002fd4                DMA2_Stream2_IRQHandler
-                0x08002fd4                SPI1_IRQHandler
-                0x08002fd4                DCMI_IRQHandler
-                0x08002fd4                CAN2_RX0_IRQHandler
-                0x08002fd4                DMA2_Stream3_IRQHandler
-                0x08002fd4                USART6_IRQHandler
-                0x08002fd4                USART3_IRQHandler
-                0x08002fd4                CAN1_RX1_IRQHandler
-                0x08002fd4                UART5_IRQHandler
-                0x08002fd4                DMA2_Stream0_IRQHandler
-                0x08002fd4                DMA1_Stream6_IRQHandler
-                0x08002fd4                DMA1_Stream1_IRQHandler
-                0x08002fd4                UART4_IRQHandler
-                0x08002fd4                RCC_IRQHandler
-                0x08002fd4                Default_Handler
-                0x08002fd4                ADC_IRQHandler
-                0x08002fd4                DMA1_Stream7_IRQHandler
-                0x08002fd4                CAN2_TX_IRQHandler
-                0x08002fd4                DMA2_Stream7_IRQHandler
-                0x08002fd4                RTC_WKUP_IRQHandler
-                0x08002fd4                ETH_WKUP_IRQHandler
-                0x08002fd4                SPI2_IRQHandler
-                0x08002fd4                OTG_HS_EP1_IN_IRQHandler
-                0x08002fd4                MemManage_Handler
-                0x08002fd4                DMA1_Stream0_IRQHandler
-                0x08002fd4                CAN1_TX_IRQHandler
-                0x08002fd4                SVC_Handler
-                0x08002fd4                FSMC_IRQHandler
-                0x08002fd4                ETH_IRQHandler
-                0x08002fd4                OTG_HS_EP1_OUT_IRQHandler
-                0x08002fd4                WWDG_IRQHandler
-                0x08002fd4                OTG_FS_WKUP_IRQHandler
-                0x08002fd4                OTG_HS_IRQHandler
-                0x08002fd4                USART2_IRQHandler
-                0x08002fd4                DMA2_Stream1_IRQHandler
-                0x08002fd4                CAN1_SCE_IRQHandler
-                0x08002fd4                FLASH_IRQHandler
-                0x08002fd4                DMA2_Stream4_IRQHandler
-                0x08002fd4                BusFault_Handler
-                0x08002fd4                USART1_IRQHandler
-                0x08002fd4                OTG_FS_IRQHandler
-                0x08002fd4                SPI3_IRQHandler
-                0x08002fd4                DMA1_Stream4_IRQHandler
-                0x08002fd4                DMA2_Stream6_IRQHandler
-                0x08002fd4                DMA1_Stream3_IRQHandler
+                0x08003200        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(startup_stm32yyxx.S.o)
+                0x08003200                HASH_RNG_IRQHandler
+                0x08003200                DebugMon_Handler
+                0x08003200                DMA2_Stream5_IRQHandler
+                0x08003200                HardFault_Handler
+                0x08003200                DMA1_Stream5_IRQHandler
+                0x08003200                PVD_IRQHandler
+                0x08003200                SDIO_IRQHandler
+                0x08003200                TAMP_STAMP_IRQHandler
+                0x08003200                PendSV_Handler
+                0x08003200                NMI_Handler
+                0x08003200                CAN2_RX1_IRQHandler
+                0x08003200                DMA1_Stream2_IRQHandler
+                0x08003200                CAN1_RX0_IRQHandler
+                0x08003200                FPU_IRQHandler
+                0x08003200                OTG_HS_WKUP_IRQHandler
+                0x08003200                UsageFault_Handler
+                0x08003200                CAN2_SCE_IRQHandler
+                0x08003200                SPI1_IRQHandler
+                0x08003200                DCMI_IRQHandler
+                0x08003200                CAN2_RX0_IRQHandler
+                0x08003200                DMA2_Stream3_IRQHandler
+                0x08003200                USART6_IRQHandler
+                0x08003200                USART3_IRQHandler
+                0x08003200                CAN1_RX1_IRQHandler
+                0x08003200                UART5_IRQHandler
+                0x08003200                DMA2_Stream0_IRQHandler
+                0x08003200                DMA1_Stream6_IRQHandler
+                0x08003200                DMA1_Stream1_IRQHandler
+                0x08003200                UART4_IRQHandler
+                0x08003200                RCC_IRQHandler
+                0x08003200                Default_Handler
+                0x08003200                ADC_IRQHandler
+                0x08003200                DMA1_Stream7_IRQHandler
+                0x08003200                CAN2_TX_IRQHandler
+                0x08003200                DMA2_Stream7_IRQHandler
+                0x08003200                RTC_WKUP_IRQHandler
+                0x08003200                ETH_WKUP_IRQHandler
+                0x08003200                SPI2_IRQHandler
+                0x08003200                OTG_HS_EP1_IN_IRQHandler
+                0x08003200                MemManage_Handler
+                0x08003200                DMA1_Stream0_IRQHandler
+                0x08003200                CAN1_TX_IRQHandler
+                0x08003200                SVC_Handler
+                0x08003200                FSMC_IRQHandler
+                0x08003200                ETH_IRQHandler
+                0x08003200                OTG_HS_EP1_OUT_IRQHandler
+                0x08003200                WWDG_IRQHandler
+                0x08003200                OTG_FS_WKUP_IRQHandler
+                0x08003200                OTG_HS_IRQHandler
+                0x08003200                USART2_IRQHandler
+                0x08003200                DMA2_Stream1_IRQHandler
+                0x08003200                CAN1_SCE_IRQHandler
+                0x08003200                FLASH_IRQHandler
+                0x08003200                DMA2_Stream4_IRQHandler
+                0x08003200                BusFault_Handler
+                0x08003200                USART1_IRQHandler
+                0x08003200                OTG_FS_IRQHandler
+                0x08003200                SPI3_IRQHandler
+                0x08003200                DMA1_Stream4_IRQHandler
+                0x08003200                DMA2_Stream6_IRQHandler
+                0x08003200                DMA1_Stream3_IRQHandler
  .text._Error_Handler
-                0x08002fd6        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
-                0x08002fd6                _Error_Handler
+                0x08003202        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
+                0x08003202                _Error_Handler
  .text.SystemInit
-                0x08002fd8       0x4c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
-                0x08002fd8                SystemInit
+                0x08003204       0x4c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
+                0x08003204                SystemInit
  .text.enableTimerClock
-                0x08003024      0x228 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
-                0x08003024                enableTimerClock
+                0x08003250      0x228 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
+                0x08003250                enableTimerClock
  .text.getTimerUpIrq
-                0x0800324c       0xd4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
-                0x0800324c                getTimerUpIrq
+                0x08003478       0xd4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
+                0x08003478                getTimerUpIrq
  .text.getTimerCCIrq
-                0x08003320       0xd4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
-                0x08003320                getTimerCCIrq
+                0x0800354c       0xd4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
+                0x0800354c                getTimerCCIrq
  .text.get_i2c_obj
-                0x080033f4        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
-                0x080033f4                get_i2c_obj
+                0x08003620        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+                0x08003620                get_i2c_obj
  .text.HAL_I2C_AddrCallback
-                0x080033f8       0x52 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
-                0x080033f8                HAL_I2C_AddrCallback
+                0x08003624       0x52 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+                0x08003624                HAL_I2C_AddrCallback
  .text.HAL_I2C_ListenCpltCallback
-                0x0800344a       0x38 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
-                0x0800344a                HAL_I2C_ListenCpltCallback
+                0x08003676       0x38 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+                0x08003676                HAL_I2C_ListenCpltCallback
  .text.HAL_I2C_SlaveRxCpltCallback
-                0x08003482       0x34 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
-                0x08003482                HAL_I2C_SlaveRxCpltCallback
+                0x080036ae       0x34 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+                0x080036ae                HAL_I2C_SlaveRxCpltCallback
  .text.HAL_I2C_SlaveTxCpltCallback
-                0x080034b6        0xe C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
-                0x080034b6                HAL_I2C_SlaveTxCpltCallback
+                0x080036e2        0xe C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+                0x080036e2                HAL_I2C_SlaveTxCpltCallback
  .text.HAL_I2C_ErrorCallback
-                0x080034c4       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
-                0x080034c4                HAL_I2C_ErrorCallback
+                0x080036f0       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+                0x080036f0                HAL_I2C_ErrorCallback
  .text.I2C1_EV_IRQHandler
-                0x080034dc       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
-                0x080034dc                I2C1_EV_IRQHandler
+                0x08003708       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+                0x08003708                I2C1_EV_IRQHandler
  .text.I2C1_ER_IRQHandler
-                0x080034ec       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
-                0x080034ec                I2C1_ER_IRQHandler
+                0x08003718       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+                0x08003718                I2C1_ER_IRQHandler
  .text.I2C2_EV_IRQHandler
-                0x080034fc       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
-                0x080034fc                I2C2_EV_IRQHandler
+                0x08003728       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+                0x08003728                I2C2_EV_IRQHandler
  .text.I2C2_ER_IRQHandler
-                0x0800350c       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
-                0x0800350c                I2C2_ER_IRQHandler
+                0x08003738       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+                0x08003738                I2C2_ER_IRQHandler
  .text.I2C3_EV_IRQHandler
-                0x0800351c       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
-                0x0800351c                I2C3_EV_IRQHandler
+                0x08003748       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+                0x08003748                I2C3_EV_IRQHandler
  .text.I2C3_ER_IRQHandler
-                0x0800352c       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
-                0x0800352c                I2C3_ER_IRQHandler
+                0x08003758       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+                0x08003758                I2C3_ER_IRQHandler
  .text._Z13get_timer_objP17TIM_HandleTypeDef
-                0x0800353c        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x0800353c                get_timer_obj(TIM_HandleTypeDef*)
+                0x08003768        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x08003768                get_timer_obj(TIM_HandleTypeDef*)
  .text._ZN13HardwareTimer14updateCallbackEP17TIM_HandleTypeDef
-                0x08003540       0x28 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x08003540                HardwareTimer::updateCallback(TIM_HandleTypeDef*)
+                0x0800376c       0x28 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x0800376c                HardwareTimer::updateCallback(TIM_HandleTypeDef*)
  .text._ZN13HardwareTimer22captureCompareCallbackEP17TIM_HandleTypeDef
-                0x08003568       0x50 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x08003568                HardwareTimer::captureCompareCallback(TIM_HandleTypeDef*)
+                0x08003794       0x50 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x08003794                HardwareTimer::captureCompareCallback(TIM_HandleTypeDef*)
  .text.HAL_TIM_IC_CaptureCallback
-                0x080035b8        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x080035b8                HAL_TIM_IC_CaptureCallback
+                0x080037e4        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x080037e4                HAL_TIM_IC_CaptureCallback
  .text.HAL_TIM_OC_DelayElapsedCallback
-                0x080035c0        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x080035c0                HAL_TIM_OC_DelayElapsedCallback
+                0x080037ec        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x080037ec                HAL_TIM_OC_DelayElapsedCallback
  .text.HAL_TIM_PeriodElapsedCallback
-                0x080035c8        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x080035c8                HAL_TIM_PeriodElapsedCallback
+                0x080037f4        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x080037f4                HAL_TIM_PeriodElapsedCallback
  .text.TIM1_UP_TIM10_IRQHandler
-                0x080035d0       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x080035d0                TIM1_UP_TIM10_IRQHandler
+                0x080037fc       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x080037fc                TIM1_UP_TIM10_IRQHandler
  .text.TIM1_CC_IRQHandler
-                0x080035f0       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x080035f0                TIM1_CC_IRQHandler
+                0x0800381c       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x0800381c                TIM1_CC_IRQHandler
  .text.TIM2_IRQHandler
-                0x08003604       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x08003604                TIM2_IRQHandler
+                0x08003830       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x08003830                TIM2_IRQHandler
  .text.TIM3_IRQHandler
-                0x08003618       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x08003618                TIM3_IRQHandler
+                0x08003844       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x08003844                TIM3_IRQHandler
  .text.TIM4_IRQHandler
-                0x0800362c       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x0800362c                TIM4_IRQHandler
+                0x08003858       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x08003858                TIM4_IRQHandler
  .text.TIM5_IRQHandler
-                0x08003640       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x08003640                TIM5_IRQHandler
+                0x0800386c       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x0800386c                TIM5_IRQHandler
  .text.TIM6_DAC_IRQHandler
-                0x08003654       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x08003654                TIM6_DAC_IRQHandler
+                0x08003880       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x08003880                TIM6_DAC_IRQHandler
  .text.TIM7_IRQHandler
-                0x08003668       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x08003668                TIM7_IRQHandler
+                0x08003894       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x08003894                TIM7_IRQHandler
  .text.TIM8_UP_TIM13_IRQHandler
-                0x0800367c       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x0800367c                TIM8_UP_TIM13_IRQHandler
+                0x080038a8       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x080038a8                TIM8_UP_TIM13_IRQHandler
  .text.TIM8_CC_IRQHandler
-                0x08003690       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x08003690                TIM8_CC_IRQHandler
+                0x080038bc       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x080038bc                TIM8_CC_IRQHandler
  .text.TIM1_BRK_TIM9_IRQHandler
-                0x080036a4       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x080036a4                TIM1_BRK_TIM9_IRQHandler
+                0x080038d0       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x080038d0                TIM1_BRK_TIM9_IRQHandler
  .text.TIM1_TRG_COM_TIM11_IRQHandler
-                0x080036b8       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x080036b8                TIM1_TRG_COM_TIM11_IRQHandler
+                0x080038e4       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x080038e4                TIM1_TRG_COM_TIM11_IRQHandler
  .text.TIM8_BRK_TIM12_IRQHandler
-                0x080036cc       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x080036cc                TIM8_BRK_TIM12_IRQHandler
+                0x080038f8       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x080038f8                TIM8_BRK_TIM12_IRQHandler
  .text.TIM8_TRG_COM_TIM14_IRQHandler
-                0x080036e0       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x080036e0                TIM8_TRG_COM_TIM14_IRQHandler
+                0x0800390c       0x14 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x0800390c                TIM8_TRG_COM_TIM14_IRQHandler
  .text._ZNK9IPAddress7printToER5Print
-                0x080036f4       0x38 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
-                0x080036f4                IPAddress::printTo(Print&) const
+                0x08003920       0x38 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
+                0x08003920                IPAddress::printTo(Print&) const
  .text._ZN9IPAddressC2Ehhhh
-                0x0800372c       0x1c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
-                0x0800372c                IPAddress::IPAddress(unsigned char, unsigned char, unsigned char, unsigned char)
-                0x0800372c                IPAddress::IPAddress(unsigned char, unsigned char, unsigned char, unsigned char)
+                0x08003958       0x1c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
+                0x08003958                IPAddress::IPAddress(unsigned char, unsigned char, unsigned char, unsigned char)
+                0x08003958                IPAddress::IPAddress(unsigned char, unsigned char, unsigned char, unsigned char)
  .text._Z41__static_initialization_and_destruction_0ii
-                0x08003748       0x2c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
+                0x08003974       0x2c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
  .text._GLOBAL__sub_I__ZN9IPAddressC2Ev
-                0x08003774        0xe C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
+                0x080039a0        0xe C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
  .text._ZN5Print5printEc
-                0x08003782        0xa C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
-                0x08003782                Print::print(char)
+                0x080039ae        0xa C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
+                0x080039ae                Print::print(char)
  .text._ZN5Print11printNumberEmh
-                0x0800378c       0x5e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
-                0x0800378c                Print::printNumber(unsigned long, unsigned char)
+                0x080039b8       0x5e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
+                0x080039b8                Print::printNumber(unsigned long, unsigned char)
  .text._ZN5Print5printEmi
-                0x080037ea       0x16 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
-                0x080037ea                Print::print(unsigned long, int)
+                0x08003a16       0x16 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
+                0x08003a16                Print::print(unsigned long, int)
  .text._ZN5Print5printEhi
-                0x08003800        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
-                0x08003800                Print::print(unsigned char, int)
+                0x08003a2c        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
+                0x08003a2c                Print::print(unsigned char, int)
  .text._Z14serialEventRunv
-                0x08003808        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
-                0x08003808                serialEventRun()
- .text.init     0x0800380a        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
-                0x0800380a                init
- .text.__empty  0x08003812        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
-                0x08003812                yield
+                0x08003a34        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
+                0x08003a34                serialEventRun()
+ .text.init     0x08003a36        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
+                0x08003a36                init
+ .text.__empty  0x08003a3e        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
+                0x08003a3e                yield
  .text._Z7premainv
-                0x08003814        0xe C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
-                0x08003814                premain()
- *fill*         0x08003822        0x2 
- .text.main     0x08003824       0x1c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
-                0x08003824                main
- .text._exit    0x08003840        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
-                0x08003840                _exit
- *fill*         0x08003842        0x2 
- .text._kill    0x08003844       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
-                0x08003844                _kill
- .text._getpid  0x08003854        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
-                0x08003854                _getpid
- .text.delay    0x08003858       0x1e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
-                0x08003858                delay
- *fill*         0x08003876        0x2 
+                0x08003a40        0xe C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
+                0x08003a40                premain()
+ *fill*         0x08003a4e        0x2 
+ .text.main     0x08003a50       0x1c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
+                0x08003a50                main
+ .text._exit    0x08003a6c        0x2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
+                0x08003a6c                _exit
+ *fill*         0x08003a6e        0x2 
+ .text._kill    0x08003a70       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
+                0x08003a70                _kill
+ .text._getpid  0x08003a80        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
+                0x08003a80                _getpid
+ .text.delay    0x08003a84       0x1e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
+                0x08003a84                delay
+ *fill*         0x08003aa2        0x2 
  .text.__libc_init_array
-                0x08003878       0x48 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-init.o)
-                0x08003878                __libc_init_array
- .text.memset   0x080038c0       0xa0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-memset.o)
-                0x080038c0                memset
+                0x08003aa4       0x48 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-init.o)
+                0x08003aa4                __libc_init_array
+ .text.memset   0x08003aec       0xa0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-memset.o)
+                0x08003aec                memset
  .text.startup.register_fini
-                0x08003960       0x14 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-__call_atexit.o)
- .text.atexit   0x08003974        0xc e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-atexit.o)
-                0x08003974                atexit
+                0x08003b8c       0x14 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-__call_atexit.o)
+ .text.atexit   0x08003ba0        0xc e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-atexit.o)
+                0x08003ba0                atexit
  .text.__libc_fini_array
-                0x08003980       0x34 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-fini.o)
-                0x08003980                __libc_fini_array
+                0x08003bac       0x34 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-fini.o)
+                0x08003bac                __libc_fini_array
  .text.__retarget_lock_acquire_recursive
-                0x080039b4        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-lock.o)
-                0x080039b4                __retarget_lock_acquire_recursive
+                0x08003be0        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-lock.o)
+                0x08003be0                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x080039b8        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-lock.o)
-                0x080039b8                __retarget_lock_release_recursive
+                0x08003be4        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-lock.o)
+                0x08003be4                __retarget_lock_release_recursive
  .text.__register_exitproc
-                0x080039bc       0x88 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-__atexit.o)
-                0x080039bc                __register_exitproc
+                0x08003be8       0x88 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-__atexit.o)
+                0x08003be8                __register_exitproc
  .text.__udivmoddi4
-                0x08003a44      0x2d0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
-                0x08003a44                __udivmoddi4
+                0x08003c70      0x2d0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+                0x08003c70                __udivmoddi4
  .text.unlikely._ZSt25__throw_bad_function_callv
-                0x08003d14        0x6 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++.a(functional.o)
-                0x08003d14                std::__throw_bad_function_call()
- *fill*         0x08003d1a        0x2 
- .text.abort    0x08003d1c       0x10 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-abort.o)
-                0x08003d1c                abort
+                0x08003f40        0x6 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libstdc++.a(functional.o)
+                0x08003f40                std::__throw_bad_function_call()
+ *fill*         0x08003f46        0x2 
+ .text.abort    0x08003f48       0x10 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-abort.o)
+                0x08003f48                abort
  .text._raise_r
-                0x08003d2c       0x58 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-signal.o)
-                0x08003d2c                _raise_r
- .text.raise    0x08003d84       0x10 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-signal.o)
-                0x08003d84                raise
- .text._kill_r  0x08003d94       0x28 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-signalr.o)
-                0x08003d94                _kill_r
+                0x08003f58       0x58 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-signal.o)
+                0x08003f58                _raise_r
+ .text.raise    0x08003fb0       0x10 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-signal.o)
+                0x08003fb0                raise
+ .text._kill_r  0x08003fc0       0x28 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-signalr.o)
+                0x08003fc0                _kill_r
  .text._getpid_r
-                0x08003dbc        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-signalr.o)
-                0x08003dbc                _getpid_r
+                0x08003fe8        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-signalr.o)
+                0x08003fe8                _getpid_r
  *(.glue_7)
- .glue_7        0x08003dc0        0x0 linker stubs
+ .glue_7        0x08003fec        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x08003dc0        0x0 linker stubs
+ .glue_7t       0x08003fec        0x0 linker stubs
  *(.eh_frame)
- .eh_frame      0x08003dc0        0x0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .eh_frame      0x08003fec        0x0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
  *(.init)
- .init          0x08003dc0        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crti.o
-                0x08003dc0                _init
- .init          0x08003dc4        0x8 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtn.o
+ .init          0x08003fec        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crti.o
+                0x08003fec                _init
+ .init          0x08003ff0        0x8 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtn.o
  *(.fini)
- .fini          0x08003dcc        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crti.o
-                0x08003dcc                _fini
- .fini          0x08003dd0        0x8 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtn.o
-                0x08003dd8                . = ALIGN (0x4)
-                0x08003dd8                _etext = .
+ .fini          0x08003ff8        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crti.o
+                0x08003ff8                _fini
+ .fini          0x08003ffc        0x8 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtn.o
+                0x08004004                . = ALIGN (0x4)
+                0x08004004                _etext = .
 
-.vfp11_veneer   0x08003dd8        0x0
- .vfp11_veneer  0x08003dd8        0x0 linker stubs
+.vfp11_veneer   0x08004004        0x0
+ .vfp11_veneer  0x08004004        0x0 linker stubs
 
-.v4_bx          0x08003dd8        0x0
- .v4_bx         0x08003dd8        0x0 linker stubs
+.v4_bx          0x08004004        0x0
+ .v4_bx         0x08004004        0x0 linker stubs
 
-.iplt           0x08003dd8        0x0
- .iplt          0x08003dd8        0x0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+.iplt           0x08004004        0x0
+ .iplt          0x08004004        0x0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.rodata         0x08003dd8       0xc0
-                0x08003dd8                . = ALIGN (0x4)
+.rodata         0x08004004       0xc0
+                0x08004004                . = ALIGN (0x4)
  *(.rodata)
  *(.rodata*)
- .rodata.SystemClock_Config.str1.4
-                0x08003dd8       0x1e .\sloeber.ino.cpp.o
- *fill*         0x08003df6        0x2 
- .rodata.flagBitshiftOffset.9204
-                0x08003df8        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+ .rodata._ZL11Restart_DMAv.str1.4
+                0x08004004       0x1e .\sloeber.ino.cpp.o
+ *fill*         0x08004022        0x2 
+ .rodata.flagBitshiftOffset.9210
+                0x08004024        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
  .rodata.AHBPrescTable
-                0x08003e00       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
-                0x08003e00                AHBPrescTable
+                0x0800402c       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
+                0x0800402c                AHBPrescTable
  .rodata.getTimerUpIrq.str1.4
-                0x08003e10       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
+                0x0800403c       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
  .rodata._ZN13HardwareTimer13resumeChannelEm.str1.4
-                0x08003e28       0x60 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x08004054       0x60 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
                                  0x5d (size before relaxing)
  .rodata._ZTV9IPAddress
-                0x08003e88        0xc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
-                0x08003e88                vtable for IPAddress
+                0x080040b4        0xc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
+                0x080040b4                vtable for IPAddress
  .rodata._global_impure_ptr
-                0x08003e94        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-impure.o)
-                0x08003e94                _global_impure_ptr
-                0x08003e98                . = ALIGN (0x4)
+                0x080040c0        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-impure.o)
+                0x080040c0                _global_impure_ptr
+                0x080040c4                . = ALIGN (0x4)
 
-.ARM.extab      0x08003e98        0x0
-                0x08003e98                . = ALIGN (0x4)
+.ARM.extab      0x080040c4        0x0
+                0x080040c4                . = ALIGN (0x4)
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x08003e98                . = ALIGN (0x4)
+                0x080040c4                . = ALIGN (0x4)
 
-.ARM            0x08003e98        0x8
-                0x08003e98                . = ALIGN (0x4)
-                0x08003e98                __exidx_start = .
+.ARM            0x080040c4        0x8
+                0x080040c4                . = ALIGN (0x4)
+                0x080040c4                __exidx_start = .
  *(.ARM.exidx*)
  .ARM.exidx.text.__udivmoddi4
-                0x08003e98        0x8 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
-                0x08003ea0                __exidx_end = .
-                0x08003ea0                . = ALIGN (0x4)
+                0x080040c4        0x8 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+                0x080040cc                __exidx_end = .
+                0x080040cc                . = ALIGN (0x4)
 
-.rel.dyn        0x08003ea0        0x0
- .rel.iplt      0x08003ea0        0x0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+.rel.dyn        0x080040cc        0x0
+ .rel.iplt      0x080040cc        0x0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
 
-.preinit_array  0x08003ea0        0x0
-                0x08003ea0                . = ALIGN (0x4)
-                0x08003ea0                PROVIDE (__preinit_array_start = .)
+.preinit_array  0x080040cc        0x0
+                0x080040cc                . = ALIGN (0x4)
+                0x080040cc                PROVIDE (__preinit_array_start = .)
  *(.preinit_array*)
-                0x08003ea0                PROVIDE (__preinit_array_end = .)
-                0x08003ea0                . = ALIGN (0x4)
+                0x080040cc                PROVIDE (__preinit_array_end = .)
+                0x080040cc                . = ALIGN (0x4)
 
-.init_array     0x08003ea0       0x14
-                0x08003ea0                . = ALIGN (0x4)
-                0x08003ea0                PROVIDE (__init_array_start = .)
+.init_array     0x080040cc       0x14
+                0x080040cc                . = ALIGN (0x4)
+                0x080040cc                PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  .init_array.00000
-                0x08003ea0        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-__call_atexit.o)
+                0x080040cc        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-__call_atexit.o)
  .init_array.00101
-                0x08003ea4        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
+                0x080040d0        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
  *(.init_array*)
- .init_array    0x08003ea8        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
- .init_array    0x08003eac        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
- .init_array    0x08003eb0        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
-                0x08003eb4                PROVIDE (__init_array_end = .)
-                0x08003eb4                . = ALIGN (0x4)
+ .init_array    0x080040d4        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .init_array    0x080040d8        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+ .init_array    0x080040dc        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
+                0x080040e0                PROVIDE (__init_array_end = .)
+                0x080040e0                . = ALIGN (0x4)
 
-.fini_array     0x08003eb4        0x8
-                0x08003eb4                . = ALIGN (0x4)
-                0x08003eb4                PROVIDE (__fini_array_start = .)
+.fini_array     0x080040e0        0x8
+                0x080040e0                . = ALIGN (0x4)
+                0x080040e0                PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array*)
- .fini_array    0x08003eb4        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
- .fini_array    0x08003eb8        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
-                0x08003ebc                PROVIDE (__fini_array_end = .)
-                0x08003ebc                . = ALIGN (0x4)
-                0x08003ebc                _sidata = LOADADDR (.data)
+ .fini_array    0x080040e0        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+ .fini_array    0x080040e4        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+                0x080040e8                PROVIDE (__fini_array_end = .)
+                0x080040e8                . = ALIGN (0x4)
+                0x080040e8                _sidata = LOADADDR (.data)
 
-.data           0x20000000      0x43c load address 0x08003ebc
+.data           0x20000000      0x444 load address 0x080040e8
                 0x20000000                . = ALIGN (0x4)
                 0x20000000                _sdata = .
  *(.data)
  *(.data*)
+ .data.TransferCounter
+                0x20000000        0x4 .\sloeber.ino.cpp.o
+                0x20000000                TransferCounter
  .data.uwTickFreq
-                0x20000000        0x1 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
-                0x20000000                uwTickFreq
- *fill*         0x20000001        0x3 
+                0x20000004        0x1 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
+                0x20000004                uwTickFreq
+ *fill*         0x20000005        0x3 
  .data.uwTickPrio
-                0x20000004        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
-                0x20000004                uwTickPrio
+                0x20000008        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
+                0x20000008                uwTickPrio
  .data.SystemCoreClock
-                0x20000008        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
-                0x20000008                SystemCoreClock
+                0x2000000c        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
+                0x2000000c                SystemCoreClock
  .data._impure_ptr
-                0x2000000c        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-impure.o)
-                0x2000000c                _impure_ptr
+                0x20000010        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-impure.o)
+                0x20000010                _impure_ptr
+ *fill*         0x20000014        0x4 
  .data.impure_data
-                0x20000010      0x428 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-impure.o)
+                0x20000018      0x428 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-impure.o)
  .data.__atexit_recursive_mutex
-                0x20000438        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-__call_atexit.o)
-                0x20000438                __atexit_recursive_mutex
-                0x2000043c                . = ALIGN (0x4)
-                0x2000043c                _edata = .
+                0x20000440        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-__call_atexit.o)
+                0x20000440                __atexit_recursive_mutex
+                0x20000444                . = ALIGN (0x4)
+                0x20000444                _edata = .
 
 .tm_clone_table
-                0x2000043c        0x0 load address 0x080042f8
+                0x20000444        0x0 load address 0x0800452c
  .tm_clone_table
-                0x2000043c        0x0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+                0x20000444        0x0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
  .tm_clone_table
-                0x2000043c        0x0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtend.o
+                0x20000444        0x0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtend.o
 
-.igot.plt       0x2000043c        0x0 load address 0x080042f8
- .igot.plt      0x2000043c        0x0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
-                0x2000043c                . = ALIGN (0x4)
+.igot.plt       0x20000444        0x0 load address 0x0800452c
+ .igot.plt      0x20000444        0x0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+                0x20000444                . = ALIGN (0x4)
 
-.bss            0x2000043c      0x304 load address 0x080042f8
-                0x2000043c                _sbss = .
-                0x2000043c                __bss_start__ = _sbss
+.bss            0x20000444      0x304 load address 0x0800452c
+                0x20000444                _sbss = .
+                0x20000444                __bss_start__ = _sbss
  *(.bss)
  *(.bss*)
  .bss.completed.8014
-                0x2000043c        0x1 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
- *fill*         0x2000043d        0x3 
+                0x20000444        0x1 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+ *fill*         0x20000445        0x3 
  .bss.object.8019
-                0x20000440       0x18 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
+                0x20000448       0x18 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtbegin.o
  .bss.TransferErrorCounter
-                0x20000458        0x4 .\sloeber.ino.cpp.o
-                0x20000458                TransferErrorCounter
+                0x20000460        0x4 .\sloeber.ino.cpp.o
+                0x20000460                TransferErrorCounter
  .bss._ZL12frame_buffer
-                0x2000045c       0x64 .\sloeber.ino.cpp.o
+                0x20000464       0x64 .\sloeber.ino.cpp.o
  .bss.hdma_tim8_ch1
-                0x200004c0       0x60 .\sloeber.ino.cpp.o
-                0x200004c0                hdma_tim8_ch1
- .bss.htim8     0x20000520       0x40 .\sloeber.ino.cpp.o
-                0x20000520                htim8
+                0x200004c8       0x60 .\sloeber.ino.cpp.o
+                0x200004c8                hdma_tim8_ch1
+ .bss.htim8     0x20000528       0x40 .\sloeber.ino.cpp.o
+                0x20000528                htim8
  .bss._ZL13gpio_irq_conf
-                0x20000560      0x140 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+                0x20000568      0x140 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
  .bss.RTCUserCallback
-                0x200006a0        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
+                0x200006a8        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
  .bss.RtcHandle
-                0x200006a4       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
+                0x200006ac       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
  .bss.callbackUserData
-                0x200006c4        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
+                0x200006cc        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
  .bss.i2c_handles
-                0x200006c8        0xc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+                0x200006d0        0xc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
  .bss.HardwareTimer_Handle
-                0x200006d4       0x38 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
-                0x200006d4                HardwareTimer_Handle
+                0x200006dc       0x38 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x200006dc                HardwareTimer_Handle
  .bss._ZL11INADDR_NONE
-                0x2000070c        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
+                0x20000714        0x8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
  *(COMMON)
- COMMON         0x20000714        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
-                0x20000714                uwTick
- COMMON         0x20000718        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-reent.o)
-                0x20000718                errno
- COMMON         0x2000071c       0x21 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-lock.o)
-                0x2000071c                __lock___atexit_recursive_mutex
-                0x20000720                __lock___arc4random_mutex
-                0x20000724                __lock___env_recursive_mutex
-                0x20000728                __lock___sinit_recursive_mutex
-                0x2000072c                __lock___malloc_recursive_mutex
-                0x20000730                __lock___at_quick_exit_mutex
-                0x20000734                __lock___dd_hash_mutex
-                0x20000738                __lock___tz_mutex
-                0x2000073c                __lock___sfp_recursive_mutex
-                0x20000740                . = ALIGN (0x4)
- *fill*         0x2000073d        0x3 
-                0x20000740                _ebss = .
-                0x20000740                __bss_end__ = _ebss
+ COMMON         0x2000071c        0x4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
+                0x2000071c                uwTick
+ COMMON         0x20000720        0x4 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-reent.o)
+                0x20000720                errno
+ COMMON         0x20000724       0x21 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-lock.o)
+                0x20000724                __lock___atexit_recursive_mutex
+                0x20000728                __lock___arc4random_mutex
+                0x2000072c                __lock___env_recursive_mutex
+                0x20000730                __lock___sinit_recursive_mutex
+                0x20000734                __lock___malloc_recursive_mutex
+                0x20000738                __lock___at_quick_exit_mutex
+                0x2000073c                __lock___dd_hash_mutex
+                0x20000740                __lock___tz_mutex
+                0x20000744                __lock___sfp_recursive_mutex
+                0x20000748                . = ALIGN (0x4)
+ *fill*         0x20000745        0x3 
+                0x20000748                _ebss = .
+                0x20000748                __bss_end__ = _ebss
 
 ._user_heap_stack
-                0x20000740      0x600 load address 0x080042f8
-                0x20000740                . = ALIGN (0x8)
+                0x20000748      0x600 load address 0x0800452c
+                0x20000748                . = ALIGN (0x8)
                 [!provide]                PROVIDE (end = .)
-                0x20000740                PROVIDE (_end = .)
-                0x20000940                . = (. + _Min_Heap_Size)
- *fill*         0x20000740      0x200 
-                0x20000d40                . = (. + _Min_Stack_Size)
- *fill*         0x20000940      0x400 
-                0x20000d40                . = ALIGN (0x8)
+                0x20000748                PROVIDE (_end = .)
+                0x20000948                . = (. + _Min_Heap_Size)
+ *fill*         0x20000748      0x200 
+                0x20000d48                . = (. + _Min_Stack_Size)
+ *fill*         0x20000948      0x400 
+                0x20000d48                . = ALIGN (0x8)
 
 /DISCARD/
  libc.a(*)
@@ -6051,67 +6058,67 @@ LOAD e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/b
                 0x000009b7       0x1e e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard/crtn.o
 OUTPUT(C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/hyperlight_dma_sloeber.elf elf32-littlearm)
 
-.debug_info     0x00000000    0x41006
- .debug_info    0x00000000     0x6d34 .\sloeber.ino.cpp.o
- .debug_info    0x00006d34      0xa4c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
- .debug_info    0x00007780     0x110f C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
- .debug_info    0x0000888f      0xb96 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
- .debug_info    0x00009425      0x818 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
- .debug_info    0x00009c3d     0x3874 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
- .debug_info    0x0000d4b1      0xaf8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
- .debug_info    0x0000dfa9      0xfb2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
- .debug_info    0x0000ef5b     0x127e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
- .debug_info    0x000101d9     0x3735 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
- .debug_info    0x0001390e     0x16e0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
- .debug_info    0x00014fee      0x6f0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
- .debug_info    0x000156de      0x326 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
- .debug_info    0x00015a04      0x176 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
- .debug_info    0x00015b7a     0x4def C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
- .debug_info    0x0001a969     0x189d C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
- .debug_info    0x0001c206      0x188 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
- .debug_info    0x0001c38e      0x55b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
- .debug_info    0x0001c8e9     0x1eb3 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
- .debug_info    0x0001e79c     0x279e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
- .debug_info    0x00020f3a     0x742c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
- .debug_info    0x00028366     0x70b5 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
- .debug_info    0x0002f41b     0x7f69 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
- .debug_info    0x00037384     0x1324 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
- .debug_info    0x000386a8      0xfea C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
- .debug_info    0x00039692       0x7e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
- .debug_info    0x00039710     0x57fa C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
- .debug_info    0x0003ef0a      0xee7 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
- .debug_info    0x0003fdf1     0x1215 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
+.debug_info     0x00000000    0x4105b
+ .debug_info    0x00000000     0x6d5d .\sloeber.ino.cpp.o
+ .debug_info    0x00006d5d      0xa4c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
+ .debug_info    0x000077a9     0x110f C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
+ .debug_info    0x000088b8      0xbc2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+ .debug_info    0x0000947a      0x818 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
+ .debug_info    0x00009c92     0x3874 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+ .debug_info    0x0000d506      0xaf8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
+ .debug_info    0x0000dffe      0xfb2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
+ .debug_info    0x0000efb0     0x127e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
+ .debug_info    0x0001022e     0x3735 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+ .debug_info    0x00013963     0x16e0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
+ .debug_info    0x00015043      0x6f0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
+ .debug_info    0x00015733      0x326 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
+ .debug_info    0x00015a59      0x176 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
+ .debug_info    0x00015bcf     0x4def C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+ .debug_info    0x0001a9be     0x189d C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
+ .debug_info    0x0001c25b      0x188 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
+ .debug_info    0x0001c3e3      0x55b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
+ .debug_info    0x0001c93e     0x1eb3 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
+ .debug_info    0x0001e7f1     0x279e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+ .debug_info    0x00020f8f     0x742c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+ .debug_info    0x000283bb     0x70b5 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
+ .debug_info    0x0002f470     0x7f69 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
+ .debug_info    0x000373d9     0x1324 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
+ .debug_info    0x000386fd      0xfea C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
+ .debug_info    0x000396e7       0x7e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
+ .debug_info    0x00039765     0x57fa C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
+ .debug_info    0x0003ef5f      0xee7 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
+ .debug_info    0x0003fe46     0x1215 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
 
-.debug_abbrev   0x00000000     0x6c4c
- .debug_abbrev  0x00000000      0x865 .\sloeber.ino.cpp.o
- .debug_abbrev  0x00000865      0x21d C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
- .debug_abbrev  0x00000a82      0x39b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
- .debug_abbrev  0x00000e1d      0x2d5 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
- .debug_abbrev  0x000010f2      0x21c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
- .debug_abbrev  0x0000130e      0x2bc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
- .debug_abbrev  0x000015ca      0x2ae C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
- .debug_abbrev  0x00001878      0x22c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
- .debug_abbrev  0x00001aa4      0x240 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
- .debug_abbrev  0x00001ce4      0x258 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
- .debug_abbrev  0x00001f3c      0x26e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
- .debug_abbrev  0x000021aa      0x2a5 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
- .debug_abbrev  0x0000244f       0xf7 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
- .debug_abbrev  0x00002546       0xb9 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
- .debug_abbrev  0x000025ff      0xaea C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
- .debug_abbrev  0x000030e9      0x408 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
- .debug_abbrev  0x000034f1       0xdd C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
- .debug_abbrev  0x000035ce      0x12c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
- .debug_abbrev  0x000036fa      0x31d C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
- .debug_abbrev  0x00003a17      0x397 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
- .debug_abbrev  0x00003dae      0x930 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
- .debug_abbrev  0x000046de      0x930 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
- .debug_abbrev  0x0000500e      0x9db C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
- .debug_abbrev  0x000059e9      0x34b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
- .debug_abbrev  0x00005d34      0x243 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
- .debug_abbrev  0x00005f77       0x40 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
- .debug_abbrev  0x00005fb7      0x70a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
- .debug_abbrev  0x000066c1      0x2c2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
- .debug_abbrev  0x00006983      0x2c9 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
+.debug_abbrev   0x00000000     0x6c5a
+ .debug_abbrev  0x00000000      0x857 .\sloeber.ino.cpp.o
+ .debug_abbrev  0x00000857      0x21d C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
+ .debug_abbrev  0x00000a74      0x39b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
+ .debug_abbrev  0x00000e0f      0x2f1 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+ .debug_abbrev  0x00001100      0x21c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
+ .debug_abbrev  0x0000131c      0x2bc C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+ .debug_abbrev  0x000015d8      0x2ae C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
+ .debug_abbrev  0x00001886      0x22c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
+ .debug_abbrev  0x00001ab2      0x240 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
+ .debug_abbrev  0x00001cf2      0x258 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+ .debug_abbrev  0x00001f4a      0x26e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
+ .debug_abbrev  0x000021b8      0x2a5 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
+ .debug_abbrev  0x0000245d       0xf7 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
+ .debug_abbrev  0x00002554       0xb9 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
+ .debug_abbrev  0x0000260d      0xaea C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+ .debug_abbrev  0x000030f7      0x408 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
+ .debug_abbrev  0x000034ff       0xdd C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
+ .debug_abbrev  0x000035dc      0x12c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
+ .debug_abbrev  0x00003708      0x31d C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
+ .debug_abbrev  0x00003a25      0x397 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+ .debug_abbrev  0x00003dbc      0x930 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+ .debug_abbrev  0x000046ec      0x930 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
+ .debug_abbrev  0x0000501c      0x9db C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
+ .debug_abbrev  0x000059f7      0x34b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
+ .debug_abbrev  0x00005d42      0x243 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
+ .debug_abbrev  0x00005f85       0x40 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
+ .debug_abbrev  0x00005fc5      0x70a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
+ .debug_abbrev  0x000066cf      0x2c2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
+ .debug_abbrev  0x00006991      0x2c9 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
 
 .debug_loc      0x00000000    0x135af
  .debug_loc     0x00000000      0x2f9 .\sloeber.ino.cpp.o
@@ -6138,186 +6145,186 @@ OUTPUT(C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release
  .debug_loc     0x000133d5      0x1a3 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
  .debug_loc     0x00013578       0x37 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
 
-.debug_aranges  0x00000000     0x14b8
+.debug_aranges  0x00000000     0x14c8
  .debug_aranges
-                0x00000000       0x98 .\sloeber.ino.cpp.o
+                0x00000000       0xa0 .\sloeber.ino.cpp.o
  .debug_aranges
-                0x00000098       0xf0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
+                0x000000a0       0xf0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
  .debug_aranges
-                0x00000188       0xa8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
+                0x00000190       0xa8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
  .debug_aranges
-                0x00000230       0x90 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+                0x00000238       0x98 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
  .debug_aranges
-                0x000002c0       0x58 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
+                0x000002d0       0x58 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
  .debug_aranges
-                0x00000318      0x290 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+                0x00000328      0x290 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
  .debug_aranges
-                0x000005a8       0x88 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
+                0x000005b8       0x88 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
  .debug_aranges
-                0x00000630       0xb8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
+                0x00000640       0xb8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
  .debug_aranges
-                0x000006e8      0x130 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
+                0x000006f8      0x130 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
  .debug_aranges
-                0x00000818      0x3a8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+                0x00000828      0x3a8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
  .debug_aranges
-                0x00000bc0      0x150 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
+                0x00000bd0      0x150 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
  .debug_aranges
-                0x00000d10       0x40 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
+                0x00000d20       0x40 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
  .debug_aranges
-                0x00000d50       0x28 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
+                0x00000d60       0x28 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
  .debug_aranges
-                0x00000d78       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
+                0x00000d88       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
  .debug_aranges
-                0x00000d98       0xb8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+                0x00000da8       0xb8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
  .debug_aranges
-                0x00000e50       0xb0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
+                0x00000e60       0xb0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
  .debug_aranges
-                0x00000f00       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
+                0x00000f10       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
  .debug_aranges
-                0x00000f20       0x28 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
+                0x00000f30       0x28 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
  .debug_aranges
-                0x00000f48       0x70 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
+                0x00000f58       0x70 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
  .debug_aranges
-                0x00000fb8       0xd0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+                0x00000fc8       0xd0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
  .debug_aranges
-                0x00001088      0x188 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+                0x00001098      0x188 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
  .debug_aranges
-                0x00001210       0x70 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
+                0x00001220       0x70 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
  .debug_aranges
-                0x00001280      0x110 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
+                0x00001290      0x110 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
  .debug_aranges
-                0x00001390       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
+                0x000013a0       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
  .debug_aranges
-                0x000013b0       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
+                0x000013c0       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
  .debug_aranges
-                0x000013d0       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
+                0x000013e0       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
  .debug_aranges
-                0x000013f0       0x30 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
+                0x00001400       0x30 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
  .debug_aranges
-                0x00001420       0x68 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
+                0x00001430       0x68 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
  .debug_aranges
-                0x00001488       0x30 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
+                0x00001498       0x30 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
 
-.debug_ranges   0x00000000     0x1500
- .debug_ranges  0x00000000       0xa0 .\sloeber.ino.cpp.o
- .debug_ranges  0x000000a0       0xe0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
- .debug_ranges  0x00000180       0xe0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
- .debug_ranges  0x00000260       0x80 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
- .debug_ranges  0x000002e0       0x48 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
- .debug_ranges  0x00000328      0x298 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
- .debug_ranges  0x000005c0       0x90 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
- .debug_ranges  0x00000650       0xa8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
- .debug_ranges  0x000006f8      0x120 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
- .debug_ranges  0x00000818      0x398 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
- .debug_ranges  0x00000bb0      0x140 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
- .debug_ranges  0x00000cf0       0x30 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
- .debug_ranges  0x00000d20       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
- .debug_ranges  0x00000d38       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
- .debug_ranges  0x00000d48       0xf8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
- .debug_ranges  0x00000e40       0xe8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
- .debug_ranges  0x00000f28       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
- .debug_ranges  0x00000f38       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
- .debug_ranges  0x00000f50       0x60 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
- .debug_ranges  0x00000fb0       0xf0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
- .debug_ranges  0x000010a0      0x190 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
- .debug_ranges  0x00001230       0x98 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
- .debug_ranges  0x000012c8      0x170 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
- .debug_ranges  0x00001438       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
- .debug_ranges  0x00001448       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
- .debug_ranges  0x00001458       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
- .debug_ranges  0x00001468       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
- .debug_ranges  0x00001488       0x58 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
- .debug_ranges  0x000014e0       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
+.debug_ranges   0x00000000     0x1510
+ .debug_ranges  0x00000000       0xa8 .\sloeber.ino.cpp.o
+ .debug_ranges  0x000000a8       0xe0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
+ .debug_ranges  0x00000188       0xe0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
+ .debug_ranges  0x00000268       0x88 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+ .debug_ranges  0x000002f0       0x48 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
+ .debug_ranges  0x00000338      0x298 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+ .debug_ranges  0x000005d0       0x90 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
+ .debug_ranges  0x00000660       0xa8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
+ .debug_ranges  0x00000708      0x120 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
+ .debug_ranges  0x00000828      0x398 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+ .debug_ranges  0x00000bc0      0x140 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
+ .debug_ranges  0x00000d00       0x30 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
+ .debug_ranges  0x00000d30       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
+ .debug_ranges  0x00000d48       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
+ .debug_ranges  0x00000d58       0xf8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+ .debug_ranges  0x00000e50       0xe8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
+ .debug_ranges  0x00000f38       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
+ .debug_ranges  0x00000f48       0x18 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
+ .debug_ranges  0x00000f60       0x60 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
+ .debug_ranges  0x00000fc0       0xf0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+ .debug_ranges  0x000010b0      0x190 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+ .debug_ranges  0x00001240       0x98 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
+ .debug_ranges  0x000012d8      0x170 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
+ .debug_ranges  0x00001448       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
+ .debug_ranges  0x00001458       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
+ .debug_ranges  0x00001468       0x10 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
+ .debug_ranges  0x00001478       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
+ .debug_ranges  0x00001498       0x58 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
+ .debug_ranges  0x000014f0       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
 
-.debug_line     0x00000000    0x193a9
- .debug_line    0x00000000     0x1046 .\sloeber.ino.cpp.o
- .debug_line    0x00001046      0x67e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
- .debug_line    0x000016c4      0x8b5 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
- .debug_line    0x00001f79      0xf3e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
- .debug_line    0x00002eb7      0x81b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
- .debug_line    0x000036d2     0x4dff C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
- .debug_line    0x000084d1      0xbcf C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
- .debug_line    0x000090a0     0x10f2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
- .debug_line    0x0000a192     0x16d6 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
- .debug_line    0x0000b868     0x3520 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
- .debug_line    0x0000ed88     0x11ea C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
- .debug_line    0x0000ff72      0x559 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
- .debug_line    0x000104cb      0x29d C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
- .debug_line    0x00010768      0x2f3 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
- .debug_line    0x00010a5b      0xf96 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
- .debug_line    0x000119f1      0xc83 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
- .debug_line    0x00012674      0x2c1 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
- .debug_line    0x00012935      0x378 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
- .debug_line    0x00012cad      0x922 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
- .debug_line    0x000135cf      0xb72 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
- .debug_line    0x00014141     0x192f C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
- .debug_line    0x00015a70      0xb77 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
- .debug_line    0x000165e7     0x1085 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
- .debug_line    0x0001766c      0x5a3 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
- .debug_line    0x00017c0f      0x40c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
- .debug_line    0x0001801b       0x85 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
- .debug_line    0x000180a0      0x96a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
- .debug_line    0x00018a0a      0x4fd C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
- .debug_line    0x00018f07      0x4a2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
+.debug_line     0x00000000    0x19411
+ .debug_line    0x00000000     0x1095 .\sloeber.ino.cpp.o
+ .debug_line    0x00001095      0x67e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
+ .debug_line    0x00001713      0x8b5 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
+ .debug_line    0x00001fc8      0xf57 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+ .debug_line    0x00002f1f      0x81b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
+ .debug_line    0x0000373a     0x4dff C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+ .debug_line    0x00008539      0xbcf C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
+ .debug_line    0x00009108     0x10f2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
+ .debug_line    0x0000a1fa     0x16d6 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
+ .debug_line    0x0000b8d0     0x3520 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+ .debug_line    0x0000edf0     0x11ea C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
+ .debug_line    0x0000ffda      0x559 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
+ .debug_line    0x00010533      0x29d C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
+ .debug_line    0x000107d0      0x2f3 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
+ .debug_line    0x00010ac3      0xf96 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+ .debug_line    0x00011a59      0xc83 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
+ .debug_line    0x000126dc      0x2c1 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
+ .debug_line    0x0001299d      0x378 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
+ .debug_line    0x00012d15      0x922 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
+ .debug_line    0x00013637      0xb72 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+ .debug_line    0x000141a9     0x192f C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+ .debug_line    0x00015ad8      0xb77 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
+ .debug_line    0x0001664f     0x1085 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
+ .debug_line    0x000176d4      0x5a3 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
+ .debug_line    0x00017c77      0x40c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
+ .debug_line    0x00018083       0x85 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
+ .debug_line    0x00018108      0x96a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
+ .debug_line    0x00018a72      0x4fd C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
+ .debug_line    0x00018f6f      0x4a2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
 
-.debug_str      0x00000000     0xb080
+.debug_str      0x00000000     0xb098
  .debug_str     0x00000000     0x3a54 .\sloeber.ino.cpp.o
                                0x4063 (size before relaxing)
  .debug_str     0x00003a54      0x470 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
                                 0xc15 (size before relaxing)
  .debug_str     0x00003ec4      0x4a3 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
                                 0xce1 (size before relaxing)
- .debug_str     0x00004367      0x239 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
-                                0x82c (size before relaxing)
- .debug_str     0x000045a0      0x15b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
+ .debug_str     0x00004367      0x251 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+                                0x852 (size before relaxing)
+ .debug_str     0x000045b8      0x15b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
                                 0x5a6 (size before relaxing)
- .debug_str     0x000046fb      0xb27 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+ .debug_str     0x00004713      0xb27 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
                                0x10b3 (size before relaxing)
- .debug_str     0x00005222      0x19f C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
+ .debug_str     0x0000523a      0x19f C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
                                 0x779 (size before relaxing)
- .debug_str     0x000053c1      0x4d2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
+ .debug_str     0x000053d9      0x4d2 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
                                 0x7fb (size before relaxing)
- .debug_str     0x00005893      0x573 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
+ .debug_str     0x000058ab      0x573 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
                                 0xb5b (size before relaxing)
- .debug_str     0x00005e06      0xcf9 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+ .debug_str     0x00005e1e      0xcf9 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
                                0x1583 (size before relaxing)
- .debug_str     0x00006aff      0x457 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
+ .debug_str     0x00006b17      0x457 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
                                 0xd9b (size before relaxing)
- .debug_str     0x00006f56      0x12b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
+ .debug_str     0x00006f6e      0x12b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
                                 0x5bf (size before relaxing)
- .debug_str     0x00007081      0x12b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
+ .debug_str     0x00007099      0x12b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
                                 0x381 (size before relaxing)
- .debug_str     0x000071ac       0x6c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
+ .debug_str     0x000071c4       0x6c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
                                 0x2c4 (size before relaxing)
- .debug_str     0x00007218     0x128d C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+ .debug_str     0x00007230     0x128d C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
                                0x3566 (size before relaxing)
- .debug_str     0x000084a5      0x378 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
+ .debug_str     0x000084bd      0x378 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
                                0x1122 (size before relaxing)
- .debug_str     0x0000881d       0x68 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
+ .debug_str     0x00008835       0x68 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
                                 0x2b6 (size before relaxing)
- .debug_str     0x00008885       0x8f C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
+ .debug_str     0x0000889d       0x8f C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
                                 0x417 (size before relaxing)
- .debug_str     0x00008914       0x7a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
+ .debug_str     0x0000892c       0x7a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
                                0x169f (size before relaxing)
- .debug_str     0x0000898e      0x36a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+ .debug_str     0x000089a6      0x36a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
                                0x1b99 (size before relaxing)
- .debug_str     0x00008cf8      0xc47 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+ .debug_str     0x00008d10      0xc47 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
                                0x41c9 (size before relaxing)
- .debug_str     0x0000993f      0xef4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
+ .debug_str     0x00009957      0xef4 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
                                0x40eb (size before relaxing)
- .debug_str     0x0000a833      0x415 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
+ .debug_str     0x0000a84b      0x415 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
                                0x40e0 (size before relaxing)
- .debug_str     0x0000ac48       0x7a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
+ .debug_str     0x0000ac60       0x7a C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
                                 0x983 (size before relaxing)
- .debug_str     0x0000acc2       0x53 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
+ .debug_str     0x0000acda       0x53 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
                                 0xb63 (size before relaxing)
- .debug_str     0x0000ad15       0x5b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
+ .debug_str     0x0000ad2d       0x5b C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
                                 0x211 (size before relaxing)
- .debug_str     0x0000ad70       0x85 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
+ .debug_str     0x0000ad88       0x85 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
                                0x31fb (size before relaxing)
- .debug_str     0x0000adf5      0x21e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
+ .debug_str     0x0000ae0d      0x21e C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
                                 0x8b9 (size before relaxing)
- .debug_str     0x0000b013       0x6d C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
+ .debug_str     0x0000b02b       0x6d C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
                                 0xc14 (size before relaxing)
 
 .comment        0x00000000       0x68
@@ -6352,49 +6359,49 @@ OUTPUT(C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release
  .comment       0x00000068       0x69 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
  .comment       0x00000068       0x69 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
 
-.debug_frame    0x00000000     0x3e00
- .debug_frame   0x00000000      0x1dc .\sloeber.ino.cpp.o
- .debug_frame   0x000001dc      0x1ec C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
- .debug_frame   0x000003c8      0x15c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
- .debug_frame   0x00000524      0x194 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
- .debug_frame   0x000006b8       0xd8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
- .debug_frame   0x00000790      0x910 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
- .debug_frame   0x000010a0      0x178 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
- .debug_frame   0x00001218      0x20c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
- .debug_frame   0x00001424      0x384 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
- .debug_frame   0x000017a8      0xa78 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
- .debug_frame   0x00002220      0x3b8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
- .debug_frame   0x000025d8       0x94 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
- .debug_frame   0x0000266c       0x30 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
- .debug_frame   0x0000269c       0x28 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
- .debug_frame   0x000026c4      0x200 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
- .debug_frame   0x000028c4      0x240 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
- .debug_frame   0x00002b04       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
- .debug_frame   0x00002b24       0x30 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
- .debug_frame   0x00002b54      0x140 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
- .debug_frame   0x00002c94      0x284 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
- .debug_frame   0x00002f18      0x488 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
- .debug_frame   0x000033a0      0x108 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
- .debug_frame   0x000034a8      0x39c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
- .debug_frame   0x00003844       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
- .debug_frame   0x00003864       0x28 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
- .debug_frame   0x0000388c       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
- .debug_frame   0x000038ac       0x50 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
- .debug_frame   0x000038fc       0xb0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
- .debug_frame   0x000039ac       0x5c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
- .debug_frame   0x00003a08       0x2c e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-init.o)
- .debug_frame   0x00003a34       0x38 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-memset.o)
- .debug_frame   0x00003a6c       0x60 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-reent.o)
- .debug_frame   0x00003acc       0x5c e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-__call_atexit.o)
- .debug_frame   0x00003b28       0x20 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-atexit.o)
- .debug_frame   0x00003b48       0x34 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-fini.o)
- .debug_frame   0x00003b7c       0xb0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-lock.o)
- .debug_frame   0x00003c2c       0x30 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-__atexit.o)
- .debug_frame   0x00003c5c       0x2c e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
- .debug_frame   0x00003c88       0x34 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
- .debug_frame   0x00003cbc       0x28 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-abort.o)
- .debug_frame   0x00003ce4       0xe0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-signal.o)
- .debug_frame   0x00003dc4       0x3c e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-signalr.o)
+.debug_frame    0x00000000     0x3e30
+ .debug_frame   0x00000000      0x1f4 .\sloeber.ino.cpp.o
+ .debug_frame   0x000001f4      0x1ec C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal.c.o)
+ .debug_frame   0x000003e0      0x15c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_cortex.c.o)
+ .debug_frame   0x0000053c      0x1ac C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
+ .debug_frame   0x000006e8       0xd8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_gpio.c.o)
+ .debug_frame   0x000007c0      0x910 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_i2c.c.o)
+ .debug_frame   0x000010d0      0x178 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rcc.c.o)
+ .debug_frame   0x00001248      0x20c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc.c.o)
+ .debug_frame   0x00001454      0x384 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_rtc_ex.c.o)
+ .debug_frame   0x000017d8      0xa78 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim.c.o)
+ .debug_frame   0x00002250      0x3b8 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_tim_ex.c.o)
+ .debug_frame   0x00002608       0x94 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(clock.c.o)
+ .debug_frame   0x0000269c       0x30 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(dwt.c.o)
+ .debug_frame   0x000026cc       0x28 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
+ .debug_frame   0x000026f4      0x200 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(interrupt.cpp.o)
+ .debug_frame   0x000028f4      0x240 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(rtc.c.o)
+ .debug_frame   0x00002b34       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32_def.c.o)
+ .debug_frame   0x00002b54       0x30 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(system_stm32yyxx.c.o)
+ .debug_frame   0x00002b84      0x140 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(timer.c.o)
+ .debug_frame   0x00002cc4      0x284 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(twi.c.o)
+ .debug_frame   0x00002f48      0x488 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
+ .debug_frame   0x000033d0      0x108 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(IPAddress.cpp.o)
+ .debug_frame   0x000034d8      0x39c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(Print.cpp.o)
+ .debug_frame   0x00003874       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(WSerial.cpp.o)
+ .debug_frame   0x00003894       0x28 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)
+ .debug_frame   0x000038bc       0x20 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hooks.c.o)
+ .debug_frame   0x000038dc       0x50 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(main.cpp.o)
+ .debug_frame   0x0000392c       0xb0 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(syscalls.c.o)
+ .debug_frame   0x000039dc       0x5c C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(wiring_time.c.o)
+ .debug_frame   0x00003a38       0x2c e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-init.o)
+ .debug_frame   0x00003a64       0x38 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-memset.o)
+ .debug_frame   0x00003a9c       0x60 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-reent.o)
+ .debug_frame   0x00003afc       0x5c e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-__call_atexit.o)
+ .debug_frame   0x00003b58       0x20 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-atexit.o)
+ .debug_frame   0x00003b78       0x34 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-fini.o)
+ .debug_frame   0x00003bac       0xb0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-lock.o)
+ .debug_frame   0x00003c5c       0x30 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc.a(lib_a-__atexit.o)
+ .debug_frame   0x00003c8c       0x2c e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
+ .debug_frame   0x00003cb8       0x34 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+ .debug_frame   0x00003cec       0x28 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-abort.o)
+ .debug_frame   0x00003d14       0xe0 e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-signal.o)
+ .debug_frame   0x00003df4       0x3c e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libg.a(lib_a-signalr.o)
 
 Cross Reference Table
 
@@ -6431,7 +6438,7 @@ DMA1_Stream6_IRQHandler                           C:/Users/ahoel/Documents/sloeb
 DMA1_Stream7_IRQHandler                           C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(startup_stm32yyxx.S.o)
 DMA2_Stream0_IRQHandler                           C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(startup_stm32yyxx.S.o)
 DMA2_Stream1_IRQHandler                           C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(startup_stm32yyxx.S.o)
-DMA2_Stream2_IRQHandler                           C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(startup_stm32yyxx.S.o)
+DMA2_Stream2_IRQHandler                           C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
 DMA2_Stream3_IRQHandler                           C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(startup_stm32yyxx.S.o)
 DMA2_Stream4_IRQHandler                           C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(startup_stm32yyxx.S.o)
 DMA2_Stream5_IRQHandler                           C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(startup_stm32yyxx.S.o)
@@ -8091,6 +8098,7 @@ get_timer_index(TIM_TypeDef*)                     C:/Users/ahoel/Documents/sloeb
 get_timer_obj(TIM_HandleTypeDef*)                 C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(HardwareTimer.cpp.o)
 hardware_init_hook                                e:/sloeber/arduinoplugin/packages/stm32/tools/arm-none-eabi-gcc/8.2.1-1.7/bin/../lib/gcc/arm-none-eabi/8.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
 hdma_tim8_ch1                                     .\sloeber.ino.cpp.o
+                                                  C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(stm32yyxx_hal_dma.c.o)
 htim8                                             .\sloeber.ino.cpp.o
 hw_config_init                                    C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(hw_config.c.o)
                                                   C:/Users/ahoel/Documents/sloeber-workspace/hyperlight_dma_sloeber/Release/arduino.ar(board.c.o)

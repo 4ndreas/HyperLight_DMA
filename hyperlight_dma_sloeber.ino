@@ -46,35 +46,24 @@ void SystemClock_Config_new(void);
 
 void setup() {
 
-  //HAL_Init();
-  //SystemClock_Config_new();
-//	IWatchdog.begin(4000000);
-
-  //HAL_DMA_Init(&hdma_tim8_ch1);
-
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_TIM8_Init();
   Data_GPIO_Config();
 
- //
 
-  // set all leds to single color;
   setAll(255,0,0);
 
-
   Start_DMA();
-  //delay(1000);
-
+  delay(100);
 
   setAll(0,255,0);
- // Restart_DMA();
-  //delay(1);
-
+  Restart_DMA();
+  delay(100);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+
     setAll(255,0,0);
     Restart_DMA();
 
@@ -84,18 +73,7 @@ void loop() {
     Restart_DMA();
 
     delay(1000);
-
-    setAll(0,0,255);
-    Restart_DMA();
-
-    delay(1000);
-
-    setAll(0,0,0);
-    Restart_DMA();
-
-    delay(1000);
 }
-
 
 
 /**
@@ -140,34 +118,17 @@ void SystemClock_Config(void)
   }
 }
 
-
 void HAL_MspInit(void)
 {
-  /* USER CODE BEGIN MspInit 0 */
-
-  /* USER CODE END MspInit 0 */
-
   __HAL_RCC_SYSCFG_CLK_ENABLE();
   __HAL_RCC_PWR_CLK_ENABLE();
-
-  /* System interrupt init*/
-
-  /* USER CODE BEGIN MspInit 1 */
-
-  /* USER CODE END MspInit 1 */
 }
 
-
-/**
-  * @brief  TIMER Initialization - clock init and nvic init
-  * @param  htim_base: TIM handle
-  * @retval None
-  */
 void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim_base)
 {
   enableTimerClock(htim_base);
 
-//  // configure Update interrupt
+  //  configure Update interrupt
   HAL_NVIC_SetPriority(getTimerUpIrq(htim_base->Instance), TIM_IRQ_PRIO, TIM_IRQ_SUBPRIO);
   HAL_NVIC_EnableIRQ(getTimerUpIrq(htim_base->Instance));
 
@@ -208,78 +169,38 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim_base)
 
 }
 
-
-
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   if(htim->Instance==TIM8)
   {
-  /* USER CODE BEGIN TIM8_MspPostInit 0 */
-
-  /* USER CODE END TIM8_MspPostInit 0 */
-
     __HAL_RCC_GPIOC_CLK_ENABLE();
-
-    /**TIM8 GPIO Configuration
-    PC7     ------> TIM8_CH2
-    PC8     ------> TIM8_CH3
-    */
     GPIO_InitStruct.Pin = GPIO_PIN_7|GPIO_PIN_8;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
     GPIO_InitStruct.Alternate = GPIO_AF3_TIM8;
     HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-  /* USER CODE BEGIN TIM8_MspPostInit 1 */
-
-  /* USER CODE END TIM8_MspPostInit 1 */
   }
 
 }
 
-
-/**
-  * Enable DMA controller clock
-  */
 static void MX_DMA_Init(void)
 {
-
-  /* DMA controller clock enable */
   __HAL_RCC_DMA2_CLK_ENABLE();
 
-  /* DMA interrupt init */
-  /* DMA2_Stream2_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(DMA2_Stream2_IRQn);
-
-
 }
 
-
-
-
-/**
-  * @brief TIM8 Initialization Function
-  * @param None
-  * @retval None
-  */
 static void MX_TIM8_Init(void)
 {
-
-  /* USER CODE BEGIN TIM8_Init 0 */
-
-  /* USER CODE END TIM8_Init 0 */
-
   TIM_ClockConfigTypeDef sClockSourceConfig = {0};
   TIM_MasterConfigTypeDef sMasterConfig = {0};
   TIM_OC_InitTypeDef sConfigOC = {0};
   TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
 
-  /* USER CODE BEGIN TIM8_Init 1 */
 
-  /* USER CODE END TIM8_Init 1 */
   htim8.Instance = TIM8;
   htim8.Init.Prescaler = 0;
   htim8.Init.CounterMode = TIM_COUNTERMODE_UP;
@@ -338,19 +259,10 @@ static void MX_TIM8_Init(void)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN TIM8_Init 2 */
 
-  /* USER CODE END TIM8_Init 2 */
   HAL_TIM_MspPostInit(&htim8);
-
 }
 
-
-/**
-  * @brief GPIO Initialization Function
-  * @param None
-  * @retval None
-  */
 static void MX_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
@@ -389,7 +301,6 @@ static void MX_GPIO_Init(void)
 
 }
 
-
 void setAll(uint8_t red,uint8_t green ,uint8_t blue)
 {
   for (int j = 0; j < LED_LINES; j++)
@@ -400,7 +311,6 @@ void setAll(uint8_t red,uint8_t green ,uint8_t blue)
       }
     }
 }
-
 
 void setLED(int strip, int led_number, uint8_t red,uint8_t green ,uint8_t blue)
 {
@@ -430,10 +340,10 @@ void setLED(int strip, int led_number, uint8_t red,uint8_t green ,uint8_t blue)
   }
 }
 
-
 uint32_t TIMX_CCMR1 = 0;
 uint32_t TIMX_CCMR2 = 0;
 uint32_t TransferCounter = 1;
+
 
 static void Start_DMA(void)
 {
@@ -475,44 +385,19 @@ static void Start_DMA(void)
 
 static void Restart_DMA(void)
 {
-//  TransferCounter++;
-//  GPIOC->MODER = 0x28000;
-//
-//  TIMX_DMA_HANDLE.XferCpltCallback = TransferComplete;
-//  TIMX_DMA_HANDLE.XferErrorCallback = TransferError ;
-//
-//  if (HAL_DMA_Start_IT(&TIMX_DMA_HANDLE, (uint32_t)&frame_buffer, (uint32_t)(GPIOE_ODR), FULL_FRAME_SIZE-1) != HAL_OK)
-//  {
-//    /* Transfer Error */
-//    Error_Handler();
-//  }
-//  __HAL_DMA_DISABLE_IT(&TIMX_DMA_HANDLE, DMA_IT_HT);
-//
-//
-//  HAL_DMA_Start_IT(&TIMX_DMA_HANDLE, (uint32_t)&frame_buffer, (uint32_t)(GPIOE_ODR), FULL_FRAME_SIZE);
-//
-//
-//  if (HAL_TIM_PWM_Set(&TIMX_HANDLE, TIM_CHANNEL_1) != HAL_OK)
-//  {
-//    /* PWM Generation Error */
-//    Error_Handler();
-//  }
-//  if (HAL_TIM_PWM_Set(&TIMX_HANDLE, TIM_CHANNEL_2) != HAL_OK)
-//  {
-//    /* PWM Generation Error */
-//    Error_Handler();
-//  }
-//  if (HAL_TIM_PWM_Set(&TIMX_HANDLE, TIM_CHANNEL_3) != HAL_OK)
-//  {
-//    /* PWM Generation Error */
-//    Error_Handler();
-//  }
-//
-//  // restart Timer
-//  TIM8->CCR2 = TIM_T1H;
-//  TIM8->CCR3 = TIM_T0H;
-//
-//  TIM8->CR1 |= (TIM_CR1_CEN);
+  TransferCounter++;
+  GPIOC->MODER = 0x28000;
+
+  if (HAL_DMA_Start_IT(&TIMX_DMA_HANDLE, (uint32_t)&frame_buffer, (uint32_t)(GPIOE_ODR), FULL_FRAME_SIZE-1) != HAL_OK)
+  {
+    /* Transfer Error */
+    Error_Handler();
+  }
+
+  // restart Timer
+  TIM8->CCR2 = TIM_T1H;
+  TIM8->CCR3 = TIM_T0H;
+  TIM8->CR1 |= (TIM_CR1_CEN);
 }
 
 
@@ -534,17 +419,6 @@ HAL_StatusTypeDef HAL_TIM_PWM_Set(TIM_HandleTypeDef *htim, uint32_t Channel)
   return HAL_OK;
 }
 
-
-
-
-
-/**
-  * @brief  Configure the Data GPIO in output mode
-  *
-  * @note   None
-  * @param  None
-  * @retval None
-  */
 static void Data_GPIO_Config(void)
 {
   GPIO_InitTypeDef   GPIO_InitStruct;
@@ -559,31 +433,6 @@ static void Data_GPIO_Config(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_MEDIUM;
   HAL_GPIO_Init(DATA_GPIO_PORT, &GPIO_InitStruct);
 }
-
-
-//
-///******************************************************************************/
-///* STM32F4xx Peripheral Interrupt Handlers                                    */
-///* Add here the Interrupt Handlers for the used peripherals.                  */
-///* For the available peripheral interrupt handler names,                      */
-///* please refer to the startup file (startup_stm32f4xx.s).                    */
-///******************************************************************************/
-//
-///**
-//  * @brief This function handles DMA2 stream2 global interrupt.
-//  */
-//void DMA2_Stream2_IRQHandler(void)
-//{
-//	while(1)
-//	{
-//
-//	}
-//
-//  HAL_DMA_IRQHandler(&hdma_tim8_ch1);
-//}
-//
-//
-
 
 
 /**
@@ -601,7 +450,6 @@ static void TransferComplete(DMA_HandleTypeDef *DmaHandle)
   TIM8->EGR |= (1 << 0); // Bit 0: UG
 
   HAL_TIM_DMADelayPulseCplt(DmaHandle);
-
 }
 
 
