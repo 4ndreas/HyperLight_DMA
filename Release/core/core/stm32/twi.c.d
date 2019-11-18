@@ -43,6 +43,7 @@ core\core\stm32\twi.c.o: \
  e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_spi.h \
  e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim.h \
  e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim_ex.h \
+ e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_uart.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino\stm32\PeripheralPins.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino\stm32\pinmap.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino\stm32\PinNames.h \
@@ -136,6 +137,8 @@ e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm3
 e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim.h:
 
 e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim_ex.h:
+
+e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_uart.h:
 
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino\stm32\PeripheralPins.h:
 

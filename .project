@@ -42,9 +42,24 @@
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/STM32/hardware/stm32/1.7.0/variants/Hyperlight</locationURI>
 		</link>
 		<link>
+			<name>libraries/Artnet</name>
+			<type>2</type>
+			<location>C:/Users/ahoel/Documents/Arduino/libraries/Artnet</location>
+		</link>
+		<link>
+			<name>libraries/Ethernet</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/Ethernet/2.0.0</locationURI>
+		</link>
+		<link>
 			<name>libraries/IWatchdog</name>
 			<type>2</type>
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/STM32/hardware/stm32/1.7.0/libraries/IWatchdog</locationURI>
+		</link>
+		<link>
+			<name>libraries/SPI</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/STM32/hardware/stm32/1.7.0/libraries/SPI</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

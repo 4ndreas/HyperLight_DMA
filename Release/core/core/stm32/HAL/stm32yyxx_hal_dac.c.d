@@ -40,7 +40,8 @@ core\core\stm32\HAL\stm32yyxx_hal_dac.c.o: \
  e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_ll_sdmmc.h \
  e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_spi.h \
  e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim.h \
- e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim_ex.h
+ e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim_ex.h \
+ e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_uart.h
 
 e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\src\stm32f4xx_hal_dac.c:
 
@@ -123,3 +124,5 @@ e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm3
 e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim.h:
 
 e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim_ex.h:
+
+e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_uart.h:

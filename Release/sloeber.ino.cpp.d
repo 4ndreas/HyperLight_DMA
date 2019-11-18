@@ -52,6 +52,7 @@ sloeber.ino.cpp.o: ..\sloeber.ino.cpp \
  e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_spi.h \
  e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim.h \
  e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim_ex.h \
+ e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_uart.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/stm32/dwt.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/WInterrupts.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/board.h \
@@ -96,6 +97,16 @@ sloeber.ino.cpp.o: ..\sloeber.ino.cpp \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/WMath.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/pins_arduino.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/stm32/PinNames.h \
+ E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\libraries\SPI\src/SPI.h \
+ C:\Users\ahoel\Documents\Arduino\libraries\Artnet/Artnet.h \
+ E:\Sloeber\arduinoPlugin\libraries\Ethernet\2.0.0\src/Ethernet.h \
+ E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Client.h \
+ E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/IPAddress.h \
+ E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Server.h \
+ E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Udp.h \
+ E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Stream.h \
+ E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/IPAddress.h \
+ E:\Sloeber\arduinoPlugin\libraries\Ethernet\2.0.0\src/EthernetUdp.h \
  ..\hyperlight_dma_sloeber.ino
 
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Arduino.h:
@@ -204,6 +215,8 @@ e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm3
 
 e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim_ex.h:
 
+e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_uart.h:
+
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/stm32/dwt.h:
 
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/WInterrupts.h:
@@ -291,5 +304,25 @@ E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/WMath
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/pins_arduino.h:
 
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/stm32/PinNames.h:
+
+E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\libraries\SPI\src/SPI.h:
+
+C:\Users\ahoel\Documents\Arduino\libraries\Artnet/Artnet.h:
+
+E:\Sloeber\arduinoPlugin\libraries\Ethernet\2.0.0\src/Ethernet.h:
+
+E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Client.h:
+
+E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/IPAddress.h:
+
+E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Server.h:
+
+E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Udp.h:
+
+E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Stream.h:
+
+E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/IPAddress.h:
+
+E:\Sloeber\arduinoPlugin\libraries\Ethernet\2.0.0\src/EthernetUdp.h:
 
 ..\hyperlight_dma_sloeber.ino:

@@ -1,10 +1,20 @@
 #include "Arduino.h"
 #include "variant.h"
-//#include <IWatchdog.h>
+#include <SPI.h>
+#include <Artnet.h>
 
-//#include "stm32f4xx_hal.h"
-//#include "stm32f4xx_hal_tim.h"
-//#include "stm32f4xx_hal_gpio.h"
+
+// W5500 Ethernet
+// HW-SPI-3 or HW_SPI-1
+
+#define ETH_MOSI_PIN  PB5
+#define ETH_MISO_PIN  PB4
+#define ETH_SCK_PIN   PB3
+#define ETH_SCS_PIN   PA15
+#define ETH_INT_PIN   PB8
+#define ETH_RST_PIN   PD3
+
+Artnet artnet;
 
 TIM_HandleTypeDef htim8;
 DMA_HandleTypeDef hdma_tim8_ch1;
@@ -23,7 +33,7 @@ DMA_HandleTypeDef hdma_tim8_ch1;
 #define TIM_T0H 0x32
 
 #define LED_LINES 16
-#define LED_LENGHT 2
+#define LED_LENGHT 240
 #define LED_COLORS 3
 #define DMA_DUMMY 2
 
@@ -34,6 +44,7 @@ static uint16_t frame_buffer[FULL_FRAME_SIZE];
 
 void setAll(uint8_t red,uint8_t green ,uint8_t blue);
 void setLED(int strip, int led_number, uint8_t red,uint8_t green ,uint8_t blue);
+static void Wait_DMA(void);
 static void Start_DMA(void);
 static void Restart_DMA(void);
 static void TransferComplete(DMA_HandleTypeDef *DmaHandle);
@@ -42,7 +53,31 @@ HAL_StatusTypeDef HAL_TIM_PWM_Set(TIM_HandleTypeDef *htim, uint32_t Channel);
 static void Data_GPIO_Config(void);
 void SystemClock_Config_new(void);
 
+byte ip[] = {192, 168, 2, 220};
+byte mac[] = {0x04, 0xE9, 0xE5, 0x13, 0x69, 0xEC};
 
+IPAddress remoteArd;
+
+
+const uint8_t gamma8[] = {
+    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,
+    1,  1,  1,  1,  1,  1,  1,  1,  1,  2,  2,  2,  2,  2,  2,  2,
+    2,  3,  3,  3,  3,  3,  3,  3,  4,  4,  4,  4,  4,  5,  5,  5,
+    5,  6,  6,  6,  6,  7,  7,  7,  7,  8,  8,  8,  9,  9,  9, 10,
+   10, 10, 11, 11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 16, 16,
+   17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 24, 24, 25,
+   25, 26, 27, 27, 28, 29, 29, 30, 31, 32, 32, 33, 34, 35, 35, 36,
+   37, 38, 39, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 50,
+   51, 52, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68,
+   69, 70, 72, 73, 74, 75, 77, 78, 79, 81, 82, 83, 85, 86, 87, 89,
+   90, 92, 93, 95, 96, 98, 99,101,102,104,105,107,109,110,112,114,
+  115,117,119,120,122,124,126,127,129,131,133,135,137,138,140,142,
+  144,146,148,150,152,154,156,158,160,162,164,167,169,171,173,175,
+  177,180,182,184,186,189,191,193,196,198,200,203,205,208,210,213,
+  215,218,220,223,225,228,231,233,236,239,241,244,247,249,252,255 };
+
+int update_leds = 0;
 
 void setup() {
 
@@ -60,21 +95,35 @@ void setup() {
   setAll(0,255,0);
   Restart_DMA();
   delay(100);
+
+  SPI.setMISO(ETH_MISO_PIN);
+  SPI.setMOSI(ETH_MOSI_PIN);
+  SPI.setSCLK(ETH_SCK_PIN);
+  Ethernet.init(ETH_SCS_PIN);
+
+  artnet.begin(mac, ip);
+  artnet.setArtDmxCallback(onDmxFrame);
+
 }
+
+int last_update = 0;
 
 void loop() {
+	uint32_t currentTime = millis();
 
-    setAll(255,0,0);
-    Restart_DMA();
+	artnet.read();
 
-    delay(1000);
-
-    setAll(0,255,0);
-    Restart_DMA();
-
-    delay(1000);
+	if(update_leds == 1)
+	{
+		if (currentTime - last_update > 20)
+		{
+			Wait_DMA();
+			Restart_DMA();
+			last_update = currentTime;
+			update_leds = 0;
+		}
+	}
 }
-
 
 /**
   * @brief System Clock Configuration
@@ -312,7 +361,7 @@ void setAll(uint8_t red,uint8_t green ,uint8_t blue)
     }
 }
 
-void setLED(int strip, int led_number, uint8_t red,uint8_t green ,uint8_t blue)
+void setLED(int strip, int led_number, uint8_t red, uint8_t green ,uint8_t blue)
 {
   int offset = (led_number )* LED_COLORS * 8 + DMA_DUMMY;
 
@@ -329,12 +378,12 @@ void setLED(int strip, int led_number, uint8_t red,uint8_t green ,uint8_t blue)
     if((offset-i) < FULL_FRAME_SIZE )
       {
       /* clear bit */
-      frame_buffer[offset+i] &= stripClrMask;
+      frame_buffer[offset+23-i] &= stripClrMask;
 
       /* set bit */
       if(color & (1<<i))
         {
-         frame_buffer[offset+i] |= stripSetMask;
+         frame_buffer[offset+23-i] |= stripSetMask;
         }
       }
   }
@@ -343,7 +392,16 @@ void setLED(int strip, int led_number, uint8_t red,uint8_t green ,uint8_t blue)
 uint32_t TIMX_CCMR1 = 0;
 uint32_t TIMX_CCMR2 = 0;
 uint32_t TransferCounter = 1;
+int TransferLock = 0;
 
+
+static void Wait_DMA(void)
+{
+	while(TransferLock != 0 )
+	{
+
+	}
+}
 
 static void Start_DMA(void)
 {
@@ -385,19 +443,24 @@ static void Start_DMA(void)
 
 static void Restart_DMA(void)
 {
-  TransferCounter++;
-  GPIOC->MODER = 0x28000;
+	if(TransferLock == 0)
+	{
+	  TransferCounter++;
+	  GPIOC->MODER = 0x28000;
 
-  if (HAL_DMA_Start_IT(&TIMX_DMA_HANDLE, (uint32_t)&frame_buffer, (uint32_t)(GPIOE_ODR), FULL_FRAME_SIZE-1) != HAL_OK)
-  {
-    /* Transfer Error */
-    Error_Handler();
-  }
+	  if (HAL_DMA_Start_IT(&TIMX_DMA_HANDLE, (uint32_t)&frame_buffer, (uint32_t)(GPIOE_ODR), FULL_FRAME_SIZE-1) != HAL_OK)
+	  {
+		/* Transfer Error */
+		Error_Handler();
+	  }
 
-  // restart Timer
-  TIM8->CCR2 = TIM_T1H;
-  TIM8->CCR3 = TIM_T0H;
-  TIM8->CR1 |= (TIM_CR1_CEN);
+	  // restart Timer
+	  TIM8->CCR2 = TIM_T1H;
+	  TIM8->CCR3 = TIM_T0H;
+	  TIM8->CR1 |= (TIM_CR1_CEN);
+
+	  TransferLock = 1;
+	}
 }
 
 
@@ -450,6 +513,7 @@ static void TransferComplete(DMA_HandleTypeDef *DmaHandle)
   TIM8->EGR |= (1 << 0); // Bit 0: UG
 
   HAL_TIM_DMADelayPulseCplt(DmaHandle);
+  TransferLock = 0;
 }
 
 
@@ -467,4 +531,45 @@ static void TransferError(DMA_HandleTypeDef *DmaHandle)
   // stop timer
 //  TIM8->CR1 &= ~(TIM_CR1_CEN);
   TransferErrorCounter++;
+  TransferLock = 0;
 }
+
+
+
+
+void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* data)
+{
+  remoteArd = artnet.remote;
+
+  int i;
+  if(universe < 16)
+  {
+	  int led = 0;
+	  for(i = 0; i< length; i+=3){
+		  if(led < LED_LENGHT){
+			  setLED(universe, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+			  //setLED(universe+8, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//		  setLED(0, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//		  setLED(1, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//		  setLED(2, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//		  setLED(3, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//		  setLED(4, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//		  setLED(5, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//		  setLED(6, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//		  setLED(7, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//
+//		  setLED(8, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//		  setLED(9, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//		  setLED(10, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//		  setLED(11, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//		  setLED(12, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//		  setLED(13, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//		  setLED(14, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+//		  setLED(15, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+		  }
+		  led++;
+	  }
+  }
+  update_leds = 1;
+}
+

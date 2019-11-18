@@ -44,5 +44,9 @@ core\core\stm32\usb\hid \
 core\core\stm32\usb \
 core\variant \
 . \
+libraries\Artnet \
+libraries\Ethernet\src \
+libraries\Ethernet\src\utility \
 libraries\IWatchdog\src \
+libraries\SPI\src \
 

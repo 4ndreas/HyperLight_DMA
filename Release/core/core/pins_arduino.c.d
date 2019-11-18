@@ -45,6 +45,7 @@ core\core\pins_arduino.c.o: \
  e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_spi.h \
  e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim.h \
  e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim_ex.h \
+ e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_uart.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\variants\Hyperlight/PinNamesVar.h
 
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino\pins_arduino.h:
@@ -136,5 +137,7 @@ e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm3
 e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim.h:
 
 e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_tim_ex.h:
+
+e:\sloeber\arduinoplugin\packages\stm32\hardware\stm32\1.7.0\system\drivers\stm32f4xx_hal_driver\inc\stm32f4xx_hal_uart.h:
 
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\variants\Hyperlight/PinNamesVar.h:

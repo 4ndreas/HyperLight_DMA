@@ -100,7 +100,7 @@ environment/project/io.sloeber.core.toolChain.release.634933201/A.BUILD.VID/oper
 environment/project/io.sloeber.core.toolChain.release.634933201/A.BUILD.VID/value=0x0483
 environment/project/io.sloeber.core.toolChain.release.634933201/A.BUILD.XSERIAL/delimiter=;
 environment/project/io.sloeber.core.toolChain.release.634933201/A.BUILD.XSERIAL/operation=replace
-environment/project/io.sloeber.core.toolChain.release.634933201/A.BUILD.XSERIAL/value=
+environment/project/io.sloeber.core.toolChain.release.634933201/A.BUILD.XSERIAL/value=-DHAL_UART_MODULE_ENABLED
 environment/project/io.sloeber.core.toolChain.release.634933201/A.COMPILER.AR.CMD/delimiter=;
 environment/project/io.sloeber.core.toolChain.release.634933201/A.COMPILER.AR.CMD/operation=replace
 environment/project/io.sloeber.core.toolChain.release.634933201/A.COMPILER.AR.CMD/value=arm-none-eabi-gcc-ar
@@ -607,7 +607,7 @@ environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.MAKE_LOCA
 environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.MAKE_LOCATION/value=E\:\\Sloeber\\arduinoPlugin\\tools\\make\\
 environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.MENU/delimiter=;
 environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.MENU/operation=replace
-environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.MENU/value=cpu\=atmega328\nopt\=ogstd\npnum\=Hyperlight\nrtlib\=full\nupload_method\=swdMethod\nusb\=none\nxserial\=disabled\nxusb\=FS
+environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.MENU/value=cpu\=atmega328\nopt\=ogstd\npnum\=Hyperlight\nrtlib\=full\nupload_method\=swdMethod\nusb\=none\nxserial\=generic\nxusb\=FS
 environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.OBJCOPY/delimiter=;
 environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.OBJCOPY/operation=replace
 environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.OBJCOPY/value=${A.RECIPE.OBJCOPY.BIN.PATTERN}\n\t${A.RECIPE.OBJCOPY.HEX.PATTERN}
