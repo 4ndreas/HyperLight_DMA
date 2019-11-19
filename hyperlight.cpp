@@ -1,180 +1,112 @@
-#include "Arduino.h"
-#include "variant.h"
-#include <SPI.h>
-#include <Artnet.h>
+/*
+ * hyperlight.cpp
+ *
+ *  Created on: 19.11.2019
+ *      Author: ahoel
+ */
+
+#include "hyperlight.h"
+
+/* HAL Functions */
+void HAL_MspInit(void) ;
+void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim_base) ;
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim) ;
+static void MX_DMA_Init(void) ;
+static void MX_TIM8_Init(void) ;
+static void MX_GPIO_Init(void) ;
+HAL_StatusTypeDef HAL_TIM_PWM_Set(TIM_HandleTypeDef *htim, uint32_t Channel) ;
+static void Data_GPIO_Config(void) ;
 
 
-// W5500 Ethernet
-// HW-SPI-3 or HW_SPI-1
 
-#define ETH_MOSI_PIN  PB5
-#define ETH_MISO_PIN  PB4
-#define ETH_SCK_PIN   PB3
-#define ETH_SCS_PIN   PA15
-#define ETH_INT_PIN   PB8
-#define ETH_RST_PIN   PD3
-
-Artnet artnet;
-
-TIM_HandleTypeDef htim8;
-DMA_HandleTypeDef hdma_tim8_ch1;
-
-#define TIMx_DMA_ID  TIM_DMA_ID_CC1
-#define TIMX_HANDLE  htim8
-#define TIMX_DMA_HANDLE hdma_tim8_ch1
-
-#define GPIOE_ODR               (GPIOE_BASE + 0x14)
-#define DATA_GPIO_CLK_ENABLE     __HAL_RCC_GPIOE_CLK_ENABLE
-#define DATA_GPIO_PORT           GPIOE
-#define DATA_GPIO_PIN            GPIO_PIN_All
-
-#define TIM_CLK 209
-#define TIM_TOO 35
-#define TIM_T1H 0x85
-#define TIM_T0H 0x32
-
-#define LED_LINES 16
-#define LED_LENGHT 240
-#define LED_COLORS 3
-#define DMA_DUMMY 2
-
-#define FULL_FRAME_SIZE ( LED_LENGHT * LED_COLORS * 8 )+ DMA_DUMMY    /* max = 65530 (65535 - 5 dummy bits) due to dma limitation  */
-
-static uint16_t frame_buffer[FULL_FRAME_SIZE];
-
-
-void setAll(uint8_t red,uint8_t green ,uint8_t blue);
-void setLED(int strip, int led_number, uint8_t red,uint8_t green ,uint8_t blue);
-void setStripLED(int strip, uint8_t * data, int data_length, int start);
-static void Wait_DMA(void);
-static void Start_DMA(void);
-static void Restart_DMA(void);
-static void TransferComplete(DMA_HandleTypeDef *DmaHandle);
-static void TransferError(DMA_HandleTypeDef *DmaHandle);
-
-HAL_StatusTypeDef HAL_TIM_PWM_Set(TIM_HandleTypeDef *htim, uint32_t Channel);
-static void Data_GPIO_Config(void);
-void SystemClock_Config_new(void);
-
-byte ip[] = {192, 168, 2, 220};
-byte mac[] = {0x04, 0xE9, 0xE5, 0x13, 0x69, 0xEC};
-
-IPAddress remoteArd;
-
-
-uint8_t gamma8[] = {
-    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,
-    1,  1,  1,  1,  1,  1,  1,  1,  1,  2,  2,  2,  2,  2,  2,  2,
-    2,  3,  3,  3,  3,  3,  3,  3,  4,  4,  4,  4,  4,  5,  5,  5,
-    5,  6,  6,  6,  6,  7,  7,  7,  7,  8,  8,  8,  9,  9,  9, 10,
-   10, 10, 11, 11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 16, 16,
-   17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 24, 24, 25,
-   25, 26, 27, 27, 28, 29, 29, 30, 31, 32, 32, 33, 34, 35, 35, 36,
-   37, 38, 39, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 50,
-   51, 52, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68,
-   69, 70, 72, 73, 74, 75, 77, 78, 79, 81, 82, 83, 85, 86, 87, 89,
-   90, 92, 93, 95, 96, 98, 99,101,102,104,105,107,109,110,112,114,
-  115,117,119,120,122,124,126,127,129,131,133,135,137,138,140,142,
-  144,146,148,150,152,154,156,158,160,162,164,167,169,171,173,175,
-  177,180,182,184,186,189,191,193,196,198,200,203,205,208,210,213,
-  215,218,220,223,225,228,231,233,236,239,241,244,247,249,252,255 };
-
-int update_leds = 0;
-
-void setup() {
-
-  MX_GPIO_Init();
-  MX_DMA_Init();
-  MX_TIM8_Init();
-  Data_GPIO_Config();
-
-
-  setAll(255,0,0);
-
-  Start_DMA();
-  delay(100);
-
-  setAll(0,255,0);
-  Restart_DMA();
-  delay(100);
-
-  SPI.setMISO(ETH_MISO_PIN);
-  SPI.setMOSI(ETH_MOSI_PIN);
-  SPI.setSCLK(ETH_SCK_PIN);
-  Ethernet.init(ETH_SCS_PIN);
-
-  artnet.begin(mac, ip);
-  artnet.setArtDmxCallback(onDmxFrame);
+hyperlight::hyperlight() {
+	// TODO Auto-generated constructor stub
 
 }
 
-int last_update = 0;
 
-void loop() {
-	uint32_t currentTime = millis();
 
-	artnet.read();
+void hyperlight::begin(void){
 
-//	if(update_leds == 1)
-//	{
-		if (currentTime - last_update > 30)
-		{
-			last_update = currentTime;
-			Wait_DMA();
-			Restart_DMA();
-			update_leds = 0;
-		}
-//	}
+// init HAL Layer
+
+MX_GPIO_Init();
+MX_DMA_Init();
+MX_TIM8_Init();
+Data_GPIO_Config();
+
+
 }
 
-/**
-  * @brief System Clock Configuration
-  * @retval None
-  */
-void SystemClock_Config(void)
+void hyperlight::setAll(uint8_t red,uint8_t green ,uint8_t blue)
 {
-  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  for (int j = 0; j < LED_LINES; j++)
+    {
+      for(int i = 0; i< LED_LENGHT; i++)
+      {
+        setLED(j,i,red,green,blue);
+      }
+    }
+}
 
-  /** Configure the main internal regulator output voltage
-  */
-  __HAL_RCC_PWR_CLK_ENABLE();
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
-  /** Initializes the CPU, AHB and APB busses clocks
-  */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 4;
-  RCC_OscInitStruct.PLL.PLLN = 168;
-  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /** Initializes the CPU, AHB and APB busses clocks
-  */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
-                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+void hyperlight::setLED(int strip, int led_number, uint8_t red, uint8_t green ,uint8_t blue)
+{
+  int offset = (led_number )* LED_COLORS * 8 + DMA_DUMMY;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
+  uint16_t stripClrMask = ~(1<< strip);
+  uint16_t stripSetMask = (1<< strip);
+
+  uint32_t color = (red << 16) + (green << 8) + (blue);
+
+/*check buffer limit */
+if((offset+24) < FULL_FRAME_SIZE )
   {
-    Error_Handler();
+	  int i;
+	  /* set Color */
+	  for(i = 0; i < 24; i++)
+	  {
+		  /* clear bit */
+		  frame_buffer[offset+23-i] &= stripClrMask;
+
+		  /* set bit */
+		  if(color & (1<<i))
+			{
+			 frame_buffer[offset+23-i] |= stripSetMask;
+			}
+	  }
   }
 }
 
-void HAL_MspInit(void)
+void hyperlight::setStripLED(int strip, uint8_t * data, int data_length, int start)
 {
-  __HAL_RCC_SYSCFG_CLK_ENABLE();
-  __HAL_RCC_PWR_CLK_ENABLE();
+  int offset = (start )* LED_COLORS * 8 + DMA_DUMMY;
+
+  uint16_t stripClrMask = ~(1<< strip);
+  uint16_t stripSetMask = (1<< strip);
+
+  int i;
+  int j;
+
+  for(j = 0; j< data_length; j++){
+	  /* set Color */
+	  for(i = 0; i < 8; i++)
+	  {
+		  /* clear bit */
+		  frame_buffer[offset+7-i] &= stripClrMask;
+
+		  /* set bit */
+		  if(data[j] & (1<<i))
+			{
+			 frame_buffer[offset+7-i] |= stripSetMask;
+			}
+	  }
+	  offset+=8;
+  }
 }
+
+
+/* HAL Functions */
+
 
 void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim_base)
 {
@@ -218,8 +150,8 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim_base)
 
     __HAL_LINKDMA(htim_base,hdma[TIM_DMA_ID_CC1],hdma_tim8_ch1);
   }
-
 }
+
 
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
 {
@@ -353,78 +285,8 @@ static void MX_GPIO_Init(void)
 
 }
 
-void setAll(uint8_t red,uint8_t green ,uint8_t blue)
-{
-  for (int j = 0; j < LED_LINES; j++)
-    {
-      for(int i = 0; i< LED_LENGHT; i++)
-      {
-        setLED(j,i,red,green,blue);
-      }
-    }
-}
-
-void setLED(int strip, int led_number, uint8_t red, uint8_t green ,uint8_t blue)
-{
-  int offset = (led_number )* LED_COLORS * 8 + DMA_DUMMY;
-
-  uint16_t stripClrMask = ~(1<< strip);
-  uint16_t stripSetMask = (1<< strip);
-
-  uint32_t color = (red << 16) + (green << 8) + (blue);
-
-/*check buffer limit */
-if((offset+24) < FULL_FRAME_SIZE )
-  {
-	  int i;
-	  /* set Color */
-	  for(i = 0; i < 24; i++)
-	  {
-		  /* clear bit */
-		  frame_buffer[offset+23-i] &= stripClrMask;
-
-		  /* set bit */
-		  if(color & (1<<i))
-			{
-			 frame_buffer[offset+23-i] |= stripSetMask;
-			}
-	  }
-  }
-}
-
-void setStripLED(int strip, uint8_t * data, int data_length, int start)
-{
-  int offset = (start )* LED_COLORS * 8 + DMA_DUMMY;
-
-  uint16_t stripClrMask = ~(1<< strip);
-  uint16_t stripSetMask = (1<< strip);
-
-  int i;
-  int j;
-
-  for(j = 0; j< data_length; j++){
-	  /* set Color */
-	  for(i = 0; i < 8; i++)
-	  {
-		  /* clear bit */
-		  frame_buffer[offset+7-i] &= stripClrMask;
-
-		  /* set bit */
-		  if(data[j] & (1<<i))
-			{
-			 frame_buffer[offset+7-i] |= stripSetMask;
-			}
-	  }
-	  offset+=8;
-  }
-}
 
 
-
-uint32_t TIMX_CCMR1 = 0;
-uint32_t TIMX_CCMR2 = 0;
-uint32_t TransferCounter = 1;
-int TransferLock = 0;
 
 
 static void Wait_DMA(void)
@@ -570,39 +432,4 @@ static void TransferError(DMA_HandleTypeDef *DmaHandle)
   TransferErrorCounter++;
   TransferLock = 0;
 }
-
-
-//void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* data)
-//{
-//  remoteArd = artnet.remote;
-//
-//  if(universe < 16)
-//  {
-//	  int led = 0;
-//	  int i;
-//	  for(i = 0; i< length; i+=3){
-//		  if(led < LED_LENGHT){
-//			  setLED(universe, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
-//		  }
-//		  led++;
-//	  }
-//  }
-//  update_leds = 1;
-//}
-
-
-void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* data)
-{
-  remoteArd = artnet.remote;
-
-  if(universe < 16)
-  {
-	setStripLED(universe, data, length, 0);
-  }
-  update_leds = 1;
-}
-
-
-
-
 
