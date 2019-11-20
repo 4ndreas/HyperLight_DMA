@@ -8,6 +8,9 @@
 #include "hyperlight.h"
 
 /* HAL Functions */
+TIM_HandleTypeDef htim8;
+DMA_HandleTypeDef hdma_tim8_ch1;
+
 void HAL_MspInit(void) ;
 void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim_base) ;
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim) ;
@@ -17,25 +20,62 @@ static void MX_GPIO_Init(void) ;
 HAL_StatusTypeDef HAL_TIM_PWM_Set(TIM_HandleTypeDef *htim, uint32_t Channel) ;
 static void Data_GPIO_Config(void) ;
 
+static void TransferComplete(DMA_HandleTypeDef *DmaHandle);
+static void TransferError(DMA_HandleTypeDef *DmaHandle);
+
+static uint16_t frame_buffer[FULL_FRAME_SIZE];
+
+static uint8_t gamma8[] = {
+    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,
+    1,  1,  1,  1,  1,  1,  1,  1,  1,  2,  2,  2,  2,  2,  2,  2,
+    2,  3,  3,  3,  3,  3,  3,  3,  4,  4,  4,  4,  4,  5,  5,  5,
+    5,  6,  6,  6,  6,  7,  7,  7,  7,  8,  8,  8,  9,  9,  9, 10,
+   10, 10, 11, 11, 11, 12, 12, 13, 13, 13, 14, 14, 15, 15, 16, 16,
+   17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 24, 24, 25,
+   25, 26, 27, 27, 28, 29, 29, 30, 31, 32, 32, 33, 34, 35, 35, 36,
+   37, 38, 39, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 50,
+   51, 52, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 66, 67, 68,
+   69, 70, 72, 73, 74, 75, 77, 78, 79, 81, 82, 83, 85, 86, 87, 89,
+   90, 92, 93, 95, 96, 98, 99,101,102,104,105,107,109,110,112,114,
+  115,117,119,120,122,124,126,127,129,131,133,135,137,138,140,142,
+  144,146,148,150,152,154,156,158,160,162,164,167,169,171,173,175,
+  177,180,182,184,186,189,191,193,196,198,200,203,205,208,210,213,
+  215,218,220,223,225,228,231,233,236,239,241,244,247,249,252,255 };
+
+
+uint32_t TIMX_CCMR1 = 0;
+uint32_t TIMX_CCMR2 = 0;
+
+int TransferLock = 0;
+uint32_t TransferErrorCounter = 0;
 
 
 hyperlight::hyperlight() {
 	// TODO Auto-generated constructor stub
-
+	_useGamma = 1;
 }
 
 
 
 void hyperlight::begin(void){
 
-// init HAL Layer
+	// init HAL Layer
+	MX_GPIO_Init();
+	MX_DMA_Init();
+	MX_TIM8_Init();
+	Data_GPIO_Config();
 
-MX_GPIO_Init();
-MX_DMA_Init();
-MX_TIM8_Init();
-Data_GPIO_Config();
 
 
+	setAll(0,0,0);
+	Start_DMA();
+}
+
+void hyperlight::show(void)
+{
+	Wait_DMA();
+	Restart_DMA();
 }
 
 void hyperlight::setAll(uint8_t red,uint8_t green ,uint8_t blue)
@@ -49,15 +89,30 @@ void hyperlight::setAll(uint8_t red,uint8_t green ,uint8_t blue)
     }
 }
 
+/**
+  * @brief  sets a single led
+  * @param  strip: led channel
+  *         led_number: led position
+  *         red: red color channel
+  *         green: green color channel
+  *         blue: blue color channel
+  */
 void hyperlight::setLED(int strip, int led_number, uint8_t red, uint8_t green ,uint8_t blue)
 {
   int offset = (led_number )* LED_COLORS * 8 + DMA_DUMMY;
 
   uint16_t stripClrMask = ~(1<< strip);
   uint16_t stripSetMask = (1<< strip);
+  uint32_t color;
 
-  uint32_t color = (red << 16) + (green << 8) + (blue);
-
+  if(_useGamma)
+	  {
+	  color = (gamma8[red] << 16) + (gamma8[green] << 8) + (gamma8[blue]);
+	  }
+  else
+	  {
+	   color = (red << 16) + (green << 8) + (blue);
+	  }
 /*check buffer limit */
 if((offset+24) < FULL_FRAME_SIZE )
   {
@@ -77,6 +132,14 @@ if((offset+24) < FULL_FRAME_SIZE )
   }
 }
 
+
+/**
+  * @brief  sets leds from a buffer
+  * @param  strip: led channel
+  *         *data: pointer to the buffer
+  *         data_length: buffer size
+  *         start: leds offset
+  */
 void hyperlight::setStripLED(int strip, uint8_t * data, int data_length, int start)
 {
   int offset = (start )* LED_COLORS * 8 + DMA_DUMMY;
@@ -87,7 +150,29 @@ void hyperlight::setStripLED(int strip, uint8_t * data, int data_length, int sta
   int i;
   int j;
 
-  for(j = 0; j< data_length; j++){
+  if(_useGamma)
+	{
+	  uint8_t col;
+	  for(j = 0; j< data_length; j++){
+		  /* set Color */
+		  col = gamma8[data[j]];
+		  for(i = 0; i < 8; i++)
+		  {
+			  /* clear bit */
+			  frame_buffer[offset+7-i] &= stripClrMask;
+
+			  /* set bit */
+			  if(col & (1<<i))
+				{
+				 frame_buffer[offset+7-i] |= stripSetMask;
+				}
+		  }
+		  offset+=8;
+	  }
+	 }
+  else
+  {
+    for(j = 0; j< data_length; j++){
 	  /* set Color */
 	  for(i = 0; i < 8; i++)
 	  {
@@ -101,11 +186,90 @@ void hyperlight::setStripLED(int strip, uint8_t * data, int data_length, int sta
 			}
 	  }
 	  offset+=8;
+   }
   }
 }
 
 
-/* HAL Functions */
+
+void hyperlight::Wait_DMA(void)
+{
+	while(TransferLock != 0 )
+	{
+
+	}
+}
+
+void hyperlight::Start_DMA(void)
+{
+  HAL_DMA_RegisterCallback(&TIMX_DMA_HANDLE, HAL_DMA_XFER_CPLT_CB_ID, TransferComplete);
+  HAL_DMA_RegisterCallback(&TIMX_DMA_HANDLE, HAL_DMA_XFER_ERROR_CB_ID, TransferError);
+
+  if (HAL_DMA_Start_IT(&TIMX_DMA_HANDLE, (uint32_t)&frame_buffer, (uint32_t)(GPIOE_ODR), FULL_FRAME_SIZE) != HAL_OK)
+  {
+  /* Transfer Error */
+  Error_Handler();
+  }
+
+  __HAL_DMA_DISABLE_IT(&TIMX_DMA_HANDLE, DMA_IT_HT);
+  __HAL_TIM_ENABLE_DMA(&TIMX_HANDLE, TIM_DMA_CC1);
+
+  if (HAL_TIM_PWM_Set(&TIMX_HANDLE, TIM_CHANNEL_1) != HAL_OK)
+  {
+    /* PWM Generation Error */
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_Set(&TIMX_HANDLE, TIM_CHANNEL_2) != HAL_OK)
+  {
+    /* PWM Generation Error */
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_Set(&TIMX_HANDLE, TIM_CHANNEL_3) != HAL_OK)
+  {
+    /* PWM Generation Error */
+    Error_Handler();
+  }
+
+  __HAL_TIM_ENABLE(&TIMX_HANDLE);
+
+  TransferCounter++;
+  TransferLock = 1;
+}
+
+void hyperlight::Restart_DMA(void)
+{
+  if(TransferLock == 0)
+	{
+	  TransferCounter++;
+	  GPIOC->MODER = 0x28000;
+
+	  if (HAL_DMA_Start_IT(&TIMX_DMA_HANDLE, (uint32_t)&frame_buffer, (uint32_t)(GPIOE_ODR), FULL_FRAME_SIZE-1) != HAL_OK)
+	  {
+		/* Transfer Error */
+		Error_Handler();
+	  }
+
+	  // restart Timer
+	  TIM8->CCR2 = TIM_T1H;
+	  TIM8->CCR3 = TIM_T0H;
+	  TIM8->CR1 |= (TIM_CR1_CEN);
+
+	  TransferLock = 1;
+	}
+}
+
+
+/******************************************************************************/
+/* HAL Functions                                                              */
+/* don't change anything down here                                            */
+/* Low Level init functions                                                   */
+/******************************************************************************/
+
+void HAL_MspInit(void)
+{
+  __HAL_RCC_SYSCFG_CLK_ENABLE();
+  __HAL_RCC_PWR_CLK_ENABLE();
+}
 
 
 void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim_base)
@@ -125,9 +289,6 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim_base)
 
   if(htim_base->Instance==TIM8)
   {
-  /* USER CODE BEGIN TIM8_MspInit 0 */
-
-  /* USER CODE END TIM8_MspInit 0 */
     /* Peripheral clock enable */
     __HAL_RCC_TIM8_CLK_ENABLE();
 
@@ -168,6 +329,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
   }
 
 }
+
 
 static void MX_DMA_Init(void)
 {
@@ -286,78 +448,6 @@ static void MX_GPIO_Init(void)
 }
 
 
-
-
-
-static void Wait_DMA(void)
-{
-	while(TransferLock != 0 )
-	{
-
-	}
-}
-
-static void Start_DMA(void)
-{
-//  TIMX_DMA_HANDLE.XferCpltCallback = TransferComplete;
-//  TIMX_DMA_HANDLE.XferErrorCallback = TransferError ;
-
-//  HAL_DMA_Init(&TIMX_DMA_HANDLE);
-  HAL_DMA_RegisterCallback(&TIMX_DMA_HANDLE, HAL_DMA_XFER_CPLT_CB_ID, TransferComplete);
-  HAL_DMA_RegisterCallback(&TIMX_DMA_HANDLE, HAL_DMA_XFER_ERROR_CB_ID, TransferError);
-
-  if (HAL_DMA_Start_IT(&TIMX_DMA_HANDLE, (uint32_t)&frame_buffer, (uint32_t)(GPIOE_ODR), FULL_FRAME_SIZE) != HAL_OK)
-  {
-  /* Transfer Error */
-  Error_Handler();
-  }
-
-//  __HAL_DMA_DISABLE_IT(&TIMX_DMA_HANDLE, DMA_IT_HT);
-  __HAL_TIM_ENABLE_DMA(&TIMX_HANDLE, TIM_DMA_CC1);
-
-  if (HAL_TIM_PWM_Set(&TIMX_HANDLE, TIM_CHANNEL_1) != HAL_OK)
-  {
-    /* PWM Generation Error */
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_Set(&TIMX_HANDLE, TIM_CHANNEL_2) != HAL_OK)
-  {
-    /* PWM Generation Error */
-    Error_Handler();
-  }
-  if (HAL_TIM_PWM_Set(&TIMX_HANDLE, TIM_CHANNEL_3) != HAL_OK)
-  {
-    /* PWM Generation Error */
-    Error_Handler();
-  }
-
-  //HAL_DMA_Init(&TIMX_DMA_HANDLE);
-  __HAL_TIM_ENABLE(&TIMX_HANDLE);
-}
-
-static void Restart_DMA(void)
-{
-	if(TransferLock == 0)
-	{
-	  TransferCounter++;
-	  GPIOC->MODER = 0x28000;
-
-	  if (HAL_DMA_Start_IT(&TIMX_DMA_HANDLE, (uint32_t)&frame_buffer, (uint32_t)(GPIOE_ODR), FULL_FRAME_SIZE-1) != HAL_OK)
-	  {
-		/* Transfer Error */
-		Error_Handler();
-	  }
-
-	  // restart Timer
-	  TIM8->CCR2 = TIM_T1H;
-	  TIM8->CCR3 = TIM_T0H;
-	  TIM8->CR1 |= (TIM_CR1_CEN);
-
-	  TransferLock = 1;
-	}
-}
-
-
 HAL_StatusTypeDef HAL_TIM_PWM_Set(TIM_HandleTypeDef *htim, uint32_t Channel)
 {
   /* Check the parameters */
@@ -392,6 +482,7 @@ static void Data_GPIO_Config(void)
 }
 
 
+
 /**
   * @brief  DMA conversion complete callback
   * @note   This function is executed when the transfer complete interrupt
@@ -417,7 +508,7 @@ static void TransferComplete(DMA_HandleTypeDef *DmaHandle)
   *         is generated during DMA transfer
   * @retval None
   */
-uint32_t TransferErrorCounter = 0;
+
 
 static void TransferError(DMA_HandleTypeDef *DmaHandle)
 {

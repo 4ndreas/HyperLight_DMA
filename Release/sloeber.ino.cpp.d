@@ -107,7 +107,7 @@ sloeber.ino.cpp.o: ..\sloeber.ino.cpp \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Stream.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/IPAddress.h \
  E:\Sloeber\arduinoPlugin\libraries\Ethernet\2.0.0\src/EthernetUdp.h \
- ..\hyperlight_dma_sloeber.ino
+ ..\hyperlight.h ..\hyperlight_dma_sloeber.ino
 
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Arduino.h:
 
@@ -324,5 +324,7 @@ E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Strea
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/IPAddress.h:
 
 E:\Sloeber\arduinoPlugin\libraries\Ethernet\2.0.0\src/EthernetUdp.h:
+
+..\hyperlight.h:
 
 ..\hyperlight_dma_sloeber.ino:
