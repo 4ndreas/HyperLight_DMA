@@ -44,9 +44,12 @@ core\core\stm32\usb\hid \
 core\core\stm32\usb \
 core\variant \
 . \
+libraries\Adafruit_GFX_Library \
+libraries\Adafruit_SSD1306 \
 libraries\Artnet \
 libraries\Ethernet\src \
 libraries\Ethernet\src\utility \
 libraries\IWatchdog\src \
 libraries\SPI\src \
+libraries\Wire\src \
 

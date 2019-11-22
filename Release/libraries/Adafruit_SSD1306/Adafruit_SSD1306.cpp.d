@@ -1,4 +1,6 @@
-sloeber.ino.cpp.o: ..\sloeber.ino.cpp \
+libraries\Adafruit_SSD1306\Adafruit_SSD1306.cpp.o: \
+ E:\Sloeber\arduinoPlugin\libraries\Adafruit_SSD1306\2.0.1\Adafruit_SSD1306.cpp \
+ E:\Sloeber\arduinoPlugin\libraries\Adafruit_GFX_Library\1.6.1/Adafruit_GFX.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Arduino.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/wiring.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/avr/dtostrf.h \
@@ -97,24 +99,15 @@ sloeber.ino.cpp.o: ..\sloeber.ino.cpp \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/WMath.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/pins_arduino.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/stm32/PinNames.h \
- E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\libraries\SPI\src/SPI.h \
- C:\Users\ahoel\Documents\Arduino\libraries\Artnet/Artnet.h \
- E:\Sloeber\arduinoPlugin\libraries\Ethernet\2.0.0\src/Ethernet.h \
- E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Client.h \
- E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/IPAddress.h \
- E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Server.h \
- E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Udp.h \
- E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Stream.h \
- E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/IPAddress.h \
- E:\Sloeber\arduinoPlugin\libraries\Ethernet\2.0.0\src/EthernetUdp.h \
- ..\hyperlight.h \
- E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\libraries\Wire\src/Wire.h \
- E:\Sloeber\arduinoPlugin\libraries\Adafruit_GFX_Library\1.6.1/Adafruit_GFX.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Print.h \
  E:\Sloeber\arduinoPlugin\libraries\Adafruit_GFX_Library\1.6.1/gfxfont.h \
- E:\Sloeber\arduinoPlugin\libraries\Adafruit_SSD1306\2.0.1/Adafruit_SSD1306.h \
- E:\Sloeber\arduinoPlugin\libraries\Adafruit_GFX_Library\1.6.1/Fonts/FreeSansBold9pt7b.h \
- ..\hyperlight_dma_sloeber.ino
+ E:\Sloeber\arduinoPlugin\libraries\Adafruit_SSD1306\2.0.1\Adafruit_SSD1306.h \
+ E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\libraries\Wire\src/Wire.h \
+ E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Stream.h \
+ E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\libraries\SPI\src/SPI.h \
+ E:\Sloeber\arduinoPlugin\libraries\Adafruit_SSD1306\2.0.1\splash.h
+
+E:\Sloeber\arduinoPlugin\libraries\Adafruit_GFX_Library\1.6.1/Adafruit_GFX.h:
 
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Arduino.h:
 
@@ -312,38 +305,16 @@ E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/pins_
 
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/stm32/PinNames.h:
 
-E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\libraries\SPI\src/SPI.h:
-
-C:\Users\ahoel\Documents\Arduino\libraries\Artnet/Artnet.h:
-
-E:\Sloeber\arduinoPlugin\libraries\Ethernet\2.0.0\src/Ethernet.h:
-
-E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Client.h:
-
-E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/IPAddress.h:
-
-E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Server.h:
-
-E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Udp.h:
-
-E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Stream.h:
-
-E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/IPAddress.h:
-
-E:\Sloeber\arduinoPlugin\libraries\Ethernet\2.0.0\src/EthernetUdp.h:
-
-..\hyperlight.h:
-
-E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\libraries\Wire\src/Wire.h:
-
-E:\Sloeber\arduinoPlugin\libraries\Adafruit_GFX_Library\1.6.1/Adafruit_GFX.h:
-
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Print.h:
 
 E:\Sloeber\arduinoPlugin\libraries\Adafruit_GFX_Library\1.6.1/gfxfont.h:
 
-E:\Sloeber\arduinoPlugin\libraries\Adafruit_SSD1306\2.0.1/Adafruit_SSD1306.h:
+E:\Sloeber\arduinoPlugin\libraries\Adafruit_SSD1306\2.0.1\Adafruit_SSD1306.h:
 
-E:\Sloeber\arduinoPlugin\libraries\Adafruit_GFX_Library\1.6.1/Fonts/FreeSansBold9pt7b.h:
+E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\libraries\Wire\src/Wire.h:
 
-..\hyperlight_dma_sloeber.ino:
+E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/Stream.h:
+
+E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\libraries\SPI\src/SPI.h:
+
+E:\Sloeber\arduinoPlugin\libraries\Adafruit_SSD1306\2.0.1\splash.h:

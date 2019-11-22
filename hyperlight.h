@@ -23,9 +23,9 @@
 #define DATA_GPIO_PIN            GPIO_PIN_All
 
 #define TIM_CLK 209
-#define TIM_TOO 35
-#define TIM_T1H 0x85
-#define TIM_T0H 0x32
+#define TIM_TOO 38
+#define TIM_T1H 133
+#define TIM_T0H 50
 
 #define LED_LINES 16
 #define LED_LENGHT 240
@@ -48,11 +48,14 @@ public:
 	void setStripLED(int strip, uint8_t * data, int data_length, int start) ;
 	void useGamma(int mode);
 
+	 uint32_t getUpdateTime( int strip);
 private:
 
 	void Wait_DMA(void);
 	void Start_DMA(void);
 	void Restart_DMA(void);
+
+	uint32_t updatetime[16];
 
 	int _useGamma;
 	uint32_t TransferCounter = 0;

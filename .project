@@ -42,6 +42,16 @@
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/STM32/hardware/stm32/1.7.0/variants/Hyperlight</locationURI>
 		</link>
 		<link>
+			<name>libraries/Adafruit_GFX_Library</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/Adafruit_GFX_Library/1.6.1</locationURI>
+		</link>
+		<link>
+			<name>libraries/Adafruit_SSD1306</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/Adafruit_SSD1306/2.0.1</locationURI>
+		</link>
+		<link>
 			<name>libraries/Artnet</name>
 			<type>2</type>
 			<location>C:/Users/ahoel/Documents/Arduino/libraries/Artnet</location>
@@ -60,6 +70,11 @@
 			<name>libraries/SPI</name>
 			<type>2</type>
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/STM32/hardware/stm32/1.7.0/libraries/SPI</locationURI>
+		</link>
+		<link>
+			<name>libraries/Wire</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/STM32/hardware/stm32/1.7.0/libraries/Wire</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

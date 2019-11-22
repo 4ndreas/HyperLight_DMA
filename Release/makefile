@@ -9,11 +9,14 @@ RM := del
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
+-include libraries\Wire\src\subdir.mk
 -include libraries\SPI\src\subdir.mk
 -include libraries\IWatchdog\src\subdir.mk
 -include libraries\Ethernet\src\utility\subdir.mk
 -include libraries\Ethernet\src\subdir.mk
 -include libraries\Artnet\subdir.mk
+-include libraries\Adafruit_SSD1306\subdir.mk
+-include libraries\Adafruit_GFX_Library\subdir.mk
 -include core\variant\subdir.mk
 -include core\core\stm32\usb\hid\subdir.mk
 -include core\core\stm32\usb\cdc\subdir.mk

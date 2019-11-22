@@ -2,3 +2,5 @@
 *.elf
 *.hex
 *.o
+
+Release/

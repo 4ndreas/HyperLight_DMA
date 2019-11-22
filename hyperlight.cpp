@@ -71,20 +71,22 @@ void hyperlight::begin(void){
 	setAll(0,0,0);
 	Start_DMA();
 }
-
+/**
+  * @brief  Starts DMA output
+  */
 void hyperlight::show(void)
 {
 	Wait_DMA();
 	Restart_DMA();
 }
 
-void hyperlight::setAll(uint8_t red,uint8_t green ,uint8_t blue)
+void hyperlight::setAll(uint8_t red, uint8_t green , uint8_t blue)
 {
   for (int j = 0; j < LED_LINES; j++)
     {
       for(int i = 0; i< LED_LENGHT; i++)
       {
-        setLED(j,i,red,green,blue);
+        setLED(j,i,blue,green,red);
       }
     }
 }
@@ -142,6 +144,8 @@ if((offset+24) < FULL_FRAME_SIZE )
   */
 void hyperlight::setStripLED(int strip, uint8_t * data, int data_length, int start)
 {
+  updatetime[strip] =  millis();
+
   int offset = (start )* LED_COLORS * 8 + DMA_DUMMY;
 
   uint16_t stripClrMask = ~(1<< strip);
@@ -191,6 +195,16 @@ void hyperlight::setStripLED(int strip, uint8_t * data, int data_length, int sta
 }
 
 
+uint32_t hyperlight::getUpdateTime( int strip)
+{
+
+	if(strip < LED_LINES){
+
+	return updatetime[strip];
+	}
+
+	return 0;
+}
 
 void hyperlight::Wait_DMA(void)
 {
