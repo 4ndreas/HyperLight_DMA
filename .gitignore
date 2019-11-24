@@ -2,6 +2,7 @@
 *.elf
 *.hex
 *.o
+*.d 
 
 /Release/*
 
@@ -9,3 +10,4 @@
 Thumbs.db
 
 /sloeber.ino.cpp
+

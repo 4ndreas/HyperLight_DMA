@@ -20,6 +20,7 @@ STM32F407 based WS2811/12 Led driver with 16-channel DMA output
     * better bit sorting
     * setLED function
     * setSnakeLED
+    * better solution for other color modes
 
 * Webserver Config for
     * Color Mode
