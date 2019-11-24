@@ -3,43 +3,8 @@
 *.hex
 *.o
 
-Release/
+/Release/*
 
 #Ignore thumbnails created by Windows
 Thumbs.db
-#Ignore files built by Visual Studio
-*.obj
-*.exe
-*.pdb
-*.user
-*.aps
-*.pch
-*.vspscc
-*_i.c
-*_p.c
-*.ncb
-*.suo
-*.tlb
-*.tlh
-*.bak
-*.cache
-*.ilk
-*.log
-[Bb]in
-[Dd]ebug*/
-*.lib
-*.sbr
-obj/
-[Rr]elease*/
-_ReSharper*/
-[Tt]est[Rr]esult*
-.vs/
-#Nuget packages folder
-packages/
-/Release/sloeber.ino.cpp.o
-/Release/sloeber.ino.cpp.d
-/Release/hyperlight_dma_sloeber.map
-/Release/hyperlight.cpp.o
-/Release/hyperlight_dma_sloeber.bin
-/Release/hyperlight_dma_sloeber.elf
-/Release/hyperlight_dma_sloeber.hex
+
