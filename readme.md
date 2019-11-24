@@ -1,8 +1,8 @@
 # Hyperlight LED Driver
-STM32F407 based WS2811/12 Led driver with DMA output
+STM32F407 based WS2811/12 Led driver with 16-channel DMA output
 
 ## variant 
-* added custom variant with DMA interrrupt function
+* added custom variant with DMA interrupt function
 
 ## patched libraies are
 * Artnet
