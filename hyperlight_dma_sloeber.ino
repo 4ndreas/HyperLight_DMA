@@ -43,6 +43,10 @@ IPAddress remoteArd;
 
 void setup() {
 
+  // Hardware Serial1 for debug out
+  Serial.begin(115200);
+  Serial.println("init");
+
   leds.begin();
 
   leds.setOffset(0,1);
