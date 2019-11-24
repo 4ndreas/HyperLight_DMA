@@ -19,16 +19,6 @@
 							<builder buildPath="${workspace_loc:/hyperlight_dma_sloeber}/Release" id="io.sloeber.sketch.builder.474760708" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Arduino sketch builder" superClass="io.sloeber.sketch.builder"/>
 							<tool id="io.sloeber.tool.sketch.compiler.cpp.1286869171" name="Arduino C++ Compiler" superClass="io.sloeber.tool.sketch.compiler.cpp">
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="io.sloeber.compiler.cpp.sketch.option.incpath.1891426816" name="Include Paths (-I)" superClass="io.sloeber.compiler.cpp.sketch.option.incpath" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/core/core}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/core/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/IWatchdog/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/SPI/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Artnet}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Ethernet/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Wire/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Adafruit_GFX_Library}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Adafruit_SSD1306}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/EEPROM/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/core/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Adafruit_GFX_Library}&quot;"/>
@@ -44,16 +34,6 @@
 							</tool>
 							<tool id="io.sloeber.tool.compiler.c.1243218586" name="Arduino C Compiler" superClass="io.sloeber.tool.compiler.c">
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="io.sloeber.compiler.c.sketch.option.incpath.187672720" name="Include Paths (-I)" superClass="io.sloeber.compiler.c.sketch.option.incpath" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/core/core}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/core/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/IWatchdog/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/SPI/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Artnet}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Ethernet/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Wire/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Adafruit_GFX_Library}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Adafruit_SSD1306}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/EEPROM/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/core/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Adafruit_GFX_Library}&quot;"/>
@@ -69,16 +49,6 @@
 							</tool>
 							<tool id="io.sloeber.tool.sketch.compiler.s.2057127137" name="Arduino Assembler" superClass="io.sloeber.tool.sketch.compiler.s">
 								<option IS_BUILTIN_EMPTY="false" IS_VALUE_EMPTY="false" id="io.sloeber.compiler.asm.sketch.option.incpath.1784591521" name="Include Paths (-I)" superClass="io.sloeber.compiler.asm.sketch.option.incpath" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/core/core}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/core/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/IWatchdog/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/SPI/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Artnet}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Ethernet/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Wire/src}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Adafruit_GFX_Library}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Adafruit_SSD1306}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/EEPROM/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/core/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Adafruit_GFX_Library}&quot;"/>
