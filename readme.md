@@ -41,8 +41,8 @@ STM32F407 based WS2811/12 Led driver with DMA output
 https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json
 ```
 
-![preferences1]
-![preferences2]
+![alt text][preferences1]
+![alt text][preferences2]
 
 
 
@@ -61,7 +61,7 @@ or if the plain arduino IDE is used in
 ```
 
 Setting for the board:
-![properties]
+![alt text][properties]
 
 ### How to Debug
 See the wiki form the STM32 Core
@@ -75,10 +75,8 @@ Change Target to:
 ```
 -s "${openocd_path}/../scripts" -f interface/stlink-v2-1.cfg -f target/stm32f4x.cfg
 ```
-![debug1]
-![debug2]
-
-
+![alt text][debug1]
+![alt text][debug2]
 
 [preferences1]: img/preferences_1.jpg "Settings URL for STM32Core"
 [preferences2]: img/preferences_2.jpg "Settings URL for STM32Core"
