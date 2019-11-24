@@ -63,7 +63,7 @@ public:
 
 	uint32_t getUpdateTime( int strip);
 
-	void setOffset(int strip, int _offset);
+	void setOffset(int strip, int offset);
 	void setOffsetColor(int strip, uint8_t red, uint8_t green ,uint8_t blue);
 private:
 

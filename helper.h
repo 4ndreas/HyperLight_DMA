@@ -26,6 +26,8 @@
 //		  setLED(13, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
 //		  setLED(14, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
 //		  setLED(15, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
+
+
 // sets every element of str to 0 (clears array)
 void StrClear(char *str, char length)
 {

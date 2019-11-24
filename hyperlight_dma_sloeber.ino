@@ -10,7 +10,6 @@
 #define USE_OLED
 #define USE_DMX
 
-
 #ifdef USE_DMX
 // To do
 #endif
@@ -54,7 +53,6 @@ void setup() {
   leds.setOffset(5,1);
   leds.setOffset(6,1);
   leds.setOffset(7,1);
-
 
 
   pinMode(ETH_RST_PIN, OUTPUT);

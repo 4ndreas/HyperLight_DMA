@@ -169,9 +169,9 @@ if((offset+32) < FULL_FRAME_SIZE )
   }
 }
 
-void hyperlight::setOffset(int strip, int _offset)
+void hyperlight::setOffset(int strip, int offset)
 {
-	statusLedOffsets[strip] = _offset;
+	statusLedOffsets[strip] = offset;
 }
 
 void hyperlight::setOffsetColor(int strip, uint8_t red, uint8_t green ,uint8_t blue)
