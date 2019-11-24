@@ -78,8 +78,8 @@ Change Target to:
 ![alt text][debug1]
 ![alt text][debug2]
 
-[preferences1]: img/preferences_1.jpg "Settings URL for STM32Core"
-[preferences2]: img/preferences_2.jpg "Settings URL for STM32Core"
-[properties]: img/properties.jpg "properties of the arduino ide"
-[debug1]: img/debug_1.jpg "Settings URL for OCD Debugging"
-[debug2]: img/debug_2.jpg "Settings URL for OCD Debugging"
+[preferences1]: img/preferences_1.JPG "Settings URL for STM32Core"
+[preferences2]: img/preferences_2.JPG "Settings URL for STM32Core"
+[properties]: img/properties.JPG "properties of the arduino ide"
+[debug1]: img/debug_1.JPG "Settings URL for OCD Debugging"
+[debug2]: img/debug_2.JPG "Settings URL for OCD Debugging"
