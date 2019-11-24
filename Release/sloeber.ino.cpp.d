@@ -97,6 +97,7 @@ sloeber.ino.cpp.o: ..\sloeber.ino.cpp \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/WMath.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/pins_arduino.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/stm32/PinNames.h \
+ ..\pin_config.h \
  E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\libraries\SPI\src/SPI.h \
  C:\Users\ahoel\Documents\Arduino\libraries\Artnet/Artnet.h \
  E:\Sloeber\arduinoPlugin\libraries\Ethernet\2.0.0\src/Ethernet.h \
@@ -311,6 +312,8 @@ E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/WMath
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/pins_arduino.h:
 
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\cores\arduino/stm32/PinNames.h:
+
+..\pin_config.h:
 
 E:\Sloeber\arduinoPlugin\packages\STM32\hardware\stm32\1.7.0\libraries\SPI\src/SPI.h:
 

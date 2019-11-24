@@ -57,6 +57,11 @@
 			<location>C:/Users/ahoel/Documents/Arduino/libraries/Artnet</location>
 		</link>
 		<link>
+			<name>libraries/EEPROM</name>
+			<type>2</type>
+			<locationURI>ECLIPSE_HOME/arduinoPlugin/packages/STM32/hardware/stm32/1.7.0/libraries/EEPROM</locationURI>
+		</link>
+		<link>
 			<name>libraries/Ethernet</name>
 			<type>2</type>
 			<locationURI>ECLIPSE_HOME/arduinoPlugin/libraries/Ethernet/2.0.0</locationURI>

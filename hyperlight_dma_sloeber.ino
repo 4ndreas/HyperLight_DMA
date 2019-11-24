@@ -1,5 +1,6 @@
 #include "Arduino.h"
 #include "variant.h"
+#include "pin_config.h"
 #include <SPI.h>
 #include <Artnet.h>
 #include "hyperlight.h"
@@ -7,43 +8,29 @@
 
 #define USE_WEBSERVER
 #define USE_OLED
+#define USE_DMX
+
+
+#ifdef USE_DMX
+// To do
+#endif
 
 #ifdef USE_OLED
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <Fonts/FreeSansBold9pt7b.h>
-
 #define OLED_RESET -1
 Adafruit_SSD1306 display(OLED_RESET);
-
 #endif
-
 
 #ifdef USE_WEBSERVER
 #include "website.h"
 
 // Initialize the Ethernet server library
-// with the IP address and port you want to use
-// (port 80 is default for HTTP):
-
 EthernetServer server(80);
-
-//#define REQ_BUF_SZ   60
-//char HTTP_req[REQ_BUF_SZ] = {0}; // buffered HTTP request stored as null terminated string
-//char req_index = 0;              // index into HTTP_req buffer
-
 #endif
 
-
-// W5500 Ethernet
-// HW-SPI-3 or HW_SPI-1
-#define ETH_MOSI_PIN  PB5
-#define ETH_MISO_PIN  PB4
-#define ETH_SCK_PIN   PB3
-#define ETH_SCS_PIN   PA15
-#define ETH_INT_PIN   PB8
-#define ETH_RST_PIN   PD3
 
 Artnet artnet;
 hyperlight leds;
@@ -51,9 +38,8 @@ hyperlight leds;
 byte ip[] = {192, 168, 2, 80};
 byte mac[] = {0x04, 0xE9, 0xE5, 0x80, 0x69, 0xEC};
 
-
-
-
+// sets artnet timeout in ms (only for show)
+#define INACTIVITY_TIMEOUT 1000
 IPAddress remoteArd;
 
 void setup() {
@@ -97,6 +83,18 @@ void setup() {
   display.clearDisplay();
   updateDisplay();
 #endif
+
+#ifdef USE_DMX
+// To do
+  pinMode(UART2_RE_PIN, OUTPUT);
+  pinMode(UART2_DE_PIN, OUTPUT);
+
+  // set Data direction
+  // needs to be confirmed
+  digitalWrite(UART2_RE_PIN, HIGH);
+  digitalWrite(UART2_DE_PIN, HIGH);
+#endif
+
 }
 
 uint32_t last_update = 0;
@@ -116,7 +114,7 @@ void loop() {
 		for (int strip = 0; strip < 16; strip++) {
 			int lastUpdate = currentTime - leds.getUpdateTime(strip);
 
-			if (lastUpdate < 1000)
+			if (lastUpdate < INACTIVITY_TIMEOUT)
 			{
 				leds.setOffsetColor(strip,0,128,0);
 			}
@@ -190,7 +188,7 @@ void webserverLoop(void)
 			client.print(strip);
 			client.println("</td>");
 			client.println("<td ALIGN=\"CENTER\">");
-			if (lastUpdate < 1000)
+			if (lastUpdate < INACTIVITY_TIMEOUT)
 			{
 				client.print("<font color=\"green\"> OK </font>");
 			}
@@ -272,7 +270,7 @@ void updateDisplay()
 			display.print("|");
 		}
 		int lastUpdate = currentTime - leds.getUpdateTime(strip);
-		if (lastUpdate < 1000)
+		if (lastUpdate < INACTIVITY_TIMEOUT)
 		{
 			display.print("O");
 			displayStatus |= (1<<strip);
