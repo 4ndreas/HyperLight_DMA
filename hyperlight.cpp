@@ -134,6 +134,53 @@ if((offset+24) < FULL_FRAME_SIZE )
   }
 }
 
+void hyperlight::setLED(int strip, int led_number, uint8_t red, uint8_t green ,uint8_t blue, uint8_t white)
+{
+  int offset = (led_number )* 4 * 8 + DMA_DUMMY;
+
+  uint16_t stripClrMask = ~(1<< strip);
+  uint16_t stripSetMask = (1<< strip);
+  uint32_t color;
+
+  if(_useGamma)
+	  {
+	  color = (gamma8[green] << 24) + (gamma8[red] << 16) + (gamma8[blue] << 8) + (gamma8[white]);
+	  }
+  else
+	  {
+	   color = (green << 24) +(red << 16) + (blue << 8) + (white);
+	  }
+/*check buffer limit */
+if((offset+32) < FULL_FRAME_SIZE )
+  {
+	  int i;
+	  /* set Color */
+	  for(i = 0; i < 32; i++)
+	  {
+		  /* clear bit */
+		  frame_buffer[offset+31-i] &= stripClrMask;
+
+		  /* set bit */
+		  if(color & (1<<i))
+			{
+			 frame_buffer[offset+31-i] |= stripSetMask;
+			}
+	  }
+  }
+}
+
+void hyperlight::setOffset(int strip, int _offset)
+{
+	statusLedOffsets[strip] = _offset;
+}
+
+void hyperlight::setOffsetColor(int strip, uint8_t red, uint8_t green ,uint8_t blue)
+{
+	for(int i = 0; i< statusLedOffsets[strip]; i++)
+	{
+		setLED(strip, i,red, green, blue);
+	}
+}
 
 /**
   * @brief  sets leds from a buffer
@@ -142,10 +189,9 @@ if((offset+24) < FULL_FRAME_SIZE )
   *         data_length: buffer size
   *         start: leds offset
   */
-void hyperlight::setStripLED(int strip, uint8_t * data, int data_length, int start)
+void hyperlight::setStripLED(int strip, uint8_t * data, int data_length, int start, colorMode color)
 {
   updatetime[strip] =  millis();
-
   int offset = (start )* LED_COLORS * 8 + DMA_DUMMY;
 
   uint16_t stripClrMask = ~(1<< strip);
@@ -157,6 +203,7 @@ void hyperlight::setStripLED(int strip, uint8_t * data, int data_length, int sta
   if(_useGamma)
 	{
 	  uint8_t col;
+	  if(color == RGB){
 	  for(j = 0; j< data_length; j++){
 		  /* set Color */
 		  col = gamma8[data[j]];
@@ -172,8 +219,43 @@ void hyperlight::setStripLED(int strip, uint8_t * data, int data_length, int sta
 				}
 		  }
 		  offset+=8;
+	  	  }
 	  }
-	 }
+	  else if(color == RBG)
+	  {
+		  for(j = 0; j< data_length; j+=3){
+			  /* set Color */
+			  col = gamma8[data[j+1]];
+
+			  for(i = 0; i < 8; i++)
+			  {	  /* clear bit */
+				  frame_buffer[offset+7-i] &= stripClrMask;
+				  /* set bit */
+				  if(col & (1<<i))
+					{ frame_buffer[offset+7-i] |= stripSetMask;	}
+			  }
+			  offset+=8;
+			  col = gamma8[data[j]];
+			  for(i = 0; i < 8; i++)
+			  {	  /* clear bit */
+				  frame_buffer[offset+7-i] &= stripClrMask;
+				  /* set bit */
+				  if(col & (1<<i))
+					{ frame_buffer[offset+7-i] |= stripSetMask;	}
+			  }
+			  offset+=8;
+			  col = gamma8[data[j+2]];
+			  for(i = 0; i < 8; i++)
+			  {	  /* clear bit */
+				  frame_buffer[offset+7-i] &= stripClrMask;
+				  /* set bit */
+				  if(col & (1<<i))
+					{ frame_buffer[offset+7-i] |= stripSetMask;	}
+			  }
+			  offset+=8;
+		  }
+	  }
+	}
   else
   {
     for(j = 0; j< data_length; j++){
@@ -194,10 +276,29 @@ void hyperlight::setStripLED(int strip, uint8_t * data, int data_length, int sta
   }
 }
 
+void  hyperlight::setSnakeLED(int strip, uint8_t * data, int data_length, int ledOffset, uint16_t snakeLength)
+{
+  updatetime[strip] =  millis();
+
+  for(int i = 0; i < data_length/3; i++)
+  {
+	  setLED(strip, DMXIdToPixelId(ledOffset, i, snakeLength), data[i*3+1],data[i*3],data[i*3 +2]);	//GRB
+  }
+}
+
+
+uint16_t hyperlight::DMXIdToPixelId(uint16_t u, uint16_t dmxId, uint16_t snakeLength) {
+  uint16_t absDMXid = u + dmxId;
+  uint16_t row = absDMXid / snakeLength;
+  uint16_t col_raw = absDMXid % snakeLength;
+  uint16_t col = (row % 2) ? (snakeLength - col_raw -1) : col_raw;
+
+  return row * snakeLength + col;
+}
+
 
 uint32_t hyperlight::getUpdateTime( int strip)
 {
-
 	if(strip < LED_LINES){
 
 	return updatetime[strip];
@@ -458,8 +559,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
-
 }
+
 
 
 HAL_StatusTypeDef HAL_TIM_PWM_Set(TIM_HandleTypeDef *htim, uint32_t Channel)
@@ -522,8 +623,6 @@ static void TransferComplete(DMA_HandleTypeDef *DmaHandle)
   *         is generated during DMA transfer
   * @retval None
   */
-
-
 static void TransferError(DMA_HandleTypeDef *DmaHandle)
 {
   /* end of transaction */

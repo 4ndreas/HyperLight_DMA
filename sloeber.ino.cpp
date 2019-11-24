@@ -2,7 +2,7 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2019-11-22 23:32:19
+//This file has been generated on 2019-11-24 02:16:51
 
 #include "Arduino.h"
 #include "Arduino.h"
@@ -10,12 +10,16 @@
 #include <SPI.h>
 #include <Artnet.h>
 #include "hyperlight.h"
+#include "helper.h"
 #define USE_WEBSERVER
 #define USE_OLED
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <Fonts/FreeSansBold9pt7b.h>
+#define OLED_RESET -1
+extern Adafruit_SSD1306 display;
+#include "website.h"
 
 void setup() ;
 void loop() ;

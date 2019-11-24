@@ -3,6 +3,7 @@
 #include <SPI.h>
 #include <Artnet.h>
 #include "hyperlight.h"
+#include "helper.h"
 
 #define USE_WEBSERVER
 #define USE_OLED
@@ -17,6 +18,23 @@
 Adafruit_SSD1306 display(OLED_RESET);
 
 #endif
+
+
+#ifdef USE_WEBSERVER
+#include "website.h"
+
+// Initialize the Ethernet server library
+// with the IP address and port you want to use
+// (port 80 is default for HTTP):
+
+EthernetServer server(80);
+
+//#define REQ_BUF_SZ   60
+//char HTTP_req[REQ_BUF_SZ] = {0}; // buffered HTTP request stored as null terminated string
+//char req_index = 0;              // index into HTTP_req buffer
+
+#endif
+
 
 // W5500 Ethernet
 // HW-SPI-3 or HW_SPI-1
@@ -34,19 +52,24 @@ byte ip[] = {192, 168, 2, 80};
 byte mac[] = {0x04, 0xE9, 0xE5, 0x80, 0x69, 0xEC};
 
 
-// Initialize the Ethernet server library
-// with the IP address and port you want to use
-// (port 80 is default for HTTP):
-#ifdef USE_WEBSERVER
-EthernetServer server(80);
-#endif
+
 
 IPAddress remoteArd;
 
 void setup() {
 
   leds.begin();
-  leds.setAll(0,0,50);
+
+  leds.setOffset(0,1);
+  leds.setOffset(1,1);
+  leds.setOffset(2,1);
+  leds.setOffset(3,2);
+  leds.setOffset(4,1);
+  leds.setOffset(5,1);
+  leds.setOffset(6,1);
+  leds.setOffset(7,1);
+
+
 
   pinMode(ETH_RST_PIN, OUTPUT);
   digitalWrite(ETH_RST_PIN, HIGH);
@@ -85,7 +108,7 @@ void loop() {
 	artnet.read();
 
 
-	if (currentTime - last_update > 20)	// 50 fps
+	if (currentTime - last_update > 33)	// 50 fps
 	{
 		last_update = currentTime;
 
@@ -95,11 +118,11 @@ void loop() {
 
 			if (lastUpdate < 1000)
 			{
-				leds.setLED(strip,0,0,128,0);
+				leds.setOffsetColor(strip,0,128,0);
 			}
 			else
 			{
-				leds.setLED(strip,0,128,0,0);
+				leds.setOffsetColor(strip,0,128,0);
 			}
 		}
 		//update leds leds
@@ -127,11 +150,10 @@ void webserverLoop(void)
 	while (client.connected()) {
 	  if (client.available()) {
 		char c = client.read();
-		// if you've gotten to the end of the line (received a newline
-		// character) and the line is blank, the http request has ended,
-		// so you can send a reply
+
 		if (c == '\n' && currentLineIsBlank) {
-		  // send a standard http response header
+
+//			 send a standard http response header
 		  client.println("HTTP/1.1 200 OK");
 		  client.println("Content-Type: text/html");
 		  client.println("Connection: close");  // the connection will be closed after completion of the response
@@ -191,7 +213,10 @@ void webserverLoop(void)
 
 		  client.println("</table>");
 		  client.println("</html>");
-		  break;
+
+//            req_index = 0;
+//            StrClear(HTTP_req, REQ_BUF_SZ);
+            break;
 		}
 
 		if (c == '\n') {
@@ -208,6 +233,8 @@ void webserverLoop(void)
 	client.stop();
   }
 }
+
+
 #endif
 
 #ifdef USE_OLED
@@ -284,29 +311,72 @@ void updateDisplay()
 #endif
 
 
-//void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* data)
-//{
-//  remoteArd = artnet.remote;
-//
-//  if(universe < 16)
-//  {
-//	  int led = 0;
-//	  int i;
-//	  for(i = 0; i< length; i+=3){
-//		  if(led < LED_LENGHT){
-//			  setLED(universe, led,  gamma8[data[i]], gamma8[data[i+1]],gamma8[data[i+2]]);
-//		  }
-//		  led++;
-//	  }
-//  }
-//}
-
 void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* data)
 {
   remoteArd = artnet.remote;
-  if(universe < 16)
+  // 8x - One ArtNet universe per Output (Maiskolben)
+  if(universe < 8)
   {
 	  leds.setStripLED(universe, data, length, 1);
+  }
+  // Ping Pong Panel 1 16x16 RGB leds
+  else if(universe == 8)
+  {
+	  leds.setSnakeLED(8, data, length, 0, 16);	// 170 leds
+  }
+  else if(universe == 9)
+  {
+	  leds.setSnakeLED(8, data, length, 170, 16);	// 86 leds
+  }
+  // Ping Pong Panel 2 16x16 RGB leds
+  else if(universe == 10)
+  {
+	  leds.setSnakeLED(9, data, length, 0, 16);	// 170 leds
+  }
+  else if(universe == 11)
+  {
+	  leds.setSnakeLED(9, data, length, 170, 16);	// 86 leds
+  }
+  // RGBW panel 17x17 RGBW leds
+  else if(universe == 12)
+  {
+	  for(int i = 0; i < length/3; i++)
+	  {
+		  leds.setLED(10, i, data[i*3], data[i*3+1], data[i*3+2] , 0);
+	  }
+  }
+  else if(universe == 13)
+  {
+	  for(int i = 0; i < length/3; i++)
+	  {
+		  leds.setLED(10, 170 + i, data[i*3], data[i*3+1], data[i*3+2] , 0);
+	  }
+  }
+  // Rotating Wheel
+  else if(universe == 14)
+  {
+	  leds.setStripLED(11, data, length, 1,RBG);
+  }
+  else if(universe == 15)
+  {
+	  leds.setStripLED(11, data, length, 170,RBG);
+  }
+
+  else if(universe == 256+0)
+  {
+	  leds.setStripLED(12, data, length, 1,RBG);
+  }
+  else if(universe == 256+1)
+  {
+	  leds.setStripLED(13, data, length, 1,RBG);
+  }
+  else if(universe == 256+2)
+  {
+	  leds.setStripLED(14, data, length, 1,RBG);
+  }
+  else if(universe == 256+3)
+  {
+	  leds.setStripLED(15, data, length, 1,RBG);
   }
 }
 

@@ -22,20 +22,30 @@
 #define DATA_GPIO_PORT           GPIOE
 #define DATA_GPIO_PIN            GPIO_PIN_All
 
-#define TIM_CLK 209
+// WS2812 timings
+#define TIM_CLK 209		// counter period, time per bit
 #define TIM_TOO 38
 #define TIM_T1H 133
 #define TIM_T0H 50
 
-#define LED_LINES 16
-#define LED_LENGHT 240
-#define LED_COLORS 3
-#define DMA_DUMMY 2
+#define LED_LINES 16	// outputs
+#define LED_LENGHT 400	// leds per output
+#define LED_COLORS 3	// colors per led
+#define DMA_DUMMY 2		// dummy due hardware limitations
 
 #define FULL_FRAME_SIZE ( LED_LENGHT * LED_COLORS * 8 )+ DMA_DUMMY    /* max = 65530 (65535 - 5 dummy bits) due to dma limitation  */
 
 
-
+enum colorMode
+	{RGB,
+	 RBG,
+	 BRG,
+	 BGR,
+	 GRB,
+	 GBR,
+	 RGBW,
+	 GRBW
+	};
 
 class hyperlight {
 public:
@@ -45,17 +55,27 @@ public:
 	void show(void);
 	void setAll(uint8_t red,uint8_t green ,uint8_t blue) ;
 	void setLED(int strip, int led_number, uint8_t red, uint8_t green ,uint8_t blue) ;
-	void setStripLED(int strip, uint8_t * data, int data_length, int start) ;
+	void setLED(int strip, int led_number, uint8_t red, uint8_t green ,uint8_t blue, uint8_t white);
+	void setStripLED(int strip, uint8_t * data, int data_length, int start, colorMode color=RGB) ;
+
+	void setSnakeLED(int strip, uint8_t * data, int data_length, int ledOffset, uint16_t snakeLength) ;
 	void useGamma(int mode);
 
-	 uint32_t getUpdateTime( int strip);
+	uint32_t getUpdateTime( int strip);
+
+	void setOffset(int strip, int _offset);
+	void setOffsetColor(int strip, uint8_t red, uint8_t green ,uint8_t blue);
 private:
+
 
 	void Wait_DMA(void);
 	void Start_DMA(void);
 	void Restart_DMA(void);
 
+	uint16_t DMXIdToPixelId(uint16_t u, uint16_t dmxId, uint16_t snakeLength);
 	uint32_t updatetime[16];
+	uint32_t statusLedOffsets[16];
+	void setbyteToBuffer(uint8_t val);
 
 	int _useGamma;
 	uint32_t TransferCounter = 0;

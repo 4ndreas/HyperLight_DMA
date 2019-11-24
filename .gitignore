@@ -36,3 +36,10 @@ _ReSharper*/
 .vs/
 #Nuget packages folder
 packages/
+/Release/sloeber.ino.cpp.o
+/Release/sloeber.ino.cpp.d
+/Release/hyperlight_dma_sloeber.map
+/Release/hyperlight.cpp.o
+/Release/hyperlight_dma_sloeber.bin
+/Release/hyperlight_dma_sloeber.elf
+/Release/hyperlight_dma_sloeber.hex
