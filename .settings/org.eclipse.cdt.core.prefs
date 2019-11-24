@@ -619,7 +619,7 @@ environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.PACKAGE_I
 environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.PACKAGE_ID/value=STM32
 environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.PROJECT_NAME/delimiter=;
 environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.PROJECT_NAME/operation=replace
-environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.PROJECT_NAME/value=hyperlight_dma_sloeber
+environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.PROJECT_NAME/value=hyperlight_dma
 environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.SELECTED.PLATFORM/delimiter=;
 environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.SELECTED.PLATFORM/operation=replace
 environment/project/io.sloeber.core.toolChain.release.634933201/JANTJE.SELECTED.PLATFORM/value=${eclipse_home}/arduinoPlugin/packages/STM32/hardware/stm32/1.7.0

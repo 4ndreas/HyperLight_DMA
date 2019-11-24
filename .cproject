@@ -29,6 +29,16 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Adafruit_GFX_Library}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Adafruit_SSD1306}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/EEPROM/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Adafruit_GFX_Library}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Adafruit_SSD1306}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Artnet}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/EEPROM/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Ethernet/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/IWatchdog/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Wire/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.1042135914" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -44,6 +54,16 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Adafruit_GFX_Library}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Adafruit_SSD1306}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/EEPROM/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Adafruit_GFX_Library}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Adafruit_SSD1306}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Artnet}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/EEPROM/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Ethernet/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/IWatchdog/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Wire/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.1127774395" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -59,6 +79,16 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Adafruit_GFX_Library}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/Adafruit_SSD1306}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma_sloeber/libraries/EEPROM/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Adafruit_GFX_Library}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Adafruit_SSD1306}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Artnet}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/EEPROM/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Ethernet/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/IWatchdog/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/hyperlight_dma/libraries/Wire/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.712542322" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>
