@@ -225,6 +225,43 @@ void hyperlight::setStripLED(int strip, uint8_t * data, int data_length, int sta
 	  {
 		  for(j = 0; j< data_length; j+=3){
 			  /* set Color */
+			  col = gamma8[data[j]];
+
+			  // Red
+			  for(i = 0; i < 8; i++)
+			  {	  /* clear bit */
+				  frame_buffer[offset+7-i] &= stripClrMask;
+				  /* set bit */
+				  if(col & (1<<i))
+					{ frame_buffer[offset+7-i] |= stripSetMask;	}
+			  }
+			  // Green
+			  offset+=8;
+			  col = gamma8[data[j+2]];
+			  for(i = 0; i < 8; i++)
+			  {	  /* clear bit */
+				  frame_buffer[offset+7-i] &= stripClrMask;
+				  /* set bit */
+				  if(col & (1<<i))
+					{ frame_buffer[offset+7-i] |= stripSetMask;	}
+			  }
+			  // Blue
+			  offset+=8;
+			  col = gamma8[data[j+2]];
+			  for(i = 0; i < 8; i++)
+			  {	  /* clear bit */
+				  frame_buffer[offset+7-i] &= stripClrMask;
+				  /* set bit */
+				  if(col & (1<<i))
+					{ frame_buffer[offset+7-i] |= stripSetMask;	}
+			  }
+			  offset+=8;
+		  }
+	  }
+	  else if(color == GRB)
+	  {
+		  for(j = 0; j< data_length; j+=3){
+			  /* set Color */
 			  col = gamma8[data[j+1]];
 
 			  for(i = 0; i < 8; i++)

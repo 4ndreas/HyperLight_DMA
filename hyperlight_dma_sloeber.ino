@@ -8,10 +8,19 @@
 
 #define USE_WEBSERVER
 #define USE_OLED
+#define USE_BUTTONS
 #define USE_DMX
+#define USE_LCD
+
 
 #ifdef USE_DMX
 // To do
+
+#endif
+
+#ifdef USE_BUTTONS
+// Button1
+// Button2
 #endif
 
 #ifdef USE_OLED
@@ -34,8 +43,11 @@ EthernetServer server(80);
 Artnet artnet;
 hyperlight leds;
 
-byte ip[] = {192, 168, 2, 80};
-byte mac[] = {0x04, 0xE9, 0xE5, 0x80, 0x69, 0xEC};
+#define LED_OFFSET 0
+
+
+byte ip[] = {192, 168, 2, 84};
+byte mac[] = {0x04, 0xE9, 0xE5, 0x84, 0x69, 0xEC};
 
 // sets artnet timeout in ms (only for show)
 #define INACTIVITY_TIMEOUT 1000
@@ -47,17 +59,21 @@ void setup() {
   Serial.begin(115200);
   Serial.println("init");
 
+  Serial.println("My IP:");
+  Serial.print(ip[0], DEC);Serial.print(".");
+  Serial.print(ip[1], DEC);Serial.print(".");
+  Serial.print(ip[2], DEC);Serial.print(".");
+  Serial.print(ip[3], DEC);Serial.println("");
+
+
   leds.begin();
 
-  leds.setOffset(0,1);
-  leds.setOffset(1,1);
-  leds.setOffset(2,1);
-  leds.setOffset(3,2);
-  leds.setOffset(4,1);
-  leds.setOffset(5,1);
-  leds.setOffset(6,1);
-  leds.setOffset(7,1);
-
+  if (LED_OFFSET > 0 ){
+	  for ( int i = 0; i < 8; i++)
+	  {
+		  leds.setOffset(i,1);
+	  }
+  }
 
   pinMode(ETH_RST_PIN, OUTPUT);
   digitalWrite(ETH_RST_PIN, HIGH);
@@ -77,8 +93,10 @@ void setup() {
 #endif
 
 #ifdef USE_OLED
-  Wire.setSDA(PB7);
-  Wire.setSCL(PB6);
+
+  Wire.setSDA(I2C1_SDA_PIN);
+  Wire.setSCL(I2C1_SCL_PIN);
+
 
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);  // initialize with the I2C addr 0x3D (for the 128x64)
   // init done
@@ -108,21 +126,23 @@ void loop() {
 	artnet.read();
 
 
-	if (currentTime - last_update > 33)	// 50 fps
+	if (currentTime - last_update > 30)	// 50 fps
 	{
 		last_update = currentTime;
 
 		// set status led
-		for (int strip = 0; strip < 16; strip++) {
-			int lastUpdate = currentTime - leds.getUpdateTime(strip);
+		if (LED_OFFSET > 0 ){
+			for (int strip = 0; strip < 16; strip++) {
+				int lastUpdate = currentTime - leds.getUpdateTime(strip);
 
-			if (lastUpdate < INACTIVITY_TIMEOUT)
-			{
-				leds.setOffsetColor(strip,0,128,0);
-			}
-			else
-			{
-				leds.setOffsetColor(strip,0,128,0);
+				if (lastUpdate < INACTIVITY_TIMEOUT)
+				{
+					leds.setOffsetColor(strip,0,32,0);
+				}
+				else
+				{
+					leds.setOffsetColor(strip,32,0,0);
+				}
 			}
 		}
 		//update leds leds
@@ -146,7 +166,7 @@ void webserverLoop(void)
   EthernetClient client = server.available();
   if (client) {
 	// an http request ends with a blank line
-	boolean currentLineIsBlank = true;
+	bool currentLineIsBlank = true;
 	while (client.connected()) {
 	  if (client.available()) {
 		char c = client.read();
@@ -239,7 +259,6 @@ void webserverLoop(void)
 
 #ifdef USE_OLED
 
-
 void updateDisplay()
 {
   static uint32_t lastDisplayUpdate = 0;
@@ -308,9 +327,56 @@ void updateDisplay()
 	  }
   }
 }
+
 #endif
 
 
+
+void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* data)
+{
+  remoteArd = artnet.remote;
+  // 8x - One ArtNet universe per Output 170 LEDs
+  if (length > 510)
+  {
+	  length = 510;
+  }
+  if(universe < 16)
+  {
+	  leds.setStripLED(universe, data, length, 0, GRB);
+	  //leds.setStripLED(universe, data, length, 1);
+  }
+  else if(universe < 32)
+  {
+	  leds.setStripLED(universe-16, data, length, 170, GRB);
+  }
+}
+
+
+
+
+/*
+void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* data)
+{
+  remoteArd = artnet.remote;
+  // 8x - One ArtNet universe per Output 170 LEDs
+  if (length > 510)
+  {
+	  length = 510;
+  }
+  if(universe < 16)
+  {
+	  leds.setStripLED(universe, data, length, 0, RBG);
+	  //leds.setStripLED(universe, data, length, 1);
+  }
+  else if(universe < 32)
+  {
+	  leds.setStripLED(universe-16, data, length, 170, RBG);
+  }
+}
+
+*/
+
+/*
 void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* data)
 {
   remoteArd = artnet.remote;
@@ -379,6 +445,7 @@ void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* d
 	  leds.setStripLED(15, data, length, 1,RBG);
   }
 }
+*/
 
 
 

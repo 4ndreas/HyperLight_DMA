@@ -23,10 +23,16 @@
 #define DATA_GPIO_PIN            GPIO_PIN_All
 
 // WS2812 timings
+//#define TIM_CLK 209		// counter period, time per bit
+//#define TIM_TOO 38
+//#define TIM_T1H 133
+//#define TIM_T0H 50
+
 #define TIM_CLK 209		// counter period, time per bit
-#define TIM_TOO 38
-#define TIM_T1H 133
-#define TIM_T0H 50
+#define TIM_TOO 39
+#define TIM_T1H 132
+#define TIM_T0H 55
+
 
 #define LED_LINES 16	// outputs
 #define LED_LENGHT 400	// leds per output

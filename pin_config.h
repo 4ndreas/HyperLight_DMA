@@ -27,6 +27,8 @@
 #define UART2_RX_PIN  PD6	// TO MAX481 RO - rx data out
 #define UART2_DE_PIN  PD7	// TO MAX481 DE - data direction
 #define UART2_RE_PIN  PD4	// TO MAX481 RE - Recieve nEnable
+// for RX RE LOW,  DE LOW
+// for TX RE HIGH, DE HIGH
 
 
 /* HW-SPI-2 6-Pin Header	*/
