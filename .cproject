@@ -68,17 +68,6 @@
 							<tool id="io.sloeber.tool.size.1822769931" name="Arduino tool Print Size" superClass="io.sloeber.tool.size"/>
 						</toolChain>
 					</folderInfo>
-					<folderInfo id="io.sloeber.core.toolChain.release.634933201.567251181" name="/" resourcePath="img">
-						<toolChain id="io.sloeber.core.toolChain.release.332582519" name="Arduino Toolchain (Sloeber edition)" superClass="io.sloeber.core.toolChain.release" unusedChildren="">
-							<tool id="io.sloeber.tool.sketch.compiler.cpp.1009925655" name="Arduino C++ Compiler" superClass="io.sloeber.tool.sketch.compiler.cpp.1286869171"/>
-							<tool id="io.sloeber.tool.compiler.c.1324601092" name="Arduino C Compiler" superClass="io.sloeber.tool.compiler.c.1243218586"/>
-							<tool id="io.sloeber.tool.sketch.compiler.s.940729333" name="Arduino Assembler" superClass="io.sloeber.tool.sketch.compiler.s.2057127137"/>
-							<tool id="io.sloeber.tool.ar.1574893664" name="Arduino archiver" superClass="io.sloeber.tool.ar.2016881241"/>
-							<tool id="io.sloeber.tool.combine.1817971906" name="Arduino combiner" superClass="io.sloeber.tool.combine.1882927593"/>
-							<tool id="io.sloeber.tool.objcopy.eep.1778291628" name="Arduino tool objcopy command" superClass="io.sloeber.tool.objcopy.eep.1481886108"/>
-							<tool id="io.sloeber.tool.size.2086298920" name="Arduino tool Print Size" superClass="io.sloeber.tool.size.1822769931"/>
-						</toolChain>
-					</folderInfo>
 					<sourceEntries>
 						<entry excluding="img|variants|libraries/Adafruit_GFX_Library/Fonts|libraries/Adafruit_GFX_Library/fontconvert|libraries/?*/**/?xamples/**|libraries/?*/**/?xtras/**|libraries/?*/**/test*/**|libraries/?*/**/third-party/**|libraries/**/._*|libraries/?*/utility/*/*" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
