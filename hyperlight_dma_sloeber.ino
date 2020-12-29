@@ -118,20 +118,21 @@ void setup() {
 }
 
 uint32_t last_update = 0;
+uint32_t last_artnet_update = 0;
 uint32_t currentTime = 0;
 
 bool new_data = false;
 
 void loop() {
+	currentTime = millis();
+
 	while(artnet.read()) {
 		new_data = true;
 		while(artnet.read());
-		delay(1);
+		last_artnet_update = currentTime;
 	}
 
-	currentTime = millis();
-
-	if (new_data)	// 50 fps
+	if (new_data && ((currentTime - last_artnet_update) > 5 ))	// 50 fps
 	{
 
 		// set status led
