@@ -89,4 +89,5 @@
 			<resource resourceType="PROJECT" workspacePath="/hyperlight_dma_sloeber"/>
 		</configuration>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>

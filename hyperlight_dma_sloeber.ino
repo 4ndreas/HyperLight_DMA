@@ -7,7 +7,7 @@
 #include "helper.h"
 
 #define USE_WEBSERVER
-#define USE_OLED
+//#define USE_OLED
 #define USE_BUTTONS
 #define USE_DMX
 #define USE_LCD
@@ -46,8 +46,8 @@ hyperlight leds;
 #define LED_OFFSET 0
 
 
-byte ip[] = {192, 168, 2, 84};
-byte mac[] = {0x04, 0xE9, 0xE5, 0x84, 0x69, 0xEC};
+byte ip[] = {192, 168, 2, 88};
+byte mac[] = {0x04, 0xE9, 0xE5, 0x88, 0x69, 0xEC};
 
 // sets artnet timeout in ms (only for show)
 #define INACTIVITY_TIMEOUT 1000
