@@ -2,7 +2,7 @@
 #include "variant.h"
 #include "pin_config.h"
 #include <SPI.h>
-#include <Artnet.h>
+#include "BufferedArtnet.h"
 #include "hyperlight.h"
 #include "helper.h"
 
@@ -40,7 +40,7 @@ EthernetServer server(80);
 #endif
 
 
-Artnet artnet;
+BufferedArtnet<33> artnet;
 hyperlight leds;
 
 #define LED_OFFSET 0
@@ -84,9 +84,9 @@ void setup() {
   SPI.setMOSI(ETH_MOSI_PIN);
   SPI.setSCLK(ETH_SCK_PIN);
   Ethernet.init(ETH_SCS_PIN);
+  Ethernet.begin(mac, ip);
 
-  artnet.begin(mac, ip);
-  artnet.setArtDmxCallback(onDmxFrame);
+  artnet.begin();
 
 #ifdef USE_WEBSERVER
   server.begin();
@@ -123,11 +123,10 @@ uint32_t currentTime = 0;
 void loop() {
 	currentTime = millis();
 
-	artnet.read();
-
-
-	if (currentTime - last_update > 30)	// 50 fps
+	if (artnet.read())	// 50 fps
 	{
+		while(artnet.read());
+
 		last_update = currentTime;
 
 		// set status led
@@ -144,6 +143,11 @@ void loop() {
 					leds.setOffsetColor(strip,32,0,0);
 				}
 			}
+		}
+
+		for(unsigned c = 0; c < 16; c++) {
+			leds.setStripLED(c, artnet.getUniverseData(c*2), 510, 0, GRB);
+			leds.setStripLED(c, artnet.getUniverseData((c*2) + 1), 510, 170, GRB);
 		}
 		//update leds leds
 		leds.show();
@@ -332,7 +336,7 @@ void updateDisplay()
 
 
 
-void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* data)
+/*void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* data)
 {
   remoteArd = artnet.remote;
   // 8x - One ArtNet universe per Output 170 LEDs
@@ -349,7 +353,7 @@ void onDmxFrame(uint16_t universe, uint16_t length, uint8_t sequence, uint8_t* d
   {
 	  leds.setStripLED(universe-16, data, length, 170, GRB);
   }
-}
+}*/
 
 
 
