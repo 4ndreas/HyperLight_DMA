@@ -23,7 +23,7 @@ static void Data_GPIO_Config(void) ;
 static void TransferComplete(DMA_HandleTypeDef *DmaHandle);
 static void TransferError(DMA_HandleTypeDef *DmaHandle);
 
-static uint16_t frame_buffer[FULL_FRAME_SIZE];
+static volatile uint16_t frame_buffer[FULL_FRAME_SIZE];
 
 static uint8_t gamma8[] = {
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -342,6 +342,11 @@ uint32_t hyperlight::getUpdateTime( int strip)
 	}
 
 	return 0;
+}
+
+bool hyperlight::isDMAIdle(void)
+{
+	return ~(bool)TransferLock;
 }
 
 void hyperlight::Wait_DMA(void)

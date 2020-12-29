@@ -6,7 +6,7 @@
 #include "hyperlight.h"
 #include "helper.h"
 
-#define USE_WEBSERVER
+//#define USE_WEBSERVER
 //#define USE_OLED
 #define USE_BUTTONS
 #define USE_DMX
@@ -46,7 +46,7 @@ hyperlight leds;
 #define LED_OFFSET 0
 
 
-byte ip[] = {192, 168, 2, 88};
+byte ip[] = {192, 168, 2, 84};
 byte mac[] = {0x04, 0xE9, 0xE5, 0x88, 0x69, 0xEC};
 
 // sets artnet timeout in ms (only for show)
@@ -121,13 +121,12 @@ uint32_t last_update = 0;
 uint32_t currentTime = 0;
 
 void loop() {
-	currentTime = millis();
-
 	if (artnet.read())	// 50 fps
 	{
-		while(artnet.read());
-
-		last_update = currentTime;
+		do{
+		   while(artnet.read());
+		    delay(1);
+		  } while(artnet.read());
 
 		// set status led
 		if (LED_OFFSET > 0 ){
@@ -149,9 +148,22 @@ void loop() {
 			leds.setStripLED(c, artnet.getUniverseData(c*2), 510, 0, GRB);
 			leds.setStripLED(c, artnet.getUniverseData((c*2) + 1), 510, 170, GRB);
 		}
-		//update leds leds
-		leds.show();
+
+		if(leds.isDMAIdle()){
+			leds.show();
+		}
 	}
+
+	currentTime = millis();
+
+	/*
+	if (currentTime - last_update > 30)	// 50 fps
+	{
+		last_update = currentTime;
+	}
+	*/
+
+
 
 #ifdef USE_WEBSERVER
 	webserverLoop();

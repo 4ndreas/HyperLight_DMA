@@ -59,6 +59,8 @@ public:
 
 	void begin(void);
 	void show(void);
+	bool isDMAIdle(void);
+
 	void setAll(uint8_t red,uint8_t green ,uint8_t blue) ;
 	void setLED(int strip, int led_number, uint8_t red, uint8_t green ,uint8_t blue) ;
 	void setLED(int strip, int led_number, uint8_t red, uint8_t green ,uint8_t blue, uint8_t white);
