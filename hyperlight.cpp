@@ -7,6 +7,8 @@
 
 #include "hyperlight.h"
 
+#include <cassert>
+
 /* HAL Functions */
 TIM_HandleTypeDef htim8;
 DMA_HandleTypeDef hdma_tim8_ch1;
@@ -23,7 +25,7 @@ static void Data_GPIO_Config(void) ;
 static void TransferComplete(DMA_HandleTypeDef *DmaHandle);
 static void TransferError(DMA_HandleTypeDef *DmaHandle);
 
-static volatile uint16_t frame_buffer[FULL_FRAME_SIZE];
+static uint16_t frame_buffer[FULL_FRAME_SIZE];
 
 static uint8_t gamma8[] = {
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -47,7 +49,7 @@ static uint8_t gamma8[] = {
 uint32_t TIMX_CCMR1 = 0;
 uint32_t TIMX_CCMR2 = 0;
 
-int TransferLock = 0;
+volatile int TransferLock = 0;
 uint32_t TransferErrorCounter = 0;
 
 
@@ -182,6 +184,47 @@ void hyperlight::setOffsetColor(int strip, uint8_t red, uint8_t green ,uint8_t b
 	}
 }
 
+template<typename T>
+static void inline write_sram_bitband(T* p, uint8_t bit, bool value) {
+	static const uint32_t sram_base = 0x20000000;
+	static const uint32_t sram_size = 0x20000;
+	static const uint32_t sram_bitband_base = 0x22000000;
+
+	uint32_t address = reinterpret_cast<uint32_t>(p);
+	/*assert(address >= sram_base);
+	assert(address < (sram_base + sram_size));*/
+	uint32_t sram_offset =  address - sram_base;
+
+	*((volatile uint32_t*) ((sram_offset * 32) + (bit * 4) + sram_bitband_base)) = value;
+}
+
+template<bool gamma_correct>
+static void inline write_led_byte(uint16_t* offset, uint8_t strip, uint8_t value) {
+	if(gamma_correct) value = gamma8[value];
+	for(unsigned i=0; i < 8; ++i) write_sram_bitband(offset + 7 - i, strip, (value >> i) & 1);
+}
+
+
+template<unsigned r_idx, unsigned g_idx, unsigned b_idx, bool has_white, bool gamma_correct>
+static void write_led_data(uint16_t* offset, uint8_t strip, uint8_t* data) {
+	write_led_byte<gamma_correct>(offset + (r_idx * 8), strip, *(data + 0));
+	write_led_byte<gamma_correct>(offset + (g_idx * 8), strip, *(data + 1));
+	write_led_byte<gamma_correct>(offset + (b_idx * 8), strip, *(data + 2));
+	if(has_white)
+		write_led_byte<gamma_correct>(offset + (3 * 8), strip, *(data + 3));
+}
+
+void (*led_writers[][2]) (uint16_t* offset, uint8_t strip, uint8_t* data) = {
+		{&write_led_data<0, 1, 2, false, false>, &write_led_data<0, 1, 2, false, true>}, // RGB
+		{&write_led_data<0, 2, 1, false, false>, &write_led_data<0, 2, 1, false, true>}, // RBG
+		{&write_led_data<1, 2, 0, false, false>, &write_led_data<1, 2, 0, false, true>}, // BRG
+		{&write_led_data<2, 1, 0, false, false>, &write_led_data<2, 1, 0, false, true>}, // BGR
+		{&write_led_data<1, 0, 2, false, false>, &write_led_data<1, 0, 2, false, true>}, // GRB
+		{&write_led_data<2, 0, 1, false, false>, &write_led_data<2, 0, 1, false, true>}, // GBR
+		{&write_led_data<0, 1, 2, true, false>, &write_led_data<0, 1, 2, true, true>}, // RGBW
+		{&write_led_data<1, 0, 2, true, false>, &write_led_data<1, 0, 2, true, true>} // GRBW
+};
+
 /**
   * @brief  sets leds from a buffer
   * @param  strip: led channel
@@ -189,128 +232,19 @@ void hyperlight::setOffsetColor(int strip, uint8_t red, uint8_t green ,uint8_t b
   *         data_length: buffer size
   *         start: leds offset
   */
+
 void hyperlight::setStripLED(int strip, uint8_t * data, int data_length, int start, colorMode color)
 {
   updatetime[strip] =  millis();
   int offset = (start )* LED_COLORS * 8 + DMA_DUMMY;
 
-  uint16_t stripClrMask = ~(1<< strip);
-  uint16_t stripSetMask = (1<< strip);
-
-  int i;
-  int j;
-
-  if(_useGamma)
-	{
-	  uint8_t col;
-	  if(color == RGB){
-	  for(j = 0; j< data_length; j++){
-		  /* set Color */
-		  col = gamma8[data[j]];
-		  for(i = 0; i < 8; i++)
-		  {
-			  /* clear bit */
-			  frame_buffer[offset+7-i] &= stripClrMask;
-
-			  /* set bit */
-			  if(col & (1<<i))
-				{
-				 frame_buffer[offset+7-i] |= stripSetMask;
-				}
-		  }
-		  offset+=8;
-	  	  }
-	  }
-	  else if(color == RBG)
-	  {
-		  for(j = 0; j< data_length; j+=3){
-			  /* set Color */
-			  col = gamma8[data[j]];
-
-			  // Red
-			  for(i = 0; i < 8; i++)
-			  {	  /* clear bit */
-				  frame_buffer[offset+7-i] &= stripClrMask;
-				  /* set bit */
-				  if(col & (1<<i))
-					{ frame_buffer[offset+7-i] |= stripSetMask;	}
-			  }
-			  // Green
-			  offset+=8;
-			  col = gamma8[data[j+2]];
-			  for(i = 0; i < 8; i++)
-			  {	  /* clear bit */
-				  frame_buffer[offset+7-i] &= stripClrMask;
-				  /* set bit */
-				  if(col & (1<<i))
-					{ frame_buffer[offset+7-i] |= stripSetMask;	}
-			  }
-			  // Blue
-			  offset+=8;
-			  col = gamma8[data[j+2]];
-			  for(i = 0; i < 8; i++)
-			  {	  /* clear bit */
-				  frame_buffer[offset+7-i] &= stripClrMask;
-				  /* set bit */
-				  if(col & (1<<i))
-					{ frame_buffer[offset+7-i] |= stripSetMask;	}
-			  }
-			  offset+=8;
-		  }
-	  }
-	  else if(color == GRB)
-	  {
-		  for(j = 0; j< data_length; j+=3){
-			  /* set Color */
-			  col = gamma8[data[j+1]];
-
-			  for(i = 0; i < 8; i++)
-			  {	  /* clear bit */
-				  frame_buffer[offset+7-i] &= stripClrMask;
-				  /* set bit */
-				  if(col & (1<<i))
-					{ frame_buffer[offset+7-i] |= stripSetMask;	}
-			  }
-			  offset+=8;
-			  col = gamma8[data[j]];
-			  for(i = 0; i < 8; i++)
-			  {	  /* clear bit */
-				  frame_buffer[offset+7-i] &= stripClrMask;
-				  /* set bit */
-				  if(col & (1<<i))
-					{ frame_buffer[offset+7-i] |= stripSetMask;	}
-			  }
-			  offset+=8;
-			  col = gamma8[data[j+2]];
-			  for(i = 0; i < 8; i++)
-			  {	  /* clear bit */
-				  frame_buffer[offset+7-i] &= stripClrMask;
-				  /* set bit */
-				  if(col & (1<<i))
-					{ frame_buffer[offset+7-i] |= stripSetMask;	}
-			  }
-			  offset+=8;
-		  }
-	  }
-	}
+  // TODO: this needs to revised to provide per-led gamma and color mode configurations
+  if((color != RGBW) && (color != GRBW))
+	  for(unsigned j = 0; j < data_length; j+=3)
+		  led_writers[color][_useGamma](frame_buffer + offset + (8 * j), strip, data + j);
   else
-  {
-    for(j = 0; j< data_length; j++){
-	  /* set Color */
-	  for(i = 0; i < 8; i++)
-	  {
-		  /* clear bit */
-		  frame_buffer[offset+7-i] &= stripClrMask;
-
-		  /* set bit */
-		  if(data[j] & (1<<i))
-			{
-			 frame_buffer[offset+7-i] |= stripSetMask;
-			}
-	  }
-	  offset+=8;
-   }
-  }
+	  for(unsigned j = 0; j < data_length; j+=4)
+		  led_writers[color][_useGamma](frame_buffer + offset + (8 * j), strip, data + j);
 }
 
 void  hyperlight::setSnakeLED(int strip, uint8_t * data, int data_length, int ledOffset, uint16_t snakeLength)
