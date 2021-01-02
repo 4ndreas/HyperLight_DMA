@@ -2,6 +2,7 @@
 #include "variant.h"
 #include "pin_config.h"
 #include <SPI.h>
+#include <Math.h>
 #include "BufferedArtnet.h"
 #include "hyperlight.h"
 #include "helper.h"
@@ -120,19 +121,23 @@ void setup() {
 uint32_t last_update = 0;
 uint32_t last_artnet_update = 0;
 uint32_t currentTime = 0;
+unsigned long update_time = 0;
 
 bool new_data = false;
+unsigned frames = 0;
 
 void loop() {
 	currentTime = millis();
 
-	while(artnet.read()) {
+	while(!(artnet.syncMode() && artnet.syncPending()) && artnet.read()) {
+
+
 		new_data = true;
-		while(artnet.read());
 		last_artnet_update = currentTime;
 	}
 
-	if (new_data && ((currentTime - last_artnet_update) > 5 ))	// 50 fps
+	if ((!artnet.syncMode() && new_data && ((currentTime - last_artnet_update) > 5 )) // heuristic update
+	 || (artnet.syncMode() && artnet.syncPending())	)	// synchronized update
 	{
 
 		// set status led
@@ -152,14 +157,30 @@ void loop() {
 		}
 
 		if(leds.isDMAIdle()){
+
+			unsigned long conv_start = micros();
 			for(unsigned c = 0; c < 16; c++) {
 				leds.setStripLED(c, artnet.getUniverseData(c*2), 510, 0, GRB);
 				leds.setStripLED(c, artnet.getUniverseData((c*2) + 1), 510, 170, GRB);
 			}
 
+			long unsigned conv_time = micros() - conv_start;
+			if(conv_time > update_time) {
+				update_time = conv_time;
+				conv_start = micros();
+			}
+
 			leds.show();
 
 			new_data = false;
+
+			frames++;
+
+			if(frames % 10 == 0)
+				update_time = 0;
+
+
+			artnet.clearSyncPending();
 		}
 
 /*		if (currentTime - last_update > 30)	// 50 fps
