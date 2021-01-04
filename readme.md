@@ -12,6 +12,8 @@ STM32F407 based WS2811/12 Led driver with 16-channel DMA output
 * Adafruit_SSD1306
 	* Display size to 128x64
 	
+* Overrides for ST SPI Hal Code beed as compile options: -include "<absolute-src-path>/make_weak.h"
+	
 
 
 ## ToDo
