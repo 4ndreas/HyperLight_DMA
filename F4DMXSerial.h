@@ -34,12 +34,15 @@ public:
     void begin();
 
     void write(int channel, uint8_t value);
+    void write_block(unsigned first_channel, uint8_t* values, size_t len)
     void Send_Packet();
 
-    // buffer includes one byte more as start
-    uint8_t dma_buffer[DMX_BUFFER_SIZE];
-
 private:
+    // buffer includes one byte more as start
+    uint8_t dma_buffer_a[DMX_BUFFER_SIZE];
+	uint8_t dma_buffer_b[DMX_BUFFER_SIZE];
+	uint8_t* front_buffer;
+	uint8_t* back_buffer;
 
     void setDataDir(uint8_t dir);
 };

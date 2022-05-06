@@ -10,8 +10,10 @@ DMA_HandleTypeDef hdma_usart2_tx;
 
 F4DMXSerial::F4DMXSerial()
 {
-    
-
+	dma_buffer_a[0] = 0;
+	dma_buffer_b[0] = 0;
+	dma_front_buffer = dma_buffer_a;
+	dma_back_buffer = dma_buffer_b;
 }
 
 void F4DMXSerial::begin()
@@ -25,14 +27,26 @@ void F4DMXSerial::begin()
 }
 
 
-void F4DMXSerial::write(int channel, uint8_t value)
+void F4DMXSerial::write(unsigned channel, uint8_t value)
 {
   // channel starts at 1 first byte in to send always 0
   // adjust parameters
   if (channel < 1) channel = 1;
   if (channel > DMXSERIAL_MAX) channel = DMXSERIAL_MAX;
 
-  dma_buffer[channel] = value;
+  dma_back_buffer[channel] = value;
+}
+
+void F4DMXSerial::write_block(unsigned first_channel, uint8_t* values, size_t len)
+{
+  // channel starts at 1 first byte in to send always 0
+  // adjust parameters
+  if (first_channel < 1)
+	  return;
+  if ((first_channel + len - 1) > DMXSERIAL_MAX)
+	  return;
+
+  memcpy(dma_back_buffer + first_channel, values, len);
 }
 
 
@@ -77,12 +91,15 @@ void F4DMXSerial::Send_Packet()
     reg &= ~(0b11 << (5 * 2));
     reg |= 0b10 << (5 * 2);
     DMX_GPIO_Port -> MODER = reg;
-
+	
+	uint8_t* tmp = dma_front_buffer;
+	dma_front_buffer = dma_back_buffer;
+	dma_back_buffer = tmp;
 
     // dmx buffer
     // START CODE |   Data0   | ... |  Data511
     // 0000 0000  | xxxx xxxx | ... | xxxx xxxx
-    HAL_UART_Transmit_DMA(&huart2, dma_buffer, DMX_BUFFER_SIZE);
+    HAL_UART_Transmit_DMA(&huart2, dma_front_buffer, DMX_BUFFER_SIZE);
 }
 
 

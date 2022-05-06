@@ -200,16 +200,18 @@ uint32_t currentTime = 0;
 unsigned long update_time = 0;
 
 bool new_data = false;
+bool new_dmx_data = false;
 unsigned frames = 0;
 
 void loop() {
 	currentTime = millis();
 
 #ifdef USE_DMX
-	if((currentTime - last_dmx_update) > (1000 / 30) ) // 30 fps dmx update
+	if(((currentTime - last_dmx_update) > (1000 / 30)) && new_dmx_data) // 30 fps dmx update
 	{
 		last_dmx_update = currentTime;
 		dmxOUT.Send_Packet();
+		new_dmx_data = false;
 	}
 #endif
 
@@ -262,9 +264,9 @@ void loop() {
 				// To do
 				if ( artnet.newUniverseData(DMX_UNI) > 0 )
 				{
-					/* to do -> improvement and get rid of memcpy */
 					uint8_t * data = artnet.getUniverseData(DMX_UNI);
-					memcpy(dmxOUT.dma_buffer+1, data, 512);
+					dmxOUT.write_block(1, data, 512);
+					new_dmx_data = true;
 				}
 #endif
 				if ( artnet.newUniverseData(CONFIG_UNI) > 0 )
