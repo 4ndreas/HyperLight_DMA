@@ -13,6 +13,7 @@ template<unsigned universes>
 class BufferedArtnet
 {
 	uint8_t data[universes][512];
+	uint8_t new_data[universes];
 	uint8_t last_seq[universes];
 	unsigned lost_frames[universes];
 	EthernetUDP udp;
@@ -20,7 +21,11 @@ class BufferedArtnet
 	unsigned sync_received_time;
 	unsigned read_max;
 
+
 public:
+
+	IPAddress remote;
+
 	BufferedArtnet(): data{0}, last_seq{0}, lost_frames{0}, sync_pending(false), sync_received_time(0) {
 	}
 
@@ -32,8 +37,15 @@ public:
 		udp.stop();
 	}
 
+	uint8_t newUniverseData(unsigned u) {
+		assert(u < universes);
+		return new_data[u];
+	}
+
+
 	uint8_t* getUniverseData(unsigned u) {
 		assert(u < universes);
+		new_data[u] = 0;
 		return data[u];
 	}
 
@@ -51,6 +63,8 @@ public:
 
 	bool read() {
 		unsigned packet_size = udp.parsePacket();
+
+		remote = udp.remoteIP();	// note Host IP
 
 		if(packet_size == 0)
 			return false;
@@ -101,6 +115,8 @@ public:
 
 			last_seq[u] = seq;
 		}
+
+		new_data[u] = 1;
 
 		unsigned read_start = micros();
 		int read = udp.read(data[u], size);

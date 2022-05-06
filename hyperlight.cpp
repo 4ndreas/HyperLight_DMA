@@ -103,7 +103,7 @@ void hyperlight::setAll(uint8_t red, uint8_t green , uint8_t blue)
   */
 void hyperlight::setLED(int strip, int led_number, uint8_t red, uint8_t green ,uint8_t blue)
 {
-  int offset = (led_number )* LED_COLORS * 8 + DMA_DUMMY;
+  int offset = (led_number )* LED_COLORS * 8 + DMA_DUMMY  + statusLedOffsets[strip] ;
 
   uint16_t stripClrMask = ~(1<< strip);
   uint16_t stripSetMask = (1<< strip);
@@ -138,7 +138,7 @@ if((offset+24) < FULL_FRAME_SIZE )
 
 void hyperlight::setLED(int strip, int led_number, uint8_t red, uint8_t green ,uint8_t blue, uint8_t white)
 {
-  int offset = (led_number )* 4 * 8 + DMA_DUMMY;
+  int offset = (led_number )* 4 * 8 + DMA_DUMMY + statusLedOffsets[strip] ;
 
   uint16_t stripClrMask = ~(1<< strip);
   uint16_t stripSetMask = (1<< strip);
@@ -236,7 +236,7 @@ void (*led_writers[][2]) (uint16_t* offset, uint8_t strip, uint8_t* data) = {
 void hyperlight::setStripLED(int strip, uint8_t * data, int data_length, int start, colorMode color)
 {
   updatetime[strip] =  millis();
-  int offset = (start )* LED_COLORS * 8 + DMA_DUMMY;
+  int offset = (start + statusLedOffsets[strip] ) * LED_COLORS * 8 + DMA_DUMMY ;
 
   // TODO: this needs to revised to provide per-led gamma and color mode configurations
   if((color != RGBW) && (color != GRBW))
@@ -424,6 +424,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef* htim)
 
 static void MX_DMA_Init(void)
 {
+  /* DMX WS2811 DMA */
   __HAL_RCC_DMA2_CLK_ENABLE();
 
   HAL_NVIC_SetPriority(DMA2_Stream2_IRQn, 0, 0);

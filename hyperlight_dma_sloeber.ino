@@ -1,22 +1,36 @@
+#define ARCH_STM32
+
 #include "Arduino.h"
 #include "variant.h"
 #include "pin_config.h"
 #include <SPI.h>
+#include <SPIMemory.h>
+#include <IWatchdog.h>
+#include <FlashStorage_STM32.h>
 #include <Math.h>
 #include "BufferedArtnet.h"
 #include "hyperlight.h"
+#include "F4DMXSerial.h"
 #include "helper.h"
+
 
 //#define USE_WEBSERVER
 #define USE_OLED
 #define USE_BUTTONS
 #define USE_DMX
-#define USE_LCD
+//#define USE_LCD
+//#define USE_FLASH
+//#define USE_EEPROM
+//#define USE_WATCHDOG
+
+
+#define IP_ENDING 81
 
 
 #ifdef USE_DMX
 // To do
-
+#define DMX_UNI 65
+F4DMXSerial dmxOUT;
 #endif
 
 #ifdef USE_BUTTONS
@@ -33,6 +47,16 @@
 Adafruit_SSD1306 display(OLED_RESET);
 #endif
 
+
+#ifdef USE_LCD
+#include <wire.h>
+//#include <liquidcrystal_i2c.h>
+#include <LiquidCrystal_I2C.h>
+// Set the LCD address to 0x27 for a 16 chars and 2 line display
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+#endif
+
+
 #ifdef USE_WEBSERVER
 #include "website.h"
 
@@ -40,21 +64,41 @@ Adafruit_SSD1306 display(OLED_RESET);
 EthernetServer server(80);
 #endif
 
+struct sConfig sysConfig;
 
-BufferedArtnet<33> artnet;
+#ifdef USE_FLASH
+	SPIFlash flash(SPI_FLASH_CS);
+#endif
+
+
+
+
+#define CONFIG_UNI 65
+BufferedArtnet<66> artnet;
+//BufferedArtnet<33> artnet;
 hyperlight leds;
 
 #define LED_OFFSET 0
 
 
-byte ip[] = {192, 168, 2, 84};
-byte mac[] = {0x04, 0xE9, 0xE5, 0x88, 0x69, 0xEC};
+byte ip[] = {192, 168, 2, IP_ENDING};
+#define CONCAT(m, n) m ## n
+#define HEXIFY(x) CONCAT(0x, x)
+byte mac[] = {0x04, 0xE9, 0xE5, HEXIFY(IP_ENDING), 0x69, 0xEC};
 
 // sets artnet timeout in ms (only for show)
 #define INACTIVITY_TIMEOUT 1000
 IPAddress remoteArd;
 
 void setup() {
+
+#ifdef USE_WATCHDOGUSE_WATCHDOG
+  if (IWatchdog.isReset(true)) {
+		  // to do monitor resets by watchdog
+  }
+
+  IWatchdog.begin(4000000);
+#endif
 
   // Hardware Serial1 for debug out
   Serial.begin(115200);
@@ -66,28 +110,9 @@ void setup() {
   Serial.print(ip[2], DEC);Serial.print(".");
   Serial.print(ip[3], DEC);Serial.println("");
 
-
   leds.begin();
 
-  if (LED_OFFSET > 0 ){
-	  for ( int i = 0; i < 8; i++)
-	  {
-		  leds.setOffset(i,1);
-	  }
-  }
 
-  pinMode(ETH_RST_PIN, OUTPUT);
-  digitalWrite(ETH_RST_PIN, HIGH);
-
-  delay(100);
-
-  SPI.setMISO(ETH_MISO_PIN);
-  SPI.setMOSI(ETH_MOSI_PIN);
-  SPI.setSCLK(ETH_SCK_PIN);
-  Ethernet.init(ETH_SCS_PIN);
-  Ethernet.begin(mac, ip);
-
-  artnet.begin();
 
 #ifdef USE_WEBSERVER
   server.begin();
@@ -105,21 +130,72 @@ void setup() {
   updateDisplay();
 #endif
 
-#ifdef USE_DMX
-// To do
-  pinMode(UART2_RE_PIN, OUTPUT);
-  pinMode(UART2_DE_PIN, OUTPUT);
 
-  // set Data direction
-  // needs to be confirmed
-  digitalWrite(UART2_RE_PIN, HIGH);
-  digitalWrite(UART2_DE_PIN, HIGH);
+#ifdef USE_LCD
+
+  Wire.setSDA(I2C1_SDA_PIN);
+  Wire.setSCL(I2C1_SCL_PIN);
+  lcd.begin(16,2);
+  lcd.init();
+  lcd.backlight();
+  lcd.clear();
+
+
+  lcd.setCursor(0, 0);
+  lcd.print("Hyperlight");
+  lcd.setCursor(0, 1);
+  lcd.print("init");
+  lcd.display();
+
+#endif
+
+
+#ifdef USE_DMX
+  dmxOUT.begin();
+  delay(1);
+  dmxOUT.Send_Packet();
+#endif
+
+
+  pinMode(ETH_RST_PIN, OUTPUT);
+
+  digitalWrite(ETH_RST_PIN, HIGH);
+  delay(100);
+  digitalWrite(ETH_RST_PIN, LOW);
+  delay(100);
+  digitalWrite(ETH_RST_PIN, HIGH);
+  delay(100);
+
+  SPI.setMISO(ETH_MISO_PIN);
+  SPI.setMOSI(ETH_MOSI_PIN);
+  SPI.setSCLK(ETH_SCK_PIN);
+  Ethernet.init(ETH_SCS_PIN);
+  Ethernet.begin(mac, ip);
+
+  artnet.begin();
+
+#ifdef USE_FLASH
+  flash.begin();
+  readFlash();
+#endif
+
+#ifdef USE_EEPROM
+  //Serial.print(F("\nStart FlashStoreAndRetrieve on ")); Serial.println(BOARD_NAME);
+  Serial.println(FLASH_STORAGE_STM32_VERSION);
+
+  Serial.print("EEPROM length: ");
+  Serial.println(EEPROM.length());
+
+  readConfig();
+#else
+  defaultConfig();
 #endif
 
 }
 
 uint32_t last_update = 0;
 uint32_t last_artnet_update = 0;
+uint32_t last_dmx_update = 0;
 uint32_t currentTime = 0;
 unsigned long update_time = 0;
 
@@ -128,6 +204,14 @@ unsigned frames = 0;
 
 void loop() {
 	currentTime = millis();
+
+#ifdef USE_DMX
+	if((currentTime - last_dmx_update) > (1000 / 30) ) // 30 fps dmx update
+	{
+		last_dmx_update = currentTime;
+		dmxOUT.Send_Packet();
+	}
+#endif
 
 	while(!(artnet.syncMode() && artnet.syncPending()) && artnet.read()) {
 
@@ -160,8 +244,80 @@ void loop() {
 
 			unsigned long conv_start = micros();
 			for(unsigned c = 0; c < 16; c++) {
-				leds.setStripLED(c, artnet.getUniverseData(c*2), 510, 0, GRB);
-				leds.setStripLED(c, artnet.getUniverseData((c*2) + 1), 510, 170, GRB);
+				//leds.setStripLED(c, artnet.getUniverseData(c*2), 510, 0, GRB);
+				//leds.setStripLED(c, artnet.getUniverseData((c*2) + 1), 510, 170, GRB);
+
+				// sysConfig.ledConfig[c].color
+
+				if ( artnet.newUniverseData(c) > 0 )
+					leds.setStripLED(c, artnet.getUniverseData(c), 510, 0, sysConfig.ledConfig[c].color);
+				if ( artnet.newUniverseData(c + 16) > 0 )
+					leds.setStripLED(c, artnet.getUniverseData((c) + 16), 510, 170, sysConfig.ledConfig[c].color);
+				if ( artnet.newUniverseData(c + 32) > 0 )
+					leds.setStripLED(c, artnet.getUniverseData((c) + 32), 510, 340, sysConfig.ledConfig[c].color);
+				if ( artnet.newUniverseData(c + 48) > 0 )
+					leds.setStripLED(c, artnet.getUniverseData((c) + 48), 510, 510, sysConfig.ledConfig[c].color);
+
+#ifdef USE_DMX
+				// To do
+				if ( artnet.newUniverseData(DMX_UNI) > 0 )
+				{
+					/* to do -> improvement and get rid of memcpy */
+					uint8_t * data = artnet.getUniverseData(DMX_UNI);
+					memcpy(dmxOUT.dma_buffer+1, data, 512);
+				}
+#endif
+				if ( artnet.newUniverseData(CONFIG_UNI) > 0 )
+				{
+					// config universe
+					uint8_t * data = artnet.getUniverseData(CONFIG_UNI);
+
+					uint8_t magic = *data;
+					uint8_t cmd = *(data +1);
+					uint8_t channel = *(data +2);
+					uint8_t offset = *(data +3);
+					uint8_t color = *(data +4);
+
+					//Serial.print(ip[3], DEC);Serial.println("");
+					Serial.println("\r\ncondig packet");
+					Serial.print("magic:");Serial.println(magic);
+					Serial.print("cmd:");Serial.println(cmd);
+					Serial.print("channel:");Serial.println(channel);
+					Serial.print("offset:");Serial.println(offset);
+					Serial.print("color:");Serial.println(color);
+
+					if(magic == 42){
+						if (cmd == 1)
+						{
+							// set offset and color
+							if( channel < 16)
+							{
+								sysConfig.ledConfig[channel].offset = offset;
+								sysConfig.ledConfig[channel].color = (colorMode)color;
+
+								// set offset to hardware
+								leds.setOffset(channel,offset);
+							}
+						}
+						else if(cmd == 2)
+						{
+							// save config
+							saveConfig();
+						}
+						else if(cmd = 3)
+						{
+							// default config
+							defaultConfig();
+						}
+						else if(cmd = 4)
+						{
+							// read config config
+#ifdef USE_EEPROM
+							readConfig();
+#endif
+						}
+					}
+				}
 			}
 
 			long unsigned conv_time = micros() - conv_start;
@@ -195,6 +351,14 @@ void loop() {
 #endif
 #ifdef USE_OLED
     updateDisplay();
+#endif
+
+#ifdef USE_LCD
+  updateDisplay();
+#endif
+
+#ifdef USE_WATCHDOGUSE_WATCHDOG
+  IWatchdog.reload();
 #endif
 }
 
@@ -353,10 +517,10 @@ void updateDisplay()
 	  }
 	  else
 	  {
-		  display.print(remoteArd[0]);display.print(".");
-		  display.print(remoteArd[1]);display.print(".");
-		  display.print(remoteArd[2]);display.print(".");
-		  display.print(remoteArd[3]);
+		  display.print(artnet.remote[0]);display.print(".");
+		  display.print(artnet.remote[1]);display.print(".");
+		  display.print(artnet.remote[2]);display.print(".");
+		  display.print(artnet.remote[3]);
 	  }
 
 	  if((displayStatus != lastDisplayStatus) || (displayStatus == 0))
@@ -370,6 +534,142 @@ void updateDisplay()
 }
 
 #endif
+
+
+#ifdef USE_LCD
+void updateDisplay()
+{
+  static uint32_t lastDisplayUpdate = 0;
+  //static uint32_t lastDisplayStatus = 0;
+  //uint32_t displayStatus = 0;
+
+  if(( currentTime - lastDisplayUpdate) > 2000){
+	  lastDisplayUpdate = currentTime;
+
+	  lcd.setCursor(0, 0);
+	  lcd.print(ip[0], DEC);lcd.print(".");
+	  lcd.print(ip[1], DEC);lcd.print(".");
+	  lcd.print(ip[2], DEC);lcd.print(".");
+	  lcd.print(ip[3], DEC);lcd.print("");
+	  lcd.print("  ");
+
+	  lcd.setCursor(0, 1);
+	  for (int strip = 0; strip < 16; strip++)
+	  {
+		int lastUpdate = currentTime - leds.getUpdateTime(strip);
+
+		if (lastUpdate < INACTIVITY_TIMEOUT)
+		{
+			lcd.print("O");
+		}
+		else
+		{
+			lcd.print("X");
+		}
+	  }
+
+	  lcd.display();
+  }
+}
+
+#endif
+
+
+#ifdef USE_FLASH
+
+#define FLASH_ADDR 0
+
+void readFlash()
+{
+	flash.readAnything(FLASH_ADDR, sysConfig);
+
+	if(sysConfig.valid != 42)
+	{
+		Serial.println("\r\nno valid flash config!");
+		defaultConfig();
+	}
+
+	for ( int i = 0; i < LED_LINES; i++)
+	{
+	    leds.setOffset(i,sysConfig.ledConfig[i].offset);
+	}
+}
+
+void saveConfig()
+{
+	flash.eraseSection(FLASH_ADDR, sizeof(sysConfig));
+	flash.writeAnything(FLASH_ADDR, sysConfig);
+}
+
+void defaultConfig()
+{
+	Serial.println("setup default config!");
+
+	struct sConfig dConfig;
+
+	sysConfig = dConfig;
+	saveConfig();
+}
+
+
+#endif
+
+
+
+
+#ifdef USE_EEPROM
+
+uint16_t configAddress = 0;
+
+void readConfig()
+{
+	//flash.readAnything(FLASH_ADDR, sysConfig);
+	EEPROM.get(configAddress, sysConfig);
+
+	if(sysConfig.valid != 42)
+	{
+		Serial.println("\r\nno valid flash config!");
+		defaultConfig();
+	}
+	else
+	{
+		Serial.println("valid flash config");
+	}
+
+	for ( int i = 0; i < LED_LINES; i++)
+	{
+	    leds.setOffset(i,sysConfig.ledConfig[i].offset);
+	}
+}
+#endif
+
+void saveConfig()
+{
+#ifdef USE_EEPROM
+	//flash.eraseSection(FLASH_ADDR, sizeof(sysConfig));
+	//flash.writeAnything(FLASH_ADDR, sysConfig);
+	Serial.println("save config!");
+	EEPROM.put(configAddress, sysConfig);
+	EEPROM.commit();
+#endif
+}
+
+
+void defaultConfig()
+{
+	Serial.println("setup default config!");
+
+	struct sConfig dConfig;
+
+
+	sysConfig = dConfig;
+	sysConfig.valid = 42;
+
+	saveConfig();
+
+}
+
+
 
 
 

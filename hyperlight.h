@@ -28,16 +28,25 @@
 //#define TIM_T1H 133
 //#define TIM_T0H 50
 
+
+// current version !
+/*
+#define TIM_CLK 209		// counter period, time per bit
+#define TIM_TOO 39
+#define TIM_T1H 132
+#define TIM_T0H 55
+*/
+
 #define TIM_CLK 209		// counter period, time per bit
 #define TIM_TOO 39
 #define TIM_T1H 132
 #define TIM_T0H 55
 
 
-#define LED_LINES 16	// outputs
-#define LED_LENGHT 400	// leds per output
+#define LED_LINES  16	// outputs
+#define LED_LENGHT 680	// leds per output
 #define LED_COLORS 3	// colors per led
-#define DMA_DUMMY 2		// dummy due hardware limitations
+#define DMA_DUMMY  2	// dummy due hardware limitations
 
 #define FULL_FRAME_SIZE ( LED_LENGHT * LED_COLORS * 8 )+ DMA_DUMMY    /* max = 65530 (65535 - 5 dummy bits) due to dma limitation  */
 
@@ -52,6 +61,20 @@ enum colorMode
 	 RGBW,
 	 GRBW
 	};
+
+
+struct led_config{
+	int offset = 0;
+	colorMode color = GRB;
+	int useGamma = 1;
+};
+
+struct sConfig{
+	led_config ledConfig[LED_LINES];
+	int status = 0;
+	int valid = 0;
+};
+
 
 class hyperlight {
 public:

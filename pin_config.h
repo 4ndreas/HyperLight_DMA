@@ -11,9 +11,6 @@
 
 
 
-
-
-
 // D1 = Power
 #define LED_BUILTIN_D2 PA6  // note LED overlaps with hardware SPI-1 ENC_MISO_PIN
 #define LED_BUILTIN_D3 PA7  // note LED overlaps with hardware SPI-1 ENC_MOSI_PIN
@@ -31,12 +28,12 @@
 
 
 /* UART2 To DMX IN/OUT	*/
-#define UART2_TX_PIN  PD5	// TO MAX481 DI	- tx data in
-#define UART2_RX_PIN  PD6	// TO MAX481 RO - rx data out
-#define UART2_DE_PIN  PD7	// TO MAX481 DE - data direction
-#define UART2_RE_PIN  PD4	// TO MAX481 RE - Recieve nEnable
-// for RX RE LOW,  DE LOW
-// for TX RE HIGH, DE HIGH
+//#define UART2_TX_PIN  PD5	// TO MAX481 DI	- tx data in
+//#define UART2_RX_PIN  PD6	// TO MAX481 RO - rx data out
+//#define UART2_DE_PIN  PD7	// TO MAX481 DE - data direction
+//#define UART2_RE_PIN  PD4	// TO MAX481 RE - Recieve nEnable
+//// for RX RE LOW,  DE LOW
+//// for TX RE HIGH, DE HIGH
 
 
 /* HW-SPI-2 6-Pin Header	*/
@@ -82,7 +79,14 @@
 /* GND */
 
 /* Onbaord Flash		*/
-// to do
+// W25Q16JV
+// https://stm32-base.org/boards/STM32F407VET6-STM32-F4VE-V2.0.html
+#define SPI_FLASH_CS	PB0
+#define SPI_FLASH_DO	PB4
+//#define SPI_FLASH_WP	+3V3
+#define SPI_FLASH_DI	PB5
+#define SPI_FLASH_CLK	PB3
+//#define SPI_FLASH_HOLD +3V3
 
 /* SD-Card Pins  		*/
 // to do

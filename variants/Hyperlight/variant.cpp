@@ -183,6 +183,7 @@ extern "C" {
 extern DMA_HandleTypeDef hdma_tim8_ch1;
  void DMA2_Stream2_IRQHandler(void);
 
+
    /**
    * @brief This function handles DMA2 stream2 global interrupt.
    */
@@ -196,6 +197,23 @@ extern DMA_HandleTypeDef hdma_tim8_ch1;
 
    /* USER CODE END DMA2_Stream2_IRQn 1 */
  }
+
+ extern DMA_HandleTypeDef hdma_usart2_tx;
+ extern UART_HandleTypeDef huart2;
+ void DMA1_Stream6_IRQHandler(void);
+
+ void DMA1_Stream6_IRQHandler(void)
+ {
+   HAL_DMA_IRQHandler(&hdma_usart2_tx);
+   // clear uart busy flag
+   huart2.gState = HAL_UART_STATE_READY;
+ }
+
+// void USART2_IRQHandler(void)
+// {
+//   HAL_UART_IRQHandler(&huart2);
+// }
+
 
 
 /**
