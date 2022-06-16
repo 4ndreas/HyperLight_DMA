@@ -178,9 +178,31 @@ void hyperlight::setOffset(int strip, int offset)
 
 void hyperlight::setOffsetColor(int strip, uint8_t red, uint8_t green ,uint8_t blue)
 {
-	for(int i = 0; i< statusLedOffsets[strip]; i++)
+	uint32_t color = (red << 16) + (green << 8) + (blue);
+
+	for(int j = 0; j< statusLedOffsets[strip]; j++)
 	{
-		setLED(strip, i,red, green, blue);
+		int offset = (j) * LED_COLORS * 8 + DMA_DUMMY;
+		uint16_t stripClrMask = ~(1<< strip);
+		uint16_t stripSetMask = (1<< strip);
+
+		/*check buffer limit */
+		if((offset+24) < FULL_FRAME_SIZE )
+		  {
+			  int i;
+			  /* set Color */
+			  for(i = 0; i < 24; i++)
+			  {
+				  /* clear bit */
+				  frame_buffer[offset+23-i] &= stripClrMask;
+
+				  /* set bit */
+				  if(color & (1<<i))
+					{
+					 frame_buffer[offset+23-i] |= stripSetMask;
+					}
+			  }
+		  }
 	}
 }
 

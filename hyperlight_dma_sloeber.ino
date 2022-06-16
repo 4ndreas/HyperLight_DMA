@@ -226,24 +226,6 @@ void loop() {
 	if ((!artnet.syncMode() && new_data && ((currentTime - last_artnet_update) > 5 )) // heuristic update
 	 || (artnet.syncMode() && artnet.syncPending())	)	// synchronized update
 	{
-
-		// set status led
-		//if (sysConfig.enOffsetLEDs > 0 ){
-		if (1 > 0 ){
-			for (int strip = 0; strip < 16; strip++) {
-				uint32_t lastUpdate = currentTime - leds.getUpdateTime(strip);
-
-				if (lastUpdate < INACTIVITY_TIMEOUT)
-				{
-					leds.setOffsetColor(strip,0,16,0);
-				}
-				else
-				{
-					leds.setOffsetColor(strip,16,0,0);
-				}
-			}
-		}
-
 		if(leds.isDMAIdle()){
 
 			unsigned long conv_start = micros();
@@ -363,6 +345,7 @@ void loop() {
 		}*/
 	}
 
+	updateStatusLEDs();
 
 #ifdef USE_WEBSERVER
 	webserverLoop();
@@ -380,6 +363,40 @@ void loop() {
 #endif
 }
 
+void updateStatusLEDs(void)
+{
+	static uint32_t lastStatusUpdate = 0;
+	if(( currentTime - lastStatusUpdate) > 1000){
+		lastStatusUpdate = currentTime;
+
+		int globalIdle = 0;
+		// set status led
+		for (int strip = 0; strip < 16; strip++) {
+			uint32_t lastUpdate = currentTime - leds.getUpdateTime(strip);
+
+			if (sysConfig.enOffsetLEDs == 0 ){
+					leds.setOffsetColor(strip,0,0,0);
+				}
+			else
+			{
+				if (lastUpdate < INACTIVITY_TIMEOUT)
+				{
+					leds.setOffsetColor(strip,0,16,0);
+					globalIdle++;
+				}
+				else
+				{
+					leds.setOffsetColor(strip,16,0,0);
+				}
+			}
+		}
+		if (globalIdle == 0)
+		{
+			// to show the update if no channel got any data
+			leds.show();
+		}
+	}
+}
 
 //EthernetClient client;
 #ifdef USE_WEBSERVER
