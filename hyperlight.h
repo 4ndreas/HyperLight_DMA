@@ -73,6 +73,7 @@ struct sConfig{
 	led_config ledConfig[LED_LINES];
 	int status = 0;
 	int valid = 0;
+	int enOffsetLEDs = 1;
 };
 
 

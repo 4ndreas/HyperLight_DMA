@@ -20,11 +20,11 @@
 #define USE_DMX
 //#define USE_LCD
 //#define USE_FLASH
-//#define USE_EEPROM
+#define USE_EEPROM
 //#define USE_WATCHDOG
 
 
-#define IP_ENDING 81
+#define IP_ENDING 22
 
 
 #ifdef USE_DMX
@@ -73,15 +73,15 @@ struct sConfig sysConfig;
 
 
 
-#define CONFIG_UNI 65
-BufferedArtnet<66> artnet;
+#define CONFIG_UNI 66
+BufferedArtnet<67> artnet;
 //BufferedArtnet<33> artnet;
 hyperlight leds;
 
-#define LED_OFFSET 0
+#define LED_OFFSET 1
 
 
-byte ip[] = {192, 168, 2, IP_ENDING};
+byte ip[] = {10, 39, 0, IP_ENDING};
 #define CONCAT(m, n) m ## n
 #define HEXIFY(x) CONCAT(0x, x)
 byte mac[] = {0x04, 0xE9, 0xE5, HEXIFY(IP_ENDING), 0x69, 0xEC};
@@ -156,6 +156,24 @@ void setup() {
   dmxOUT.Send_Packet();
 #endif
 
+#ifdef USE_FLASH
+  flash.begin();
+  readConfig();
+#endif
+
+#ifdef USE_EEPROM
+  //Serial.print(F("\nStart FlashStoreAndRetrieve on ")); Serial.println(BOARD_NAME);
+  Serial.println(FLASH_STORAGE_STM32_VERSION);
+
+  Serial.print("EEPROM length: ");
+  Serial.println(EEPROM.length());
+
+  readConfig();
+
+#else
+  defaultConfig();
+#endif
+
 
   pinMode(ETH_RST_PIN, OUTPUT);
 
@@ -174,22 +192,7 @@ void setup() {
 
   artnet.begin();
 
-#ifdef USE_FLASH
-  flash.begin();
-  readFlash();
-#endif
 
-#ifdef USE_EEPROM
-  //Serial.print(F("\nStart FlashStoreAndRetrieve on ")); Serial.println(BOARD_NAME);
-  Serial.println(FLASH_STORAGE_STM32_VERSION);
-
-  Serial.print("EEPROM length: ");
-  Serial.println(EEPROM.length());
-
-  readConfig();
-#else
-  defaultConfig();
-#endif
 
 }
 
@@ -216,8 +219,6 @@ void loop() {
 #endif
 
 	while(!(artnet.syncMode() && artnet.syncPending()) && artnet.read()) {
-
-
 		new_data = true;
 		last_artnet_update = currentTime;
 	}
@@ -227,17 +228,18 @@ void loop() {
 	{
 
 		// set status led
-		if (LED_OFFSET > 0 ){
+		//if (sysConfig.enOffsetLEDs > 0 ){
+		if (1 > 0 ){
 			for (int strip = 0; strip < 16; strip++) {
-				int lastUpdate = currentTime - leds.getUpdateTime(strip);
+				uint32_t lastUpdate = currentTime - leds.getUpdateTime(strip);
 
 				if (lastUpdate < INACTIVITY_TIMEOUT)
 				{
-					leds.setOffsetColor(strip,0,32,0);
+					leds.setOffsetColor(strip,0,16,0);
 				}
 				else
 				{
-					leds.setOffsetColor(strip,32,0,0);
+					leds.setOffsetColor(strip,16,0,0);
 				}
 			}
 		}
@@ -306,17 +308,31 @@ void loop() {
 							// save config
 							saveConfig();
 						}
-						else if(cmd = 3)
+						else if(cmd == 3)
 						{
 							// default config
 							defaultConfig();
 						}
-						else if(cmd = 4)
+						else if(cmd == 4)
 						{
 							// read config config
-#ifdef USE_EEPROM
 							readConfig();
-#endif
+						}
+						else if(cmd == 5)
+						{
+							// enable status LEDs
+							Serial.println("set status LEDs\r\n");
+							sysConfig.enOffsetLEDs = channel;
+						}
+						else if(cmd == 66)
+						{
+							// reset device
+							Serial.println("reset Device\r\n");
+							IWatchdog.begin(1000000);
+							while(1)
+							{
+								;
+							}
 						}
 					}
 				}
@@ -579,54 +595,41 @@ void updateDisplay()
 
 #ifdef USE_FLASH
 
-#define FLASH_ADDR 0
+#define FLASH_ADDR 1
 
-void readFlash()
-{
-	flash.readAnything(FLASH_ADDR, sysConfig);
-
-	if(sysConfig.valid != 42)
-	{
-		Serial.println("\r\nno valid flash config!");
-		defaultConfig();
-	}
-
-	for ( int i = 0; i < LED_LINES; i++)
-	{
-	    leds.setOffset(i,sysConfig.ledConfig[i].offset);
-	}
-}
-
-void saveConfig()
-{
-	flash.eraseSection(FLASH_ADDR, sizeof(sysConfig));
-	flash.writeAnything(FLASH_ADDR, sysConfig);
-}
-
-void defaultConfig()
-{
-	Serial.println("setup default config!");
-
-	struct sConfig dConfig;
-
-	sysConfig = dConfig;
-	saveConfig();
-}
-
-
+//void readFlash()
+//{
+//	flash.readAnything(FLASH_ADDR, sysConfig);
+//
+//	if(sysConfig.valid != 42)
+//	{
+//		Serial.println("\r\nno valid flash config!");
+//		defaultConfig();
+//	}
+//
+//	for ( int i = 0; i < LED_LINES; i++)
+//	{
+//	    leds.setOffset(i,sysConfig.ledConfig[i].offset);
+//	}
+//}
 #endif
 
 
 
 
-#ifdef USE_EEPROM
+
 
 uint16_t configAddress = 0;
 
 void readConfig()
 {
 	//flash.readAnything(FLASH_ADDR, sysConfig);
+#ifdef USE_EEPROM
 	EEPROM.get(configAddress, sysConfig);
+#endif
+#ifdef USE_FLASH
+	flash.readAnything(FLASH_ADDR, sysConfig);
+#endif
 
 	if(sysConfig.valid != 42)
 	{
@@ -643,7 +646,7 @@ void readConfig()
 	    leds.setOffset(i,sysConfig.ledConfig[i].offset);
 	}
 }
-#endif
+
 
 void saveConfig()
 {
@@ -654,6 +657,10 @@ void saveConfig()
 	EEPROM.put(configAddress, sysConfig);
 	EEPROM.commit();
 #endif
+#ifdef USE_FLASH
+	flash.eraseSection(FLASH_ADDR, sizeof(sysConfig));
+	flash.writeAnything(FLASH_ADDR, sysConfig);
+#endif
 }
 
 
@@ -662,16 +669,10 @@ void defaultConfig()
 	Serial.println("setup default config!");
 
 	struct sConfig dConfig;
-
-
 	sysConfig = dConfig;
 	sysConfig.valid = 42;
-
 	saveConfig();
-
 }
-
-
 
 
 
