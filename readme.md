@@ -64,7 +64,16 @@ or if the plain arduino IDE is used in
 ```
 
 Setting for the board:
+
+Optimize: "Smallest(-Os default)"
+
 ![alt text][properties]
+
+Add make_weak to "compiler Options"
+```
+-include "C:\Users\ahoel\Documents\sloeber-workspace\hyperlight_dma\make_weak.h"
+```
+![alt text][properties2]
 
 ### How to Debug
 See the wiki form the STM32 Core
